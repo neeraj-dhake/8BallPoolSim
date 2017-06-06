@@ -1,5 +1,6 @@
 #pragma once
 class IWorldObject;
+#include "../GameplayEngine/Vector3D.h"
 
 class IGraphicsObject {
 protected:
@@ -10,6 +11,7 @@ protected:
 	IWorldObject* parent;
 	int num_primitives;
 	int num_vertices;
+	Vector3D color;
 public:
 	IGraphicsObject();
 	IWorldObject* GetParent();
@@ -20,9 +22,11 @@ public:
 	virtual void SetIBuf(void*, int) = 0;
 	virtual void SetTexture(void*) = 0;
 	virtual void Init() = 0;
+	void SetColor(Vector3D);
 	void* GetTexture();
 	void* GetVBuf();
 	void* GetIBuf();
+	Vector3D GetColor();
 	int GetNumPrimitives();
 	int GetNumVertices();
 	~IGraphicsObject();
