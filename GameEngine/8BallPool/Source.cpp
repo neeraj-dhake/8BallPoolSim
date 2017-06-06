@@ -4,8 +4,8 @@
 #include "../Include/d3dx9.h"
 #include "../InputLib_Win/KeyBoardInput.h"
 
-const float SCREEN_WIDTH = 800;
-const float SCREEN_HEIGHT = 600;
+const int SCREEN_WIDTH = 800;
+const int SCREEN_HEIGHT = 600;
 
 #pragma comment (lib, "GameplayEngine.lib")
 #pragma comment (lib, "RenderingEngine.lib")
@@ -86,5 +86,5 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	}
 
 	delete input;
-	return msg.wParam;
+	return 0;
 }

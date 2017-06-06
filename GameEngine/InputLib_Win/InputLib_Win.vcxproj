@@ -139,10 +139,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="KeyBoardInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IInput.h" />
+    <ClInclude Include="InputHandler.h" />
     <ClInclude Include="KeyBoardInput.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

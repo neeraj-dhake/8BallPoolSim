@@ -1,12 +1,9 @@
 #include <Windows.h>
 #include "IInput.h"
 #pragma once
-#define No 5
-#define esc 0
-#define W 1
-#define A 2
-#define S 3
-#define D 4
+#define Num 5
+
+enum KEY_STATE { KEY_ESCAPE,KEY_W, KEY_A, KEY_S, KEY_D, KEY_SPACEBAR};
 
 class KeyBoardInput : public IInput
 {

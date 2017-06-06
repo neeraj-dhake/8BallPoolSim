@@ -13,7 +13,7 @@ LRESULT CALLBACK process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam,b
 		case VK_ESCAPE: 
 			DestroyWindow(hwnd);
 			return -1;
-			keys[esc] = 1;
+			keys[KEY_ESCAPE] = 1;
 			break; 
 		 // add other buttons implemntations
 
@@ -45,7 +45,7 @@ LRESULT CALLBACK process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam,b
 
 KeyBoardInput::KeyBoardInput()
 {
-	keys = new bool[No];
+	keys = new bool[Num];
 }
 KeyBoardInput::~KeyBoardInput(void)
 {
