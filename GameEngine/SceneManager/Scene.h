@@ -6,7 +6,7 @@ class SceneManager;
 class Scene {
 protected:
 	unsigned int NameHash;
-	bool IsActive;
+	bool is_active;
 	SceneManager* Manager;
 	std::list<IWorldObject*> objects_in_scene;
 public:
