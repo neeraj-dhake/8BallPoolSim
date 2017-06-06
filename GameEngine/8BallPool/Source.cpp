@@ -2,10 +2,14 @@
 #include "../GameplayEngine/WorldObject_cuboid.h"
 #include "../GameplayEngine/World.h"
 #include "../Include/d3dx9.h"
+#include "../InputLib_Win/KeyBoardInput.h"
+
 const float SCREEN_WIDTH = 800;
 const float SCREEN_HEIGHT = 600;
+
 #pragma comment (lib, "GameplayEngine.lib")
 #pragma comment (lib, "RenderingEngine.lib")
+#pragma comment (lib, "InputLib_Win.lib")
 #pragma comment (lib, "d3d9.lib")
 #pragma comment (lib, "d3dx9.lib")
 
@@ -16,9 +20,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 		DestroyWindow(hwnd);
 		break;
 	case WM_QUIT:
-		//FreeLoadedHGEResources();	 //--------------------------------------
 		PostQuitMessage(0);
-
 		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);
@@ -69,15 +71,20 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	D3DXVECTOR3 pos(100, -100, 100), lookat(0, 0, 0), up(0, -1, 0);
 
+
 	MSG msg;
+
+	KeyBoardInput *input = new KeyBoardInput;
+
 	while (TRUE) {
-		while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
-			DispatchMessage(&msg);
-		}
-		if (msg.message == WM_QUIT)
+
+		if (!input->handle(msg) || msg.message == WM_QUIT)
 			break;
 
 		world.Draw(pos, lookat, up);
+
 	}
+
+	delete input;
 	return msg.wParam;
 }
