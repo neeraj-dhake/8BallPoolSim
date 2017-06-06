@@ -150,6 +150,20 @@
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GameplayEngine\GameplayEngine.vcxproj">
+      <Project>{012d426e-d1a2-411e-8740-954a85625b98}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\InputLib_Win\InputLib_Win.vcxproj">
+      <Project>{2a0cf5fb-70c6-4cfe-9aad-01ec63417bfa}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\RenderingEngine\RenderingEngine.vcxproj">
+      <Project>{a6921899-e01e-4085-8612-6f1f2356e18b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\SceneManager\SceneManager.vcxproj">
+      <Project>{7054fe7d-3fcf-4223-a2ec-e606903c18d0}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
