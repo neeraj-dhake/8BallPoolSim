@@ -4,7 +4,7 @@
 #include <list>
 class SceneManager;
 
-class Scene {
+class Scene : public IWorldObject {
 protected:
 	bool is_active;
 	SceneManager* Manager;
@@ -14,11 +14,11 @@ protected:
 	Vector3D camera_up;
 public:
 	Scene();
-	virtual bool IsActive() = 0;
-	virtual void SetActive(bool) = 0;
-	virtual void SetManager(SceneManager*) = 0;
-	virtual void AddObject(IWorldObject*) = 0;
-	virtual void DeleteObject(IWorldObject*) = 0;
+	bool IsActive();
+	void SetActive(bool);
+	void SetManager(SceneManager*);
+	void AddObject(IWorldObject*);
+	void DeleteObject(IWorldObject*);
 	~Scene();
 };
 
