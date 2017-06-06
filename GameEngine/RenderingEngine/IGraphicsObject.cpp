@@ -28,9 +28,19 @@ IWorldObject* IGraphicsObject::GetParent() {
 void* IGraphicsObject::GetTexture() {
 	return texture;
 }
+
 void* IGraphicsObject::GetVBuf() {
 	return vertex_buffer;
 }
+
 void* IGraphicsObject::GetIBuf() {
 	return index_buffer;
+}
+
+void IGraphicsObject::SetColor(Vector3D col) {
+	color = col;
+}
+
+Vector3D IGraphicsObject::GetColor() {
+	return color;
 }

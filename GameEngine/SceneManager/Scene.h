@@ -4,7 +4,7 @@
 #include <list>
 class SceneManager;
 
-class Scene : public IWorldObject {
+class Scene{
 protected:
 	bool is_active;
 	SceneManager* Manager;
