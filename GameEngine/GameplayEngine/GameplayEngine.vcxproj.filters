@@ -19,6 +19,12 @@
     <Filter Include="Source Files\Objects">
       <UniqueIdentifier>{69e439f1-f7ae-4d92-aa10-a2846a88988c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Objects\WorldObjects">
+      <UniqueIdentifier>{00e24302-2828-4ab4-892e-0c2d73e43af6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\helper structs">
+      <UniqueIdentifier>{5a193104-84a7-4809-874f-dc94dcfa6611}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -39,22 +45,40 @@
     <ClInclude Include="World.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PhysicsObject_cuboid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BodyData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Vector3D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="IWorldObject.cpp">
       <Filter>Source Files\Interfaces</Filter>
     </ClCompile>
     <ClCompile Include="IPhysicsObject.cpp">
       <Filter>Source Files\Interfaces</Filter>
     </ClCompile>
-    <ClCompile Include="WorldObject_cuboid.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="World.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BodyData.cpp">
+      <Filter>Source Files\helper structs</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3D.cpp">
+      <Filter>Source Files\helper structs</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsObject_cuboid.cpp">
+      <Filter>Source Files\Objects\WorldObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldObject_cuboid.cpp">
+      <Filter>Source Files\Objects\WorldObjects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
