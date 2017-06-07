@@ -33,3 +33,15 @@ void PhysicsObject_cuboid::SetDim(float width, float length, float height)
 {
 	dim.x = width, dim.y = length, dim.z = height;
 }
+
+void PhysicsObject_cuboid::SetAABB()
+{
+	aabb.min.x = data.position.x - dim.x, aabb.min.y = data.position.y - dim.y, aabb.min.z = data.position.z - dim.z;
+	aabb.max.x = data.position.x + dim.x, aabb.max.y = data.position.y + dim.y, aabb.max.z = data.position.z + dim.z;
+}
+
+
+AABB PhysicsObject_cuboid::GetAABB()
+{
+	return aabb;
+}

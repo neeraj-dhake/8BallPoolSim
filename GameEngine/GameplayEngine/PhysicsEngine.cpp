@@ -50,13 +50,21 @@ void PositionalCorrection(BodyData obj1, BodyData obj2)
 	obj2.position += correction*obj2.invMass;
 }
 
-
 bool PhysicsEngine::DetectCollision(Vector3D v1, Vector3D v2, Vector3D dim1, Vector3D dim2)
 {
 	if ((fabs(v1.x - v2.x) <= dim1.x + dim2.x) && (fabs(v1.y - v2.y) <= dim1.y + dim2.y) && (fabs(v1.z - v2.z) <= dim1.z + dim2.z))
 		return true;
 
 	return false;
+}
+
+bool PhysicsEngine::DetectCollision(AABB a, AABB b)
+{
+	if (a.max.x < b.min.x or a.min.x > b.max.x) return false;
+	if (a.max.y < b.min.y or a.min.y > b.max.y) return false;
+
+			// No separating axis found, therefor there is at least one overlapping axis
+	return true;
 }
 
 void PhysicsEngine::impulseX(Vector3D & v, float vel)
