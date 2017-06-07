@@ -18,3 +18,27 @@ bool PhysicsEngine::DetectCollision(Vector3D v1, Vector3D v2, Vector3D dim1, Vec
 
 	return false;
 }
+
+void PhysicsEngine::CollisionResponse(Vector3D vel1, Vector3D vel2)
+{
+
+
+}
+
+void PhysicsEngine::impulseX(Vector3D & v, float vel)
+{
+	v.x += vel;
+}
+
+void PhysicsEngine::impulseY(Vector3D & v, float vel)
+{
+	v.y += vel;
+}
+
+void PhysicsEngine::impulseZ(Vector3D & v, float vel)
+{
+	v.z += vel;
+}
+
+
+

@@ -1,5 +1,7 @@
-#include "IWorldObject.h"
+#include "Vector3D.h"
 #pragma once
+
+class IWorldObject;
 class IPhysicsObject
 {
 

@@ -7,8 +7,10 @@ public:
 	~PhysicsObject_cuboid();
 
 	virtual void Update();
+	Vector3D GetDim();
+	void SetDim(float width, float length,float height);
 
 private:
-	float width, length, height;
+	Vector3D dim;
 };
 

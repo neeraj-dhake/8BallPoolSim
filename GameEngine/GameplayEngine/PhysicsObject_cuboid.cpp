@@ -23,3 +23,13 @@ void PhysicsObject_cuboid::Update()
 	// can be improved as we progress ------- deoending on the features needed
 
 }
+
+Vector3D PhysicsObject_cuboid::GetDim()
+{
+	return dim;
+}
+
+void PhysicsObject_cuboid::SetDim(float width, float length, float height)
+{
+	dim.x = width, dim.y = length, dim.z = height;
+}

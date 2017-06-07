@@ -1,3 +1,4 @@
+#include "IWorldObject.h"
 #include "IPhysicsObject.h"
 IPhysicsObject::IPhysicsObject()
 {
