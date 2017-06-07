@@ -139,6 +139,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AABB.h" />
     <ClInclude Include="BodyData.h" />
     <ClInclude Include="IPhysicsObject.h" />
     <ClInclude Include="IWorldObject.h" />
@@ -149,6 +150,7 @@
     <ClInclude Include="WorldObject_cuboid.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AABB.cpp" />
     <ClCompile Include="BodyData.cpp" />
     <ClCompile Include="IPhysicsObject.cpp" />
     <ClCompile Include="IWorldObject.cpp" />

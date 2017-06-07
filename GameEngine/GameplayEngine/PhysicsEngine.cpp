@@ -43,8 +43,8 @@ inline float max(float x, float y) {
 void PositionalCorrection(BodyData obj1, BodyData obj2)
 {
 	Vector3D normal = Vector3D::Normal(obj1.position - obj2.position);
-	const float percent = 0.2; // usually 20% to 80%
-	const float slop = 0.01; // usually 0.01 to 0.1
+	const float percent = 0.2f; // usually 20% to 80%
+	const float slop = 0.01f; // usually 0.01 to 0.1
 	Vector3D correction = normal *  max(percent - slop, 0.0f) / (obj1.invMass + obj2.invMass) * percent ;
 	obj1.position -= correction*obj1.invMass;
 	obj2.position += correction*obj2.invMass;
@@ -60,8 +60,8 @@ bool PhysicsEngine::DetectCollision(Vector3D v1, Vector3D v2, Vector3D dim1, Vec
 
 bool PhysicsEngine::DetectCollision(AABB a, AABB b)
 {
-	if (a.max.x < b.min.x or a.min.x > b.max.x) return false;
-	if (a.max.y < b.min.y or a.min.y > b.max.y) return false;
+	if (a.max.x < b.min.x || a.min.x > b.max.x) return false;
+	if (a.max.y < b.min.y || a.min.y > b.max.y) return false;
 
 			// No separating axis found, therefor there is at least one overlapping axis
 	return true;
