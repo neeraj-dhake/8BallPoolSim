@@ -94,7 +94,7 @@ void RenderEngine_dx9::Draw(void* pos, void* look, void* up) {
 	end_frame();
 }
 
-void RenderEngine_dx9::SetNum(int n) {
+void RenderEngine_dx9::SetNum(size_t n) {
 	num_objects = n;
 }
 

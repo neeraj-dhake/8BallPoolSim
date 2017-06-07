@@ -1,20 +1,26 @@
 #include "Scene.h"
 #include "../InputLib_Win/InputHandler.h"
+#include "../RenderingEngine/IRenderer.h"
+#include <vector>
 #pragma once
-class SceneManager
-{
+class SceneManager {
 	
-	enum SCENE_STATE {MAIN_MENU,PAUSE_MENU,GAMEPLAY_SCENE,HELP_SCENE};
+	enum SCENE_STATE { MAIN_MENU, PAUSE_MENU, GAMEPLAY_SCENE, HELP_SCENE };
 
 public:
-	SceneManager();
+	SceneManager(int width, int height, void* HWND);
 	~SceneManager();
 	void Update();
-	void Render();
+	void SetRenderList(Scene*);
+	void Draw();
+	void AddScene(Scene*);
 
 private:
-	Scene* currentScene;
-	Scene* nextScene;
-	SCENE_STATE state;
+	Scene* current_scene;
+	Scene* next_scene;
+	std::vector<Scene*> all_scenes;
+	SCENE_STATE current_state;
+	SCENE_STATE next_state;
+	IRenderer* render_engine;
 };
 

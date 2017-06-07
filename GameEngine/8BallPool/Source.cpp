@@ -3,6 +3,11 @@
 #include "../GameplayEngine/World.h"
 #include "../Include/d3dx9.h"
 #include "../InputLib_Win/KeyBoardInput.h"
+#include "../SceneManager/Scene.h"
+#include "../SceneManager/SceneManager.h"
+#include "../SceneManager/GamePlayScene.h"
+#include "../SceneManager/PauseScene.h"
+#include "../SceneManager/MenuScene.h"
 
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
@@ -59,29 +64,33 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	World world(SCREEN_WIDTH, SCREEN_HEIGHT, hwnd);
 	ShowWindow(hwnd, nCmdShow);
 
-	WorldObject_cuboid* obj = new WorldObject_cuboid;
-	obj->SetCoordinates(0, 0, 0);
-	obj->SetDim(10, 10, 10);
-	world.AddObject(obj);
+	Scene* menu_scene = new MenuScene;
+	Scene* pause_scene = new PauseScene;
+	Scene* gameplay_scene = new GamePlayScene;
 
-	obj = new WorldObject_cuboid;
-	obj->SetCoordinates(0, 40, 40);
-	obj->SetDim(10, 20, 10);
-	world.AddObject(obj);
-
+	SceneManager* scene_manager = new SceneManager(SCREEN_WIDTH, SCREEN_HEIGHT, hwnd);
+	
 	D3DXVECTOR3 pos(100, -100, 100), lookat(0, 0, 0), up(0, -1, 0);
 
+	menu_scene->SetCamera(pos, lookat, up);
+	pause_scene->SetCamera(pos, lookat, up);
+	gameplay_scene->SetCamera(pos, lookat, up);
+
+	scene_manager->AddScene(menu_scene);
+	scene_manager->AddScene(gameplay_scene);
+	scene_manager->AddScene(pause_scene);
 
 	MSG msg;
 
 	KeyBoardInput *input = new KeyBoardInput;
+	InputHandler::instance().SetKey(input->getKeys());
 
 	while (TRUE) {
 
 		if (!input->handle(msg) || msg.message == WM_QUIT)
 			break;
-
-		world.Draw(pos, lookat, up);
+		scene_manager->Update();
+		scene_manager->Draw();
 
 	}
 
