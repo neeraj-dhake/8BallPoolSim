@@ -54,6 +54,9 @@
     <ClInclude Include="BodyData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AABB.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IWorldObject.cpp">
@@ -79,6 +82,9 @@
     </ClCompile>
     <ClCompile Include="WorldObject_cuboid.cpp">
       <Filter>Source Files\Objects\WorldObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="AABB.cpp">
+      <Filter>Source Files\helper structs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
