@@ -77,6 +77,8 @@ LRESULT CALLBACK process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam, 
 KeyBoardInput::KeyBoardInput()
 {
 	keys = new bool[Num];
+	for (size_t i = 0; i < Num; i++)
+		keys[i] = false;
 }
 KeyBoardInput::~KeyBoardInput(void)
 {
