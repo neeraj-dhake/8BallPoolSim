@@ -1,16 +1,4 @@
 #include "PauseScene.h"
-<<<<<<< HEAD
-
-
-
-PauseScene::PauseScene()
-{
-}
-
-
-PauseScene::~PauseScene()
-{
-=======
 #include "../GameplayEngine/WorldObject_cuboid.h"
 
 
@@ -27,5 +15,4 @@ void PauseScene::SetScene() {
 }
 
 PauseScene::~PauseScene() {
->>>>>>> scene-manager
 }

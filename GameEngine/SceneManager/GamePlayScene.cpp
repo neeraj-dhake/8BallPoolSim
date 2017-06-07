@@ -1,16 +1,4 @@
 #include "GamePlayScene.h"
-<<<<<<< HEAD
-
-
-
-GamePlayScene::GamePlayScene()
-{
-}
-
-
-GamePlayScene::~GamePlayScene()
-{
-=======
 #include "../GameplayEngine/WorldObject_cuboid.h"
 
 GamePlayScene::GamePlayScene() {
@@ -26,5 +14,4 @@ void GamePlayScene::SetScene() {
 }
 
 GamePlayScene::~GamePlayScene() {
->>>>>>> scene-manager
 }

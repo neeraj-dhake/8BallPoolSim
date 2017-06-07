@@ -4,10 +4,7 @@ class GamePlayScene : public Scene
 {
 public:
 	GamePlayScene();
-<<<<<<< HEAD
-=======
 	void SetScene();
->>>>>>> scene-manager
 	~GamePlayScene();
 };
 
