@@ -1,4 +1,4 @@
-#include "Vector3D.h"
+#include "BodyData.h"
 #include <math.h>
 #pragma once
 class PhysicsEngine
@@ -8,7 +8,7 @@ public:
 	~PhysicsEngine();
 
 	bool DetectCollision(Vector3D v1,Vector3D v2,Vector3D dim1, Vector3D dim2);	// cuboid with cuboid
-	void CollisionResponse(Vector3D vel1, Vector3D vel2, float coef1, float coef2, float m1, float m2);
+	void CollisionResponse(BodyData &obj1, BodyData &obj2);
 
 	void impulseX(Vector3D &v,float vel);	// used by collision reponse
 	void impulseY(Vector3D &v, float vel);	// used by collision reponse

@@ -7,6 +7,13 @@ Vector3D::Vector3D(float X,float Y, float Z) {
 	z = Z;
 }
 
+Vector3D & Vector3D::operator=(const Vector3D& v) {
+	x = v.x;
+	y = v.y;
+	z = v.z;
+	return *this;
+}
+
 Vector3D Vector3D::operator+(const Vector3D &v) const
 {
 	return Vector3D(x + v.x, y + v.y,z + v.z);
@@ -22,6 +29,12 @@ Vector3D Vector3D::operator*(const Vector3D &v) const
 	return Vector3D(x*v.x, y*v.y, z*v.z);
 }
 
+Vector3D Vector3D::operator*(float &val) const
+{
+	return Vector3D(x*val, y*val, z*val);
+}
+
+
 Vector3D Vector3D::operator/(const Vector3D &v) const
 {
 	return Vector3D(x/v.x, y/v.y, z/v.z);
@@ -33,6 +46,22 @@ bool Vector3D::operator==(const Vector3D &v) const
 		return true;
 
 	return false;
+}
+
+Vector3D & Vector3D::operator+=(const Vector3D & v)
+{
+	x = x + v.x;
+	y = y + v.y;
+	z = z + v.z;
+	return *this;
+}
+
+Vector3D & Vector3D::operator-=(const Vector3D & v)
+{
+	x = x - v.x;
+	y = y - v.y;
+	z = z - v.z;
+	return *this;
 }
 
 Vector3D Vector3D::operator*(const float &val) const
