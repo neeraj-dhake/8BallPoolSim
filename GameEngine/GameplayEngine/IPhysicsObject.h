@@ -13,6 +13,7 @@ protected:
 	Vector3D accelera;
 	float dt;
 	bool onGroundX, onGroundY, onGroundZ, isFixed;
+	float restitution,invMass;
 
 public:
 	IPhysicsObject();

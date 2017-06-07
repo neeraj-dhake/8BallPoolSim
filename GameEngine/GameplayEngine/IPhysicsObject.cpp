@@ -8,6 +8,7 @@ IPhysicsObject::IPhysicsObject()
 	velocity.x = 0.0f, velocity.y = 0.0f, velocity.z = 0.0f;
 	accelera.x = 0.0f, accelera.y = 0.0f, accelera.z = 0.0f;
 	onGroundX = false; onGroundY = false; onGroundZ = false;
+	restitution = 0.9999999f, invMass = 1.0f;
 
 }
 
