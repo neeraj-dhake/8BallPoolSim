@@ -61,9 +61,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	hwnd = CreateWindowEx(WS_EX_CLIENTEDGE, "myClass", "3DGame", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 800, 600, NULL, NULL, hInstance, NULL);
 
-	World world(SCREEN_WIDTH, SCREEN_HEIGHT, hwnd);
 	ShowWindow(hwnd, nCmdShow);
 
+	KeyBoardInput *input = new KeyBoardInput;
+	InputHandler::instance().SetKey(input->getKeys());
 	Scene* menu_scene = new MenuScene;
 	Scene* pause_scene = new PauseScene;
 	Scene* gameplay_scene = new GamePlayScene;
@@ -80,15 +81,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	scene_manager->AddScene(gameplay_scene);
 	scene_manager->AddScene(pause_scene);
 
+	menu_scene->SetScene();
+	pause_scene->SetScene();
+	gameplay_scene->SetScene();
+
 	MSG msg;
 
-	KeyBoardInput *input = new KeyBoardInput;
-	InputHandler::instance().SetKey(input->getKeys());
 
 	while (TRUE) {
 
 		if (!input->handle(msg) || msg.message == WM_QUIT)
 			break;
+		InputHandler::instance().SetKey(input->getKeys());
 		scene_manager->Update();
 		scene_manager->Draw();
 

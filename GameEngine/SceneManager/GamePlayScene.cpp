@@ -8,7 +8,7 @@ GamePlayScene::GamePlayScene() {
 void GamePlayScene::SetScene() {
 	is_active = true;
 	WorldObject_cuboid* obj = new WorldObject_cuboid;
-	obj->SetCoordinates(30, 30, 30);
+	obj->SetCoordinates(10, -10, 0);
 	obj->SetDim(10, 10, 10);
 	AddObject(obj);
 }

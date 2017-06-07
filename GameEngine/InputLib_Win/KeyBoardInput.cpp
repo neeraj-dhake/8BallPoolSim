@@ -1,9 +1,9 @@
 #include "KeyBoardInput.h"
 
 
-LRESULT CALLBACK process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam, bool* getkey)
+LRESULT CALLBACK process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam, bool* keys)
 {
-	bool* keys = getkey;
+	
 
 	switch (message)
 	{
@@ -87,9 +87,7 @@ KeyBoardInput::~KeyBoardInput(void)
 
 bool KeyBoardInput::handle(MSG &msg)
 {
-	bool quit = false;
 	while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
-
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 		if (process(msg.hwnd, msg.message, msg.wParam, msg.lParam, keys) == -1)	 // normally DefWindowProc is zero

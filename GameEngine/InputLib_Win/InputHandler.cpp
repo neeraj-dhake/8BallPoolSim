@@ -19,6 +19,7 @@ InputHandler & InputHandler::instance()
 
 bool InputHandler::GetKeyState(KEY_STATE state)
 {
+	bool x = keys[state];
 	return keys[state];
 }
 

@@ -5,7 +5,9 @@
 typedef std::list<IWorldObject*>::const_iterator list_object_iterator;
 
 SceneManager::SceneManager(int width, int height, void* HWND) {
-	next_scene = 0;
+	current_key_state = InputHandler::instance().GetKey();
+	prev_key_state = nullptr;
+	next_scene = nullptr;
 	next_state = MAIN_MENU;
 	render_engine = new RenderEngine_dx9(width, height);
 	render_engine->SetHandle(HWND);
@@ -17,28 +19,35 @@ SceneManager::~SceneManager() {
 }
 
 void SceneManager::Update() {
-	if (next_scene)
+	if (next_scene!=nullptr)
 		current_scene = next_scene;
-	else
-		current_scene = all_scenes[0];
+	else {
+		current_scene = all_scenes[MAIN_MENU];
+	}
 	current_state = next_state;
+
+	prev_key_state = current_key_state;
+	current_key_state = InputHandler::instance().GetKey();
+	char msgbuf[200];
+	sprintf_s(msgbuf, 200, "%d, %d\n", prev_key_state[KEY_W], current_key_state[KEY_W]);
+	OutputDebugString(msgbuf);
 	switch (current_state) {
 		case MAIN_MENU:
-			if (InputHandler::instance().GetKeyState(KEY_SPACEBAR)) {
+			if (current_key_state[KEY_W] == 0 && prev_key_state[KEY_W] == 1) {
 				next_state = GAMEPLAY_SCENE;
-				next_scene = all_scenes[1];
+				next_scene = all_scenes[GAMEPLAY_SCENE];
 			}
 			break;
 		case GAMEPLAY_SCENE:
-			if (InputHandler::instance().GetKeyState(KEY_SPACEBAR)) {
+			if (current_key_state[KEY_W] == 0 && prev_key_state[KEY_W] == 1) {
 				next_state = PAUSE_MENU;
-				next_scene = all_scenes[2];
+				next_scene = all_scenes[PAUSE_MENU];
 			}
 			break;
 		case PAUSE_MENU:
-			if (InputHandler::instance().GetKeyState(KEY_SPACEBAR)) {
+			if (current_key_state[KEY_W] == 0 && prev_key_state[KEY_W] == 1) {
 				next_state = MAIN_MENU;
-				next_scene = all_scenes[0];
+				next_scene = all_scenes[MAIN_MENU];
 			}
 			break;
 		default:
@@ -52,8 +61,6 @@ void SceneManager::SetRenderList(Scene* scene) {
 	int i = 0;
 	for (list_object_iterator it = (scene->objects_in_scene).begin(); it != (scene->objects_in_scene).end(); ++it) {
 		RenderList[i] = **it;
-		(RenderList[i].GetgObject())->SetDevice(render_engine->GetDevice());
-		(RenderList[i].GetgObject())->Init();
 		i++;
 	}
 	render_engine->SetList(RenderList);
@@ -61,11 +68,11 @@ void SceneManager::SetRenderList(Scene* scene) {
 }
 
 void SceneManager::Draw() {
-	current_scene->SetScene();
 	SetRenderList(current_scene);
 	render_engine->Draw(&(current_scene->GetCameraPosition()), &(current_scene->GetCameraLookAt()), &(current_scene->GetCameraUp()));
 }
 
 void SceneManager::AddScene(Scene* scene) {
+	scene->SetManager(this);
 	all_scenes.push_back(scene);
 }

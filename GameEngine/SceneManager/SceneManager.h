@@ -5,7 +5,14 @@
 #pragma once
 class SceneManager {
 	
-	enum SCENE_STATE { MAIN_MENU, PAUSE_MENU, GAMEPLAY_SCENE, HELP_SCENE };
+	enum SCENE_STATE { MAIN_MENU, GAMEPLAY_SCENE, PAUSE_MENU, HELP_SCENE };
+	Scene* current_scene;
+	Scene* next_scene;
+	std::vector<Scene*> all_scenes;
+	SCENE_STATE current_state;
+	SCENE_STATE next_state;
+	bool* current_key_state;
+	bool* prev_key_state;
 
 public:
 	SceneManager(int width, int height, void* HWND);
@@ -14,13 +21,7 @@ public:
 	void SetRenderList(Scene*);
 	void Draw();
 	void AddScene(Scene*);
-
-private:
-	Scene* current_scene;
-	Scene* next_scene;
-	std::vector<Scene*> all_scenes;
-	SCENE_STATE current_state;
-	SCENE_STATE next_state;
 	IRenderer* render_engine;
+	
 };
 

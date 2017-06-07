@@ -1,4 +1,5 @@
 #include "Scene.h"
+#include "SceneManager.h"
 
 Scene::Scene() {
 }
@@ -34,6 +35,8 @@ void Scene::SetManager(SceneManager* manager) {
 }
 
 void Scene::AddObject(IWorldObject* obj) {
+	(obj->GetgObject())->SetDevice(Manager->render_engine->GetDevice());
+	(obj->GetgObject())->Init();
 	objects_in_scene.push_back(obj);
 }
 
@@ -42,4 +45,5 @@ void Scene::DeleteObject(IWorldObject* obj) {
 }
 
 Scene::~Scene() {
+	objects_in_scene.clear();
 }

@@ -9,7 +9,7 @@ PauseScene::PauseScene() {
 void PauseScene::SetScene() {
 	is_active = true;
 	WorldObject_cuboid* obj = new WorldObject_cuboid;
-	obj->SetCoordinates(10, 10, 10);
+	obj->SetCoordinates(20, -20, 0);
 	obj->SetDim(10, 10, 10);
 	AddObject(obj);
 }
