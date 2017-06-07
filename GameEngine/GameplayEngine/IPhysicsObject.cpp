@@ -2,13 +2,13 @@
 #include "IPhysicsObject.h"
 IPhysicsObject::IPhysicsObject()
 {
-	dt = 0.016f;
-	position.x = 0.0f, position.y = 0.0f, position.z = 0.0f;
-	friction.x = 1.0f, friction.x = 1.0f, friction.x = 1.0f;
-	velocity.x = 0.0f, velocity.y = 0.0f, velocity.z = 0.0f;
-	accelera.x = 0.0f, accelera.y = 0.0f, accelera.z = 0.0f;
-	onGroundX = false; onGroundY = false; onGroundZ = false;
-	restitution = 0.9999999f, invMass = 1.0f;
+	data.dt = 0.016f;
+	data.position.x = 0.0f, data.position.y = 0.0f, data.position.z = 0.0f;
+	data.friction.x = 1.0f, data.friction.x = 1.0f, data.friction.x = 1.0f;
+	data.velocity.x = 0.0f, data.velocity.y = 0.0f, data.velocity.z = 0.0f;
+	data.accelera.x = 0.0f, data.accelera.y = 0.0f, data.accelera.z = 0.0f;
+	data.onGroundX = false; data.onGroundY = false; data.onGroundZ = false;
+	data.restitution = 0.9999999f, data.invMass = 1.0f;
 
 }
 
@@ -17,35 +17,35 @@ IPhysicsObject::~IPhysicsObject()
 
 void IPhysicsObject::SetVelocity(float vx, float vy, float vz)
 {
-	velocity.x = vx;	velocity.y = vy;	velocity.z = vz;
+	data.velocity.x = vx;	data.velocity.y = vy;	data.velocity.z = vz;
 }
 
 void IPhysicsObject::SetFriction(float fx, float fy, float fz)
 {
-	friction.x = fx;	friction.y = fy;	friction.z = fz;
+	data.friction.x = fx;	data.friction.y = fy;	data.friction.z = fz;
 }
 
 void IPhysicsObject::SetPosition(float x, float y, float z)
 {
-	position.x = x;	position.y = y;	position.z = z;
+	data.position.x = x;	data.position.y = y;	data.position.z = z;
 }
 
-void IPhysicsObject::Setaccelera(float ax, float ay, float az)
+void IPhysicsObject::SetAccelera(float ax, float ay, float az)
 {
-	accelera.x = ax;accelera.y = ay;accelera.z = az;
+	data.accelera.x = ax;data.accelera.y = ay;data.accelera.z = az;
 }
 
 Vector3D IPhysicsObject::getPos()
 {
-	return position;
+	return data.position;
 }
 
 Vector3D IPhysicsObject::getVel()
 {
-	return velocity;
+	return data.velocity;
 }
 
 Vector3D IPhysicsObject::getAcc()
 {
-	return accelera;
+	return data.accelera;
 }

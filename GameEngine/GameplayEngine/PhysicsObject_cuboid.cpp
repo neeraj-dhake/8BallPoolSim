@@ -15,10 +15,10 @@ void PhysicsObject_cuboid::Update()
 {
 	// write the handlers condition over here and for the other conditions of reading input or taking decisions from AI
 
-	if (!isFixed)
+	if (!data.isFixed)
 	{
-		SetVelocity(getAcc().x*dt, getAcc().y*dt, getAcc().z*dt);
-		SetPosition(getVel().x*dt, getVel().y*dt, getVel().z*dt);
+		SetVelocity(getAcc().x*data.dt, getAcc().y*data.dt, getAcc().z*data.dt);
+		SetPosition(getVel().x*data.dt, getVel().y*data.dt, getVel().z*data.dt);
 	}
 	// can be improved as we progress ------- deoending on the features needed
 

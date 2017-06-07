@@ -22,7 +22,6 @@ bool PhysicsEngine::DetectCollision(Vector3D v1, Vector3D v2, Vector3D dim1, Vec
 void PhysicsEngine::CollisionResponse(Vector3D vel1, Vector3D vel2, float coef1, float coef2,float m1, float m2)
 {
 
-
 }
 
 void PhysicsEngine::impulseX(Vector3D & v, float vel)

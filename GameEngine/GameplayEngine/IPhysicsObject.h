@@ -1,4 +1,4 @@
-#include "Vector3D.h"
+#include "BodyData.h"
 #pragma once
 
 class IWorldObject;
@@ -7,13 +7,9 @@ class IPhysicsObject
 
 protected:
 	IWorldObject* parent;
-	Vector3D position;
-	Vector3D velocity;
-	Vector3D friction;
-	Vector3D accelera;
-	float dt;
-	bool onGroundX, onGroundY, onGroundZ, isFixed;
-	float restitution,invMass;
+	BodyData data;
+
+	
 
 public:
 	IPhysicsObject();
@@ -21,7 +17,7 @@ public:
 	void SetVelocity(float vx, float vy, float vz);
 	void SetFriction(float fx, float fy, float fz);
 	void SetPosition(float  x, float  y, float  z);
-	void Setaccelera(float ax, float ay, float az);
+	void SetAccelera(float ax, float ay, float az);
 	Vector3D getPos();
 	Vector3D getVel();
 	Vector3D getAcc();

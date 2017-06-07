@@ -54,7 +54,7 @@ float Vector3D::DotProduct(const Vector3D &v1, const Vector3D &v2)
 
 float Vector3D::Magnitude(const Vector3D &v)
 {
-	return sqrt(v.x*v.x + v.y*v.y);
+	return float(sqrt(v.x*v.x + v.y*v.y));
 }
 
 Vector3D Vector3D::Normal(const Vector3D &v)
