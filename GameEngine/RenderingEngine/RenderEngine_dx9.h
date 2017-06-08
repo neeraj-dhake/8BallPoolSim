@@ -15,7 +15,7 @@ public:
 	void SetHandle(void*);
 	void clean();
 	void Draw(void*, void*, void*);
-	void SetNum(int);
+	void SetNum(size_t);
 	void* GetDevice();
 	void SetList(IWorldObject*);
 	~RenderEngine_dx9();

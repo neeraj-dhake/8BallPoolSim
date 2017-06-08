@@ -9,7 +9,7 @@ protected:
 	void* intrfc;
 	void* device;
 	IWorldObject* list_to_render;
-	int num_objects;
+	size_t num_objects;
 public:
 	IRenderer();
 	virtual void init_frame(void*, void*, void*) = 0;
@@ -19,7 +19,7 @@ public:
 	virtual void SetHandle(void*) = 0;
 	virtual void clean() = 0;
 	virtual void Draw(void*, void*, void*) = 0;
-	virtual void SetNum(int) = 0;
+	virtual void SetNum(size_t) = 0;
 	virtual void* GetDevice() = 0;
 	virtual void SetList(IWorldObject*) = 0;
 	~IRenderer();

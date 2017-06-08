@@ -1,17 +1,18 @@
-#include "MenuScene.h"
+#include "PauseScene.h"
 #include "../GameplayEngine/WorldObject_cuboid.h"
 
-MenuScene::MenuScene() {
+
+PauseScene::PauseScene() {
 	is_active = false;
 }
 
-void MenuScene::SetScene() {
+void PauseScene::SetScene() {
 	is_active = true;
 	WorldObject_cuboid* obj = new WorldObject_cuboid;
-	obj->SetCoordinates(0, 0, 0);
+	obj->SetCoordinates(20, -20, 0);
 	obj->SetDim(10, 10, 10);
 	AddObject(obj);
 }
 
-MenuScene::~MenuScene() {
+PauseScene::~PauseScene() {
 }

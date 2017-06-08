@@ -3,6 +3,7 @@
 #include "CUSTOMVERTEX.h"
 #include <d3d9.h>
 #include "../Include/d3dx9.h"
+#include <memory>
 
 #define CUSTOMFVF (D3DFVF_XYZ | D3DFVF_DIFFUSE)
 
@@ -30,18 +31,20 @@ void GraphicsObject_cuboid::SetIndices(void* indices) {
 	memcpy(indices, temp_indices, 36 * sizeof(short));
 }
 
-void GraphicsObject_cuboid::SetVertices(void* vertices) {
+void GraphicsObject_cuboid::SetVertices(void* _vertices) {
 	float width = ((WorldObject_cuboid*)parent)->GetDim().x;
 	float height = ((WorldObject_cuboid*)parent)->GetDim().y;
 	float depth = ((WorldObject_cuboid*)parent)->GetDim().z;
-	((CUSTOMVERTEX*)vertices)[0].set(-width / 2, height / 2, -depth / 2, D3DCOLOR_XRGB(0, 255, 255));
-	((CUSTOMVERTEX*)vertices)[1].set(width / 2, height / 2, -depth / 2, D3DCOLOR_XRGB(0, 255, 255));
-	((CUSTOMVERTEX*)vertices)[2].set(-width / 2, -height / 2, -depth / 2, D3DCOLOR_XRGB(0, 255, 255));
-	((CUSTOMVERTEX*)vertices)[3].set(width / 2, -height / 2, -depth / 2, D3DCOLOR_XRGB(0, 255, 255));
-	((CUSTOMVERTEX*)vertices)[4].set(-width / 2, height / 2, depth / 2, D3DCOLOR_XRGB(0, 255, 255));
-	((CUSTOMVERTEX*)vertices)[5].set(width / 2, height / 2, depth / 2, D3DCOLOR_XRGB(0, 0, 0));
-	((CUSTOMVERTEX*)vertices)[6].set(-width / 2, -height / 2, depth / 2, D3DCOLOR_XRGB(0, 255, 255));
-	((CUSTOMVERTEX*)vertices)[7].set(width / 2, -height / 2, depth / 2, D3DCOLOR_XRGB(0, 255, 255));
+	CUSTOMVERTEX* vertices = static_cast<CUSTOMVERTEX*>(_vertices);
+	
+	vertices[0].set(-width / 2, height / 2, -depth / 2, D3DCOLOR_XRGB(0, 255, 255));
+	vertices[1].set(width / 2, height / 2, -depth / 2, D3DCOLOR_XRGB(0, 255, 255));
+	vertices[2].set(-width / 2, -height / 2, -depth / 2, D3DCOLOR_XRGB(0, 255, 255));
+	vertices[3].set(width / 2, -height / 2, -depth / 2, D3DCOLOR_XRGB(0, 255, 255));
+	vertices[4].set(-width / 2, height / 2, depth / 2, D3DCOLOR_XRGB(0, 255, 255));
+	vertices[5].set(width / 2, height / 2, depth / 2, D3DCOLOR_XRGB(0, 0, 0));
+	vertices[6].set(-width / 2, -height / 2, depth / 2, D3DCOLOR_XRGB(0, 255, 255));
+	vertices[7].set(width / 2, -height / 2, depth / 2, D3DCOLOR_XRGB(0, 255, 255));
 }
 
 void GraphicsObject_cuboid::SetVBuf(void* vertices, int num_vertices) {
