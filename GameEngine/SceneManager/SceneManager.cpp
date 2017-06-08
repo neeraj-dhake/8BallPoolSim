@@ -5,8 +5,6 @@
 typedef std::list<IWorldObject*>::const_iterator list_object_iterator;
 
 SceneManager::SceneManager(int width, int height, void* HWND) {
-	//current_key_state = InputHandler::instance().GetKey();
-	//prev_key_state = nullptr;
 	next_scene = nullptr;
 	next_state = MAIN_MENU;
 	render_engine = new RenderEngine_dx9(width, height);
@@ -25,12 +23,6 @@ void SceneManager::Update() {
 		current_scene = all_scenes[MAIN_MENU];
 	}
 	current_state = next_state;
-
-	/*prev_key_state = current_key_state;
-	current_key_state = InputHandler::instance().GetKey();*/
-	char msgbuf[200];
-	sprintf_s(msgbuf, 200, "%d, %d\n", InputHandler::instance().GetKeyState_current(KEY_W), InputHandler::instance().GetKeyState_prev(KEY_W));
-	OutputDebugString(msgbuf);
 	switch (current_state) {
 		case MAIN_MENU:
 			if (InputHandler::instance().GetKeyState_current(KEY_W) == 0 && InputHandler::instance().GetKeyState_prev(KEY_W) == 1) {
@@ -74,5 +66,6 @@ void SceneManager::Draw() {
 
 void SceneManager::AddScene(Scene* scene) {
 	scene->SetManager(this);
+	scene->SetScene();
 	all_scenes.push_back(scene);
 }
