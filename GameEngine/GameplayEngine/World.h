@@ -7,6 +7,8 @@ class World
 	IRenderer* engine;
 public:
 	World(int width, int height, void* HWND);
+	void SetHandle(void* HWND);
+	void SetWindow();
 	void SetRenderList();
 	void AddObject(IWorldObject*);
 	void Draw(void*, void*, void*);

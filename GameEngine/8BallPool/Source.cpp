@@ -19,29 +19,27 @@ const int SCREEN_HEIGHT = 600;
 #pragma comment (lib, "d3dx9.lib")
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
-	switch (msg)
-	{
-	case WM_CLOSE:
-		DestroyWindow(hwnd);
-		break;
-	case WM_QUIT:
-		PostQuitMessage(0);
-		break;
-	case WM_DESTROY:
-		PostQuitMessage(0);
-		return 0;
-		break;
-		return FALSE;
-		break;
-	default:
-		return DefWindowProc(hwnd, msg, wParam, lParam);
+	switch (msg) {
+		case WM_CLOSE:
+			DestroyWindow(hwnd);
+			break;
+		case WM_QUIT:
+			PostQuitMessage(0);
+			break;
+		case WM_DESTROY:
+			PostQuitMessage(0);
+			return 0;
+			break;
+			return FALSE;
+			break;
+		default:
+			return DefWindowProc(hwnd, msg, wParam, lParam);
 	}
 	return 0;
 }
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 	WNDCLASSEX wc;
-	HWND hwnd;
 	wc.cbSize = sizeof(WNDCLASSEX);
 	wc.style = 0;
 	wc.lpfnWndProc = WndProc;
@@ -59,12 +57,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		return 0;
 	}
 
+	HWND hwnd;
 	hwnd = CreateWindowEx(WS_EX_CLIENTEDGE, "myClass", "3DGame", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 800, 600, NULL, NULL, hInstance, NULL);
 
 	ShowWindow(hwnd, nCmdShow);
 
 	KeyBoardInput *input = new KeyBoardInput;
-	InputHandler::instance().SetKey(input->getKeys());
+	InputHandler::instance().SetKey(input->getKeys_current(), input->getKeys_prev());
+
 	Scene* menu_scene = new MenuScene;
 	Scene* pause_scene = new PauseScene;
 	Scene* gameplay_scene = new GamePlayScene;
@@ -81,21 +81,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	scene_manager->AddScene(gameplay_scene);
 	scene_manager->AddScene(pause_scene);
 
-	menu_scene->SetScene();
-	pause_scene->SetScene();
-	gameplay_scene->SetScene();
-
 	MSG msg;
-
-
 	while (TRUE) {
-
 		if (!input->handle(msg) || msg.message == WM_QUIT)
 			break;
-		InputHandler::instance().SetKey(input->getKeys());
+		InputHandler::instance().SetKey(input->getKeys_current(), input->getKeys_prev());
 		scene_manager->Update();
 		scene_manager->Draw();
-
 	}
 
 	delete input;

@@ -29,6 +29,14 @@ void World::Draw(void* pos, void* lookat, void* up) {
 	engine->Draw(pos, lookat, up);
 }
 
+void World::SetHandle(void* HWND) {
+	engine->SetHandle(HWND);
+}
+
+void World::SetWindow() {
+	engine->SetWindow();
+}
+
 World::~World(){
 	delete engine;
 }
