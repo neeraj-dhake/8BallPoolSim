@@ -28,24 +28,24 @@ void SceneManager::Update() {
 
 	/*prev_key_state = current_key_state;
 	current_key_state = InputHandler::instance().GetKey();*/
-	//char msgbuf[200];
-	//sprintf_s(msgbuf, 200, "%d, %d\n", prev_key_state(KEY_W), current_key_state(KEY_W));
-	//OutputDebugString(msgbuf);
+	char msgbuf[200];
+	sprintf_s(msgbuf, 200, "%d, %d\n", InputHandler::instance().GetKeyState_current(KEY_W), InputHandler::instance().GetKeyState_prev(KEY_W));
+	OutputDebugString(msgbuf);
 	switch (current_state) {
 		case MAIN_MENU:
-			if (InputHandler::instance().GetKeyState_current(KEY_W) == 1 && InputHandler::instance().GetKeyState_prev(KEY_W) == 0) {
+			if (InputHandler::instance().GetKeyState_current(KEY_W) == 0 && InputHandler::instance().GetKeyState_prev(KEY_W) == 1) {
 				next_state = GAMEPLAY_SCENE;
 				next_scene = all_scenes[GAMEPLAY_SCENE];
 			}
 			break;
 		case GAMEPLAY_SCENE:
-			if (InputHandler::instance().GetKeyState_current(KEY_W) == 1 && InputHandler::instance().GetKeyState_prev(KEY_W) == 0) {
+			if (InputHandler::instance().GetKeyState_current(KEY_W) == 0 && InputHandler::instance().GetKeyState_prev(KEY_W) == 1) {
 				next_state = PAUSE_MENU;
 				next_scene = all_scenes[PAUSE_MENU];
 			}
 			break;
 		case PAUSE_MENU:
-			if (InputHandler::instance().GetKeyState_current(KEY_W) == 1 && InputHandler::instance().GetKeyState_prev(KEY_W) == 0) {
+			if (InputHandler::instance().GetKeyState_current(KEY_W) == 0 && InputHandler::instance().GetKeyState_prev(KEY_W) == 1) {
 				next_state = MAIN_MENU;
 				next_scene = all_scenes[MAIN_MENU];
 			}

@@ -87,8 +87,8 @@ KeyBoardInput::KeyBoardInput()
 }
 KeyBoardInput::~KeyBoardInput(void)
 {
-	delete keys_current;
-	delete keys_prev;
+	delete[] keys_current;
+	delete[] keys_prev;
 
 }
 
