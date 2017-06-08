@@ -5,8 +5,8 @@
 typedef std::list<IWorldObject*>::const_iterator list_object_iterator;
 
 SceneManager::SceneManager(int width, int height, void* HWND) {
-	current_key_state = InputHandler::instance().GetKey();
-	prev_key_state = nullptr;
+	//current_key_state = InputHandler::instance().GetKey();
+	//prev_key_state = nullptr;
 	next_scene = nullptr;
 	next_state = MAIN_MENU;
 	render_engine = new RenderEngine_dx9(width, height);
@@ -26,26 +26,26 @@ void SceneManager::Update() {
 	}
 	current_state = next_state;
 
-	prev_key_state = current_key_state;
-	current_key_state = InputHandler::instance().GetKey();
-	char msgbuf[200];
-	sprintf_s(msgbuf, 200, "%d, %d\n", prev_key_state[KEY_W], current_key_state[KEY_W]);
-	OutputDebugString(msgbuf);
+	/*prev_key_state = current_key_state;
+	current_key_state = InputHandler::instance().GetKey();*/
+	//char msgbuf[200];
+	//sprintf_s(msgbuf, 200, "%d, %d\n", prev_key_state(KEY_W), current_key_state(KEY_W));
+	//OutputDebugString(msgbuf);
 	switch (current_state) {
 		case MAIN_MENU:
-			if (current_key_state[KEY_W] == 0 && prev_key_state[KEY_W] == 1) {
+			if (InputHandler::instance().GetKeyState_current(KEY_W) == 1 && InputHandler::instance().GetKeyState_prev(KEY_W) == 0) {
 				next_state = GAMEPLAY_SCENE;
 				next_scene = all_scenes[GAMEPLAY_SCENE];
 			}
 			break;
 		case GAMEPLAY_SCENE:
-			if (current_key_state[KEY_W] == 0 && prev_key_state[KEY_W] == 1) {
+			if (InputHandler::instance().GetKeyState_current(KEY_W) == 1 && InputHandler::instance().GetKeyState_prev(KEY_W) == 0) {
 				next_state = PAUSE_MENU;
 				next_scene = all_scenes[PAUSE_MENU];
 			}
 			break;
 		case PAUSE_MENU:
-			if (current_key_state[KEY_W] == 0 && prev_key_state[KEY_W] == 1) {
+			if (InputHandler::instance().GetKeyState_current(KEY_W) == 1 && InputHandler::instance().GetKeyState_prev(KEY_W) == 0) {
 				next_state = MAIN_MENU;
 				next_scene = all_scenes[MAIN_MENU];
 			}

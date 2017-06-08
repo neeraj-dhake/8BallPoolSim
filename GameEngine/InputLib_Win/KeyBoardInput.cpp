@@ -76,28 +76,41 @@ LRESULT CALLBACK process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam, 
 
 KeyBoardInput::KeyBoardInput()
 {
-	keys = new bool[Num];
+	keys_current = new bool[Num];
+	keys_prev = new bool[Num];
 	for (size_t i = 0; i < Num; i++)
-		keys[i] = false;
+	{
+		keys_current[i] = false;
+		keys_prev[i] = false;
+
+	}
 }
 KeyBoardInput::~KeyBoardInput(void)
 {
-	delete keys;
+	delete keys_current;
+	delete keys_prev;
+
 }
 
 bool KeyBoardInput::handle(MSG &msg)
 {
+	keys_prev = keys_current;
 	while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
-		if (process(msg.hwnd, msg.message, msg.wParam, msg.lParam, keys) == -1)	 // normally DefWindowProc is zero
+		if (process(msg.hwnd, msg.message, msg.wParam, msg.lParam, keys_current) == -1)	 // normally DefWindowProc is zero
 			return false;
 	}
-
 	return true;
 }
-bool* KeyBoardInput::getKeys()
+bool* KeyBoardInput::getKeys_current()
 {
-	return keys;
+	return keys_current;
 }
+
+bool* KeyBoardInput::getKeys_prev()
+{
+	return keys_prev;
+}
+
 

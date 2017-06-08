@@ -11,12 +11,14 @@ class KeyBoardInput : public IInput
 private:
 	MSG msg;
 	HWND hwnd;
-	bool* keys;
+	bool* keys_current;
+	bool* keys_prev;
 public:
 	KeyBoardInput();
 	~KeyBoardInput(void);
 	virtual bool handle(MSG &msg);
-	bool* getKeys(); 
+	bool* getKeys_current(); 
+	bool* getKeys_prev();
 
 };
 

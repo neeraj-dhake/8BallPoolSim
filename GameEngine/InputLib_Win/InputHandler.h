@@ -7,14 +7,17 @@ public:
 	~InputHandler();
 	static InputHandler& instance();
 
-	bool GetKeyState(KEY_STATE state);
-	void SetKey(bool* keys_);
-	bool* GetKey();
+	bool GetKeyState_current(KEY_STATE state);
+	bool GetKeyState_prev(KEY_STATE state);
+	void SetKey(bool* ,bool*);
+	bool* GetKey_current();
+	bool* GetKey_prev();
 
 
 private:
 	InputHandler();
-	bool* keys;
+	bool* keys_current;
+	bool* keys_prev;
 
 };
 

@@ -64,7 +64,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	ShowWindow(hwnd, nCmdShow);
 
 	KeyBoardInput *input = new KeyBoardInput;
-	InputHandler::instance().SetKey(input->getKeys());
+	InputHandler::instance().SetKey(input->getKeys_current(), input->getKeys_prev());
 	Scene* menu_scene = new MenuScene;
 	Scene* pause_scene = new PauseScene;
 	Scene* gameplay_scene = new GamePlayScene;
@@ -92,7 +92,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		if (!input->handle(msg) || msg.message == WM_QUIT)
 			break;
-		InputHandler::instance().SetKey(input->getKeys());
+		InputHandler::instance().SetKey(input->getKeys_current(), input->getKeys_current());
 		scene_manager->Update();
 		scene_manager->Draw();
 
