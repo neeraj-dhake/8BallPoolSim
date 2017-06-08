@@ -9,7 +9,7 @@ World::World(int width, int height, void* HWND) {
 }
 
 void World::SetRenderList() {
-	size_t num = list_of_objects.size();
+	int num = list_of_objects.size();
 	IWorldObject* RenderList = new IWorldObject[num];
 	for (int i = 0; i < num; i++) {
 		RenderList[i] = *list_of_objects[i];
@@ -27,6 +27,14 @@ void World::AddObject(IWorldObject* temp) {
 void World::Draw(void* pos, void* lookat, void* up) {
 	SetRenderList();
 	engine->Draw(pos, lookat, up);
+}
+
+void World::SetHandle(void* HWND) {
+	engine->SetHandle(HWND);
+}
+
+void World::SetWindow() {
+	engine->SetWindow();
 }
 
 World::~World(){
