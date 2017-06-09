@@ -4,7 +4,7 @@ IPhysicsObject::IPhysicsObject()
 {
 	data.dt = 0.016f;
 	data.position.x = 0.0f, data.position.y = 0.0f, data.position.z = 0.0f;
-	data.friction.x = 0.98f, data.friction.x = 0.98f, data.friction.x = 0.98f;
+	data.friction.x = 0.98f, data.friction.y = 0.98f, data.friction.z = 0.98f;
 	data.velocity.x = 0.0f, data.velocity.y = 0.0f, data.velocity.z = 0.0f;
 	data.accelera.x = 0.0f, data.accelera.y = 0.0f, data.accelera.z = 0.0f;
 	data.onGroundX = false; data.onGroundY = false; data.onGroundZ = false;

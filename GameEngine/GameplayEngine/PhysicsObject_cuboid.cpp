@@ -25,9 +25,8 @@ void PhysicsObject_cuboid::Update(float dt)
 
 
 	// set parent -> coordinates
-	static int xdsa = data.position.x;
-
 	parent->SetCoordinates(data.position.x,data.position.y,data.position.z);
+	((PhysicsObject_cuboid*)parent->GetpObject())->SetAABB();
 
 }
 
@@ -43,8 +42,8 @@ void PhysicsObject_cuboid::SetDim(float width, float length, float height)
 
 void PhysicsObject_cuboid::SetAABB()
 {
-	aabb.min.x = data.position.x - dim.x, aabb.min.y = data.position.y - dim.y, aabb.min.z = data.position.z - dim.z;
-	aabb.max.x = data.position.x + dim.x, aabb.max.y = data.position.y + dim.y, aabb.max.z = data.position.z + dim.z;
+	aabb.min.x = data.position.x - dim.x/2, aabb.min.y = data.position.y - dim.y/2, aabb.min.z = data.position.z - dim.z/2;
+	aabb.max.x = data.position.x + dim.x/2, aabb.max.y = data.position.y + dim.y/2, aabb.max.z = data.position.z + dim.z/2;
 }
 
 
