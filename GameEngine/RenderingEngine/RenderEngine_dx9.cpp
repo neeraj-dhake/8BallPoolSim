@@ -77,7 +77,7 @@ void RenderEngine_dx9::Render(IGraphicsObject* gObject) {
 
 		D3DXMATRIX matRotateX;
 		D3DXMatrixRotationX(&matRotateX, D3DXToRadian(90));
-		((LPDIRECT3DDEVICE9)device)->SetTransform(D3DTS_WORLD, &(matTranslate*matRotateX));
+		((LPDIRECT3DDEVICE9)device)->SetTransform(D3DTS_WORLD, &(matRotateX*matTranslate));
 
 		((LPDIRECT3DDEVICE9)device)->SetStreamSource(0, (LPDIRECT3DVERTEXBUFFER9)(gObject->GetVBuf()), 0, sizeof(CUSTOMVERTEX));
 		((LPDIRECT3DDEVICE9)device)->SetIndices((LPDIRECT3DINDEXBUFFER9)(gObject->GetIBuf()));
