@@ -66,6 +66,9 @@
     <ClInclude Include="Sphere.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PhysicsObject_sphere.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IWorldObject.cpp">
@@ -94,6 +97,12 @@
     </ClCompile>
     <ClCompile Include="WorldObject_sphere.cpp">
       <Filter>Source Files\Objects\WorldObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsObject_sphere.cpp">
+      <Filter>Source Files\Objects\PhysicsObject</Filter>
+    </ClCompile>
+    <ClCompile Include="AABB.cpp">
+      <Filter>Source Files\helper structs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

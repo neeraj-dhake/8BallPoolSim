@@ -59,11 +59,9 @@ bool PhysicsEngine::DetectCollision(const AABB &a,const AABB &b) {	// pass it by
 
 bool PhysicsEngine::DetectCollision(const AABB &a, const Sphere &b) {
 	Vector3D a_center = (a.max + a.min) / 2;
-	float nearest_plane;
-
-	//nearest plane calculations
-
-	if (Vector3D::Magnitude(a_center - b.center) <= (nearest_plane + b.radius)) {
+	Vector3D ray = b.center - a_center;
+	ray = ray / Vector3D::Magnitude(ray);
+	if (Vector3D::Magnitude(a_center - b.center) <= (a.nearest_distance(ray) + b.radius)) {
 		return true;
 	}
 	return false;

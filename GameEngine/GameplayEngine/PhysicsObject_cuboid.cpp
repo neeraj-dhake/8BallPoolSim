@@ -3,17 +3,14 @@
 #include "../InputLib_Win/InputHandler.h"
 
 
-PhysicsObject_cuboid::PhysicsObject_cuboid(WorldObject_cuboid* par)
-{
+PhysicsObject_cuboid::PhysicsObject_cuboid(WorldObject_cuboid* par) {
 	parent = par;
 }
 
 
-PhysicsObject_cuboid::~PhysicsObject_cuboid()
-{}
+PhysicsObject_cuboid::~PhysicsObject_cuboid() {}
 
-void PhysicsObject_cuboid::Update(float dt)
-{
+void PhysicsObject_cuboid::Update(float dt) {
 	if (!data.isFixed)
 	{
 		AddVelocity(getAcc().x*data.dt, getAcc().y*data.dt, getAcc().z*data.dt);
@@ -29,13 +26,11 @@ void PhysicsObject_cuboid::Update(float dt)
 
 }
 
-Vector3D PhysicsObject_cuboid::GetDim()
-{
+Vector3D PhysicsObject_cuboid::GetDim() {
 	return dim;
 }
 
-void PhysicsObject_cuboid::SetDim(float width, float length, float height)
-{
+void PhysicsObject_cuboid::SetDim(float width, float length, float height) {
 	dim.x = width, dim.y = length, dim.z = height;
 }
 
@@ -43,6 +38,8 @@ void PhysicsObject_cuboid::SetAABB()
 {
 	aabb.min.x = data.position.x - dim.x/2, aabb.min.y = data.position.y - dim.y/2, aabb.min.z = data.position.z - dim.z/2;
 	aabb.max.x = data.position.x + dim.x/2, aabb.max.y = data.position.y + dim.y/2, aabb.max.z = data.position.z + dim.z/2;
+	aabb.center = data.position;
+	aabb.dimensions = dim;
 }
 
 
