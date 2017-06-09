@@ -58,13 +58,13 @@ bool PhysicsEngine::DetectCollision(Vector3D v1, Vector3D v2, Vector3D dim1, Vec
 	return false;
 }
 
-bool PhysicsEngine::DetectCollision(AABB a, AABB b)
+bool PhysicsEngine::DetectCollision(const AABB &a,const AABB &b)	// pass it by reference if you wantmaxX to avoid writing copy constructor
 {
-	if (a.max.x < b.min.x || a.min.x > b.max.x) return false;
-	if (a.max.y < b.min.y || a.min.y > b.max.y) return false;
-
-			// No separating axis found, therefor there is at least one overlapping axis
-	return true;
+	if ((a.min.x <= b.max.x && a.max.x >= b.min.x) &&
+		(a.min.y <= b.max.y && a.max.y >= b.min.y) &&
+		(a.min.z <= b.max.z && a.max.z >= b.min.z))
+		return true;
+	else return false;
 }
 
 void PhysicsEngine::impulseX(Vector3D & v, float vel)
