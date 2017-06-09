@@ -2,17 +2,14 @@
 
 
 
-PhysicsEngine::PhysicsEngine()
-{
+PhysicsEngine::PhysicsEngine() {
 }
 
 
-PhysicsEngine::~PhysicsEngine()
-{
+PhysicsEngine::~PhysicsEngine() {
 }
 
-void PhysicsEngine::CollisionResponse(BodyData &obj1, BodyData &obj2)
-{
+void PhysicsEngine::CollisionResponse(BodyData &obj1, BodyData &obj2) {
 	Vector3D rv = obj2.velocity - obj1.velocity;
 
 	Vector3D normal = Vector3D::Normal(obj1.velocity - obj2.velocity);
@@ -43,8 +40,7 @@ inline float max(float x, float y) {
 
 
 // to be used ------
-void PositionalCorrection(BodyData obj1, BodyData obj2)
-{
+void PositionalCorrection(BodyData obj1, BodyData obj2) {
 	Vector3D normal = Vector3D::Normal(obj1.position - obj2.position);
 	const float percent = 0.2f; // usually 20% to 80%
 	const float slop = 0.01f; // usually 0.01 to 0.1
@@ -53,16 +49,7 @@ void PositionalCorrection(BodyData obj1, BodyData obj2)
 	obj2.position += correction*obj2.invMass;
 }
 
-bool PhysicsEngine::DetectCollision(Vector3D v1, Vector3D v2, Vector3D dim1, Vector3D dim2)
-{
-	if ((fabs(v1.x - v2.x) <= dim1.x + dim2.x) && (fabs(v1.y - v2.y) <= dim1.y + dim2.y) && (fabs(v1.z - v2.z) <= dim1.z + dim2.z))
-		return true;
-
-	return false;
-}
-
-bool PhysicsEngine::DetectCollision(const AABB &a,const AABB &b)	// pass it by reference if you wantmaxX to avoid writing copy constructor
-{
+bool PhysicsEngine::DetectCollision(const AABB &a,const AABB &b) {	// pass it by reference if you wantmaxX to avoid writing copy constructor
 	if ((a.min.x <= b.max.x && a.max.x >= b.min.x) &&
 		(a.min.y <= b.max.y && a.max.y >= b.min.y) &&
 		(a.min.z <= b.max.z && a.max.z >= b.min.z))
@@ -70,18 +57,32 @@ bool PhysicsEngine::DetectCollision(const AABB &a,const AABB &b)	// pass it by r
 	else return false;
 }
 
-void PhysicsEngine::impulseX(Vector3D & v, float vel)
-{
+bool PhysicsEngine::DetectCollision(const AABB &a, const Sphere &b) {
+	Vector3D a_center = (a.max + a.min) / 2;
+	Vector3D ray = b.center - a_center;
+	ray = ray / Vector3D::Magnitude(ray);
+	if (Vector3D::Magnitude(a_center - b.center) <= (a.nearest_distance(ray) + b.radius)) {
+		return true;
+	}
+	return false;
+}
+
+bool PhysicsEngine::DetectCollision(const Sphere &a, const Sphere &b) {
+	if (Vector3D::Magnitude(a.center - b.center) <= (a.radius + b. radius)) {
+		return true;
+	}
+	else return false;
+}
+
+void PhysicsEngine::impulseX(Vector3D & v, float vel) {
 	v.x += vel;
 }
 
-void PhysicsEngine::impulseY(Vector3D & v, float vel)
-{
+void PhysicsEngine::impulseY(Vector3D & v, float vel) {
 	v.y += vel;
 }
 
-void PhysicsEngine::impulseZ(Vector3D & v, float vel)
-{
+void PhysicsEngine::impulseZ(Vector3D & v, float vel) {
 	v.z += vel;
 }
 
