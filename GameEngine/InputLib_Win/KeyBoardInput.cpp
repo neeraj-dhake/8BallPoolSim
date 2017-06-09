@@ -6,50 +6,75 @@ LRESULT CALLBACK process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam, 
 	{
 	case WM_KEYDOWN:
 		switch (wParam) {
-			case VK_ESCAPE:
-				DestroyWindow(hwnd);
-				return -1;
-				keys[KEY_ESCAPE] = 1;
-				break;
-			case 0x57:
-				keys[KEY_W] = 1;
-				break;
-			case 0x41:
-				keys[KEY_A] = 1;
-				break;
-			case 0x53:
-				keys[KEY_S] = 1;
-				break;
-			case 0x44:
-				keys[KEY_D] = 1;
-				break;
-			case VK_SPACE:
-				keys[KEY_SPACEBAR] = 1;
-				break;
+		case VK_ESCAPE:
+			DestroyWindow(hwnd);
+			return -1;
+			keys[KEY_ESCAPE] = 1;
+			break;
+		case 0x57:
+			keys[KEY_W] = 1;
+			break;
+		case 0x41:
+			keys[KEY_A] = 1;
+			break;
+		case 0x53:
+			keys[KEY_S] = 1;
+			break;
+		case 0x44:
+			keys[KEY_D] = 1;
+			break;
+		case VK_UP:
+			keys[KEY_UP] = 1;
+			break;
+		case VK_DOWN:
+			keys[KEY_DOWN] = 1;
+			break;
+		case VK_LEFT:
+			keys[KEY_LEFT] = 1;
+			break;
+		case VK_RIGHT:
+			keys[KEY_RIGHT] = 1;
+			break;
 
-			default:
-				break;
+		case VK_SPACE:
+			keys[KEY_SPACEBAR] = 1;
+			break;
+
+		default:
+			break;
 		}
 		break;
 	case WM_KEYUP:
 		switch (wParam) {
-			case 0x57:
-				keys[KEY_W] = 0;
-				break;
-			case 0x41:
-				keys[KEY_A] = 0;
-				break;
-			case 0x53:
-				keys[KEY_S] = 0;
-				break;
-			case 0x44:
-				keys[KEY_D] = 0;
-				break;
-			case VK_SPACE:
-				keys[KEY_SPACEBAR] = 0;
-				break;
-			default:
-				break;
+		case 0x57:
+			keys[KEY_W] = 0;
+			break;
+		case 0x41:
+			keys[KEY_A] = 0;
+			break;
+		case 0x53:
+			keys[KEY_S] = 0;
+			break;
+		case 0x44:
+			keys[KEY_D] = 0;
+			break;
+		case VK_UP:
+			keys[KEY_UP] = 0;
+			break;
+		case VK_DOWN:
+			keys[KEY_DOWN] = 0;
+			break;
+		case VK_LEFT:
+			keys[KEY_LEFT] = 0;
+			break;
+		case VK_RIGHT:
+			keys[KEY_RIGHT] = 0;
+			break;
+		case VK_SPACE:
+			keys[KEY_SPACEBAR] = 0;
+			break;
+		default:
+			break;
 		}
 		break;
 	case WM_CLOSE:

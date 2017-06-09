@@ -65,3 +65,8 @@ Vector3D IPhysicsObject::getAcc()
 {
 	return data.accelera;
 }
+
+BodyData& IPhysicsObject::GetData()
+{
+	return data;
+}

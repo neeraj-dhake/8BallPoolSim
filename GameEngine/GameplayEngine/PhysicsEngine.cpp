@@ -13,9 +13,9 @@ PhysicsEngine::~PhysicsEngine()
 
 void PhysicsEngine::CollisionResponse(BodyData &obj1, BodyData &obj2)
 {
-	Vector3D rv = obj1.velocity - obj1.velocity;
+	Vector3D rv = obj2.velocity - obj1.velocity;
 
-	Vector3D normal = Vector3D::Normal(obj1.position - obj2.position);
+	Vector3D normal = Vector3D::Normal(obj1.velocity - obj2.velocity);
 
 	float velAlongNormal = Vector3D::DotProduct(normal, rv);
 
@@ -32,12 +32,15 @@ void PhysicsEngine::CollisionResponse(BodyData &obj1, BodyData &obj2)
 
 	Vector3D impulse = normal*j;
 	obj1.velocity -= impulse* obj1.invMass;
-	obj2.velocity += impulse* obj1.invMass;
+	obj2.velocity += impulse* obj2.invMass;
+	int x = 1;
+
 
 }
 inline float max(float x, float y) {
 	return (x > y) ? x : y;
 }
+
 
 // to be used ------
 void PositionalCorrection(BodyData obj1, BodyData obj2)

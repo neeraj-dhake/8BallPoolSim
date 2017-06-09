@@ -14,7 +14,6 @@ PhysicsObject_cuboid::~PhysicsObject_cuboid()
 
 void PhysicsObject_cuboid::Update(float dt)
 {
-	// write the handlers condition over here and for the other conditions of reading input or taking decisions from AI
 	if (!data.isFixed)
 	{
 		AddVelocity(getAcc().x*data.dt, getAcc().y*data.dt, getAcc().z*data.dt);

@@ -26,6 +26,8 @@ public:
 	Vector3D getVel();
 	Vector3D getAcc();
 
+	BodyData& GetData();
+
 
 	virtual void Update(float dt) = 0;	// for every player controlable unit just call the inputhandler in it and then define the if else statement;
 
