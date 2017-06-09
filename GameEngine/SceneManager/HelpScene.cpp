@@ -6,3 +6,9 @@ HelpScene::HelpScene() {
 
 HelpScene::~HelpScene() {
 }
+
+void HelpScene::SetScene()
+{
+}
+
+

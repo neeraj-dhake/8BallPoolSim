@@ -11,8 +11,7 @@ class SceneManager {
 	std::vector<Scene*> all_scenes;
 	SCENE_STATE current_state;
 	SCENE_STATE next_state;
-	//bool* current_key_state;
-	//bool* prev_key_state;
+
 
 public:
 	SceneManager(int width, int height, void* HWND);

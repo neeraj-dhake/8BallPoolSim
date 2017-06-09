@@ -3,7 +3,7 @@
 struct BodyData
 {
 public:
-
+	//	BodyData(const BodyData &obj);  // copy constructor
 	Vector3D position;
 	Vector3D velocity;
 	Vector3D friction;
@@ -11,7 +11,7 @@ public:
 	float dt;
 	bool onGroundX, onGroundY, onGroundZ, isFixed;
 	float restitution, invMass;
-	BodyData();
-	~BodyData();
+	//BodyData();
+	//~BodyData();
 };
 

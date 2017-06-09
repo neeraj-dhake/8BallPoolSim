@@ -14,5 +14,6 @@ void PauseScene::SetScene() {
 	AddObject(obj);
 }
 
+
 PauseScene::~PauseScene() {
 }

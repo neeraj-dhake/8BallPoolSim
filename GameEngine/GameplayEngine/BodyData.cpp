@@ -2,11 +2,3 @@
 
 
 
-BodyData::BodyData()
-{
-}
-
-
-BodyData::~BodyData()
-{
-}
