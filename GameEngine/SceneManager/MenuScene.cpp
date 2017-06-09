@@ -13,5 +13,6 @@ void MenuScene::SetScene() {
 	AddObject(obj);
 }
 
+
 MenuScene::~MenuScene() {
 }

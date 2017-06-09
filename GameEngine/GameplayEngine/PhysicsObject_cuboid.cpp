@@ -1,26 +1,33 @@
 #include "PhysicsObject_cuboid.h"
+#include "WorldObject_cuboid.h"
+#include "../InputLib_Win/InputHandler.h"
 
 
-
-PhysicsObject_cuboid::PhysicsObject_cuboid()
+PhysicsObject_cuboid::PhysicsObject_cuboid(WorldObject_cuboid* par)
 {
+	parent = par;
 }
 
 
 PhysicsObject_cuboid::~PhysicsObject_cuboid()
-{
-}
+{}
 
-void PhysicsObject_cuboid::Update()
+void PhysicsObject_cuboid::Update(float dt)
 {
 	// write the handlers condition over here and for the other conditions of reading input or taking decisions from AI
-
 	if (!data.isFixed)
 	{
-		SetVelocity(getAcc().x*data.dt, getAcc().y*data.dt, getAcc().z*data.dt);
-		SetPosition(getVel().x*data.dt, getVel().y*data.dt, getVel().z*data.dt);
+		AddVelocity(getAcc().x*data.dt, getAcc().y*data.dt, getAcc().z*data.dt);
+		SetVelocity(getVel().x*data.friction.x, getVel().y*data.friction.y, getVel().z*data.friction.z);
+		AddPosition(getVel().x*data.dt, getVel().y*data.dt, getVel().z*data.dt);
 	}
 	// can be improved as we progress ------- deoending on the features needed
+
+
+	// set parent -> coordinates
+	static int xdsa = data.position.x;
+
+	parent->SetCoordinates(data.position.x,data.position.y,data.position.z);
 
 }
 

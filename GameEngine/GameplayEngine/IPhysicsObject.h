@@ -18,6 +18,10 @@ public:
 	void SetFriction(float fx, float fy, float fz);
 	void SetPosition(float  x, float  y, float  z);
 	void SetAccelera(float ax, float ay, float az);
+	void AddVelocity(float vx, float vy, float vz);
+	void AddPosition(float  x, float  y, float  z);
+	void AddAccelera(float ax, float ay, float az);
+
 	Vector3D getPos();
 	Vector3D getVel();
 	Vector3D getAcc();

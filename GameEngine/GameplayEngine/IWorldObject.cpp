@@ -1,6 +1,7 @@
 #include "IWorldObject.h"
 
 IWorldObject::IWorldObject() {
+	
 }
 
 
@@ -12,6 +13,7 @@ Vector3D IWorldObject::GetPos() {
 }
 void IWorldObject::SetCoordinates(float X,float Y,float Z) {
 	x = X;y = Y;z = Z;
+	pObject->SetPosition(X, Y, Z);
 }
 
 IPhysicsObject* IWorldObject::GetpObject() {

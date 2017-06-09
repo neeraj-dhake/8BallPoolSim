@@ -1,8 +1,9 @@
 #include "WorldObject_cuboid.h"
+#include "PhysicsObject_cuboid.h"
 #include "../RenderingEngine/GraphicsObject_cuboid.h"
 
 WorldObject_cuboid::WorldObject_cuboid() {
-	pObject = NULL;
+	pObject = new PhysicsObject_cuboid(this);
 	gObject = new GraphicsObject_cuboid(this);
 }
 
