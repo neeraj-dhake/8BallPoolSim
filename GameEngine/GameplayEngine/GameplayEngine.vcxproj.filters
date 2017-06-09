@@ -57,6 +57,15 @@
     <ClInclude Include="BodyData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="WorldObject_sphere.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AABB.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IWorldObject.cpp">
@@ -82,6 +91,9 @@
     </ClCompile>
     <ClCompile Include="PhysicsObject_cuboid.cpp">
       <Filter>Source Files\Objects\PhysicsObject</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldObject_sphere.cpp">
+      <Filter>Source Files\Objects\WorldObjects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

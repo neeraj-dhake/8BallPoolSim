@@ -139,14 +139,17 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AABB.h" />
     <ClInclude Include="BodyData.h" />
     <ClInclude Include="IPhysicsObject.h" />
     <ClInclude Include="IWorldObject.h" />
     <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="PhysicsObject_cuboid.h" />
+    <ClInclude Include="Sphere.h" />
     <ClInclude Include="Vector3D.h" />
     <ClInclude Include="World.h" />
     <ClInclude Include="WorldObject_cuboid.h" />
+    <ClInclude Include="WorldObject_sphere.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BodyData.cpp" />
@@ -157,6 +160,7 @@
     <ClCompile Include="Vector3D.cpp" />
     <ClCompile Include="World.cpp" />
     <ClCompile Include="WorldObject_cuboid.cpp" />
+    <ClCompile Include="WorldObject_sphere.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
