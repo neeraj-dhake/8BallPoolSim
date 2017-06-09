@@ -34,6 +34,12 @@ void GamePlayScene::UpdateScene()
 	if (InputHandler::instance().GetKeyState_current(KEY_A))
 		(objects_in_scene[obj1]->GetpObject())->SetVelocity(+50.0f, 0, 0);
 
+	if (InputHandler::instance().GetKeyState_current(KEY_W))
+		(objects_in_scene[obj1]->GetpObject())->SetVelocity(0, 50.0f, 0);
+
+	if (InputHandler::instance().GetKeyState_current(KEY_S))
+		(objects_in_scene[obj1]->GetpObject())->SetVelocity(0, -50.0f, 0);
+
 	for (unsigned int i = 0;i < objects_in_scene.size();i++)
 	{
 		for (size_t j = i+1; j < objects_in_scene.size(); j++)
