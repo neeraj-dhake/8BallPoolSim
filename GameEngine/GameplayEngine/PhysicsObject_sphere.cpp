@@ -14,7 +14,7 @@ void PhysicsObject_sphere::Update(float dt) {
 		SetVelocity(getVel().x*data.friction.x, getVel().y*data.friction.y, getVel().z*data.friction.z);
 		AddPosition(getVel().x*data.dt, getVel().y*data.dt, getVel().z*data.dt);
 	}
-	parent->SetCoordinates(data.position.x, data.position.y, data.position.z);
+	parent->SetCoordinates(data.position);
 	SetCollisionObject();
 }
 

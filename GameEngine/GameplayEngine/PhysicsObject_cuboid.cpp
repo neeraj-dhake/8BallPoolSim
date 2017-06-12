@@ -17,7 +17,7 @@ void PhysicsObject_cuboid::Update(float dt) {
 		AddPosition(getVel().x*data.dt, getVel().y*data.dt, getVel().z*data.dt);
 	}
 
-	parent->SetCoordinates(data.position.x,data.position.y,data.position.z);
+	parent->SetCoordinates(data.position);
 	SetCollisionObject();
 
 }

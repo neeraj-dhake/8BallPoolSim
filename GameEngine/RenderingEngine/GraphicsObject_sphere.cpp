@@ -17,7 +17,7 @@ GraphicsObject_sphere::~GraphicsObject_sphere()
 
 void GraphicsObject_sphere::Init()
 {
-	D3DXLoadMeshFromX("../Resources/Meshes/sphere.x", D3DXMESH_SYSTEMMEM, (LPDIRECT3DDEVICE9)device, NULL, (LPD3DXBUFFER*)&material_buffer, NULL, &numMat, (LPD3DXMESH*)&mesh);
+	D3DXLoadMeshFromX("../Resources/Meshes/sphere_10.x", D3DXMESH_SYSTEMMEM, (LPDIRECT3DDEVICE9)device, NULL, (LPD3DXBUFFER*)&material_buffer, NULL, &numMat, (LPD3DXMESH*)&mesh);
 	SetMesh();
 }
 
