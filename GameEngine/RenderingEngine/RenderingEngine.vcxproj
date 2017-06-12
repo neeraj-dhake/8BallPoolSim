@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="CUSTOMVERTEX.h" />
     <ClInclude Include="GraphicsObject_cuboid.h" />
+    <ClInclude Include="GraphicsObject_sphere.h" />
     <ClInclude Include="IGraphicsObject.h" />
     <ClInclude Include="IRenderer.h" />
     <ClInclude Include="RenderEngine_dx9.h" />
@@ -152,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="CUSTOMVERTEX.cpp" />
     <ClCompile Include="GraphicsObject_cuboid.cpp" />
+    <ClCompile Include="GraphicsObject_sphere.cpp" />
     <ClCompile Include="IGraphicsObject.cpp" />
     <ClCompile Include="IRenderer.cpp" />
     <ClCompile Include="RenderEngine_dx9.cpp" />
