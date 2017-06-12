@@ -1,6 +1,7 @@
 #pragma once
 #include "Vector3D.h"
-struct Sphere {
+#include "ICollisionObject.h"
+struct Sphere : public ICollisionObject {
 	float radius;
-	Vector3D center;
+	float GetNearestDistance(Vector3D*) const;
 };

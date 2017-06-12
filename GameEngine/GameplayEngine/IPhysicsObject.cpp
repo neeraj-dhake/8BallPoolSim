@@ -70,3 +70,7 @@ BodyData& IPhysicsObject::GetData()
 {
 	return data;
 }
+
+ICollisionObject * IPhysicsObject::GetCollisionObject() {
+	return collision_object;
+}

@@ -49,29 +49,13 @@ void PositionalCorrection(BodyData obj1, BodyData obj2) {
 	obj2.position += correction*obj2.invMass;
 }
 
-bool PhysicsEngine::DetectCollision(const AABB &a,const AABB &b) {	// pass it by reference if you wantmaxX to avoid writing copy constructor
-	if ((a.min.x <= b.max.x && a.max.x >= b.min.x) &&
-		(a.min.y <= b.max.y && a.max.y >= b.min.y) &&
-		(a.min.z <= b.max.z && a.max.z >= b.min.z))
-		return true;
-	else return false;
-}
-
-bool PhysicsEngine::DetectCollision(const AABB &a, const Sphere &b) {
-	Vector3D a_center = (a.max + a.min) / 2;
-	Vector3D ray = b.center - a_center;
+bool PhysicsEngine::DetectCollision(const ICollisionObject* a, const ICollisionObject* b) {
+	Vector3D ray = b->center - a->center;
 	ray = ray / Vector3D::Magnitude(ray);
-	if (Vector3D::Magnitude(a_center - b.center) <= (a.nearest_distance(ray) + b.radius)) {
+	if (Vector3D::Magnitude(a->center - b->center) <= (a->GetNearestDistance(&ray) + b->GetNearestDistance(&(ray*(-1))))) {
 		return true;
 	}
 	return false;
-}
-
-bool PhysicsEngine::DetectCollision(const Sphere &a, const Sphere &b) {
-	if (Vector3D::Magnitude(a.center - b.center) <= (a.radius + b. radius)) {
-		return true;
-	}
-	else return false;
 }
 
 void PhysicsEngine::impulseX(Vector3D & v, float vel) {
