@@ -1,15 +1,14 @@
 #include "PhysicsEngine.h"
-
-
-
-PhysicsEngine::PhysicsEngine() {
+inline float max(float x, float y) {
+	return (x > y) ? x : y;
 }
 
+PhysicsEngine::PhysicsEngine() {}
 
-PhysicsEngine::~PhysicsEngine() {
-}
 
-void PhysicsEngine::CollisionResponse(BodyData &obj1, BodyData &obj2) {
+PhysicsEngine::~PhysicsEngine() {}
+
+void PhysicsEngine::CollisionResponse(BodyData &obj1, BodyData &obj2) {	/// need to change to use for rotation
 	Vector3D rv = obj2.velocity - obj1.velocity;
 
 	Vector3D normal = Vector3D::Normal(obj1.velocity - obj2.velocity);
@@ -30,12 +29,8 @@ void PhysicsEngine::CollisionResponse(BodyData &obj1, BodyData &obj2) {
 	Vector3D impulse = normal*j;
 	obj1.velocity -= impulse* obj1.invMass;
 	obj2.velocity += impulse* obj2.invMass;
-	int x = 1;
 
 
-}
-inline float max(float x, float y) {
-	return (x > y) ? x : y;
 }
 
 
