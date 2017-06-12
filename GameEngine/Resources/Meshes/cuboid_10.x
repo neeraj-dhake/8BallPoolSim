@@ -50,12 +50,12 @@ Frame Root {
       MeshMaterialList { // Cube material list
         6;
         6;
+        5,
+        4,
+        1,
         0,
-        0,
-        0,
-        0,
-        0,
-        0;
+        3,
+        2;
         Material Material_001 {
            0.097788; 0.201884; 0.640000; 1.000000;;
            96.078431;

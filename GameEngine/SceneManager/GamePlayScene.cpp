@@ -13,12 +13,12 @@ void GamePlayScene::SetScene() {
 	is_active = true;
 	WorldObject_cuboid* obj1 = new WorldObject_cuboid;
 	obj1->SetCoordinates(10, -10, 0);
-	obj1->SetDim(17.32, 17.32, 17.32);
+	obj1->SetDim(17.32f, 17.32f, 17.32f);
 	AddObject(obj1);
 
 	WorldObject_cuboid* obj2 = new WorldObject_cuboid;
 	obj2->SetCoordinates(-10, 10, 0);
-	obj2->SetDim(17.32, 17.32, 17.32);
+	obj2->SetDim(17.32f, 17.32f, 17.32f);
 	AddObject(obj2);
 }
 
