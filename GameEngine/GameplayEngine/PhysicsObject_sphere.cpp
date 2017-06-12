@@ -14,16 +14,16 @@ void PhysicsObject_sphere::Update(float dt) {
 		AddPosition(getVel().x*data.dt, getVel().y*data.dt, getVel().z*data.dt);
 	}
 	parent->SetCoordinates(data.position.x, data.position.y, data.position.z);
-	((PhysicsObject_sphere*)parent->GetpObject())->SetSphere();
+	SetCollisionObject();
 }
 
-void PhysicsObject_sphere::SetSphere() {
-	sphere.center = data.position;
-	sphere.radius = radius;
+void PhysicsObject_sphere::SetRadius(float _radius) {
+	radius = _radius;
 }
 
-Sphere& PhysicsObject_sphere::GetSphere() {
-	return sphere;
+void PhysicsObject_sphere::SetCollisionObject() {
+	((Sphere*)collision_object)->center = data.position;
+	((Sphere*)collision_object)->radius = radius;
 }
 
 float PhysicsObject_sphere::GetRadius() {
