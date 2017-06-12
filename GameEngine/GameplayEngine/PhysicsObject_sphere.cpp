@@ -4,6 +4,7 @@
 
 PhysicsObject_sphere::PhysicsObject_sphere(WorldObject_sphere* par) {
 	parent = par;
+	collision_object = new Sphere();
 }
 
 void PhysicsObject_sphere::Update(float dt) {
