@@ -144,6 +144,7 @@
     <ClInclude Include="ICollisionObject.h" />
     <ClInclude Include="IPhysicsObject.h" />
     <ClInclude Include="IWorldObject.h" />
+    <ClInclude Include="Matrix.h" />
     <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="PhysicsObject_cuboid.h" />
     <ClInclude Include="PhysicsObject_sphere.h" />
@@ -158,6 +159,7 @@
     <ClCompile Include="BodyData.cpp" />
     <ClCompile Include="IPhysicsObject.cpp" />
     <ClCompile Include="IWorldObject.cpp" />
+    <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="PhysicsEngine.cpp" />
     <ClCompile Include="PhysicsObject_cuboid.cpp" />
     <ClCompile Include="PhysicsObject_sphere.cpp" />
