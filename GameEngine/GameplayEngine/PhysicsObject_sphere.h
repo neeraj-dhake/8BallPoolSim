@@ -4,13 +4,12 @@
 class WorldObject_sphere;
 class PhysicsObject_sphere : public IPhysicsObject {
 	float radius;
-	Sphere sphere;
 public:
 	PhysicsObject_sphere(WorldObject_sphere*);
 	void Update(float dt);
 	float GetRadius();
-	void SetSphere();
-	Sphere& GetSphere();
+	void SetRadius(float);
+	void SetCollisionObject();
 	~PhysicsObject_sphere();
 };
 
