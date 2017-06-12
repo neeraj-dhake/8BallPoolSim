@@ -17,11 +17,11 @@ void WorldObject_cuboid::SetDim(float w, float h, float d) {
 	depth = d;
 	height = h;
 	((PhysicsObject_cuboid*)(pObject))->SetDim(w, h, d);
-	((PhysicsObject_cuboid*)(pObject))->SetAABB();
+	((PhysicsObject_cuboid*)(pObject))->SetCollisionObject();
 
 }
-AABB WorldObject_cuboid::GetAABB() {
-	return ((PhysicsObject_cuboid*)(pObject))->GetAABB();
+AABB* WorldObject_cuboid::GetAABB() {
+	return (AABB*)((PhysicsObject_cuboid*)(pObject))->GetCollisionObject();
 }
 
 WorldObject_cuboid::~WorldObject_cuboid() {
