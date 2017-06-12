@@ -20,9 +20,6 @@ void WorldObject_cuboid::SetDim(float w, float h, float d) {
 	((PhysicsObject_cuboid*)(pObject))->SetCollisionObject();
 
 }
-AABB* WorldObject_cuboid::GetAABB() {
-	return (AABB*)((PhysicsObject_cuboid*)(pObject))->GetCollisionObject();
-}
 
 WorldObject_cuboid::~WorldObject_cuboid() {
 }

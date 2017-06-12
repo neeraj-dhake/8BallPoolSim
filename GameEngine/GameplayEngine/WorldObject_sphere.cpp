@@ -21,7 +21,3 @@ void WorldObject_sphere::SetRadius(float r) {
 	((PhysicsObject_sphere*)(pObject))->SetRadius(radius);
 	((PhysicsObject_sphere*)(pObject))->SetCollisionObject();
 }
-
-Sphere* WorldObject_sphere::GetSphere() {
-	return (Sphere*)((PhysicsObject_sphere*)(pObject))->GetCollisionObject();
-}
