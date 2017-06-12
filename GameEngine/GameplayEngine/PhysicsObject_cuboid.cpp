@@ -20,8 +20,7 @@ void PhysicsObject_cuboid::Update(float dt) {
 		AddTheta(getOmega().x*data.dt, getOmega().y*data.dt, getOmega().z*data.dt);
 	}
 
-	parent->SetCoordinates(data.position.x,data.position.y,data.position.z);
-	// function for setting Theta
+	parent->SetCoordinates(data.position);
 	SetCollisionObject();
 
 }

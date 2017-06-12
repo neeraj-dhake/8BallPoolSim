@@ -17,7 +17,7 @@ void PhysicsObject_sphere::Update(float dt) {
 		AddAngularVelocity(getAlpha().x*data.dt, getAlpha().y*data.dt, getAlpha().z*data.dt);
 		AddTheta(getOmega().x*data.dt, getOmega().y*data.dt, getOmega().z*data.dt);
 	}
-	parent->SetCoordinates(data.position.x, data.position.y, data.position.z);
+	parent->SetCoordinates(data.position);
 	SetCollisionObject();
 }
 

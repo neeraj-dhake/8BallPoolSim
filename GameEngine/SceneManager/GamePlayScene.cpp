@@ -2,6 +2,7 @@
 #include "../GameplayEngine/WorldObject_cuboid.h"
 #include "../GameplayEngine/WorldObject_sphere.h"
 #include "../InputLib_Win/InputHandler.h"
+#include "../GameplayEngine/Vector3D.h"
 
 
 
@@ -13,17 +14,17 @@ GamePlayScene::GamePlayScene() {
 void GamePlayScene::SetScene() {
 	is_active = true;
 	WorldObject_cuboid* obj1 = new WorldObject_cuboid;
-	obj1->SetCoordinates(10, -10, 0);
+	obj1->SetCoordinates(Vector3D(10, -10, 0));
 	obj1->SetDim(10.0f, 10.0f, 10.0f);
 	AddObject(obj1);
 
 	WorldObject_cuboid* obj2 = new WorldObject_cuboid;
-	obj2->SetCoordinates(-10, 10, 0);
+	obj2->SetCoordinates(Vector3D(-10, 10, 0));
 	obj2->SetDim(10.0f, 10.0f, 10.0f);
 	AddObject(obj2);
 
 	WorldObject_sphere* obj3 = new WorldObject_sphere;
-	obj3->SetCoordinates(10.0f, 10.0f, 0.0f);
+	obj3->SetCoordinates(Vector3D(10.0f, 10.0f, 0.0f));
 	obj3->SetRadius(10.0f);
 	AddObject(obj3);
 }
