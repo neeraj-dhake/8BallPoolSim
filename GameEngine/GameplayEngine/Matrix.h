@@ -12,9 +12,14 @@ public:
 	Matrix & operator=(const Matrix&);
 
 	Matrix operator+(const Matrix&);
+	Matrix operator+(float x);
+	Matrix operator-(float x);
+	Matrix operator*(float x);
+	Matrix operator/(float x);
 	Matrix operator-(const Matrix&);
 	Matrix operator*(const Matrix&);
-	Matrix inv(const Matrix&);
+	Matrix inv();
+	void PrintMatrix();
 	float Determinant();
 	~Matrix();
 };
