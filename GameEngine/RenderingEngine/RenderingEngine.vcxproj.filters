@@ -57,7 +57,7 @@
       <Filter>Source Files\Interfaces</Filter>
     </ClCompile>
     <ClCompile Include="RenderEngine_dx9.cpp">
-      <Filter>Source Files\Objects</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GraphicsObject_sphere.cpp">
       <Filter>Source Files\Objects</Filter>

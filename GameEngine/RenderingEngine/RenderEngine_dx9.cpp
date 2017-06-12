@@ -1,7 +1,7 @@
 #include "RenderEngine_dx9.h"
 #include <d3d9.h>
 #include "../Include/d3dx9.h"
-
+#include "../Include/d3dx9math.h"
 
 
 RenderEngine_dx9::RenderEngine_dx9(int w, int h) {
@@ -74,9 +74,10 @@ void RenderEngine_dx9::Render(IGraphicsObject* gObject) {
 		Vector3D pos = gObject->GetParent()->GetPos();
 		D3DXMatrixTranslation(&matTranslate, pos.x, pos.y, pos.z);
 
-		D3DXMATRIX matRotateX;
-		D3DXMatrixRotationX(&matRotateX, D3DXToRadian(90));
-		((LPDIRECT3DDEVICE9)device)->SetTransform(D3DTS_WORLD, &(matRotateX*matTranslate));
+		D3DXMATRIX matRotate;
+		Vector3D rotation = gObject->GetParent()->GetRotation();
+		D3DXMatrixRotationYawPitchRoll(&matRotate, rotation.y, rotation.x, rotation.z);
+		((LPDIRECT3DDEVICE9)device)->SetTransform(D3DTS_WORLD, &(matRotate*matTranslate));
 
 		/*((LPDIRECT3DDEVICE9)device)->SetStreamSource(0, (LPDIRECT3DVERTEXBUFFER9)(gObject->GetVBuf()), 0, sizeof(CUSTOMVERTEX));
 		((LPDIRECT3DDEVICE9)device)->SetIndices((LPDIRECT3DINDEXBUFFER9)(gObject->GetIBuf()));
