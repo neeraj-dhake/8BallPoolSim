@@ -55,16 +55,12 @@ void GamePlayScene::UpdateScene()
 
 
 
-	for (unsigned int i = 0;i < objects_in_scene.size();i++)
-	{
-		for (size_t j = i + 1; j < objects_in_scene.size(); j++)
-		{
-			AABB a = ((WorldObject_cuboid*)objects_in_scene[i])->GetAABB();
-			AABB b = ((WorldObject_cuboid*)objects_in_scene[j])->GetAABB();
+	for (unsigned int i = 0;i < objects_in_scene.size();i++) {
+		for (size_t j = i + 1; j < objects_in_scene.size(); j++) {
+			AABB* a = ((WorldObject_cuboid*)objects_in_scene[i])->GetAABB();
+			AABB* b = ((WorldObject_cuboid*)objects_in_scene[j])->GetAABB();
 			if (phy->DetectCollision(a, b))
 				phy->CollisionResponse(((WorldObject_cuboid*)objects_in_scene[i])->GetpObject()->GetData(), ((WorldObject_cuboid*)objects_in_scene[j])->GetpObject()->GetData());
-
-
 			float x = ((WorldObject_cuboid*)objects_in_scene[i])->GetpObject()->GetData().velocity.y;
 		}
 

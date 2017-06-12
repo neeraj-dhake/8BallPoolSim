@@ -1,16 +1,15 @@
 #include "BodyData.h"
+#include "ICollisionObject.h"
 #pragma once
 
 class IWorldObject;
-class IPhysicsObject
-{
+class IPhysicsObject {
 
 protected:
 	IWorldObject* parent;
 	BodyData data;
-
+	ICollisionObject* collision_object;
 	
-
 public:
 	IPhysicsObject();
 	~IPhysicsObject();
@@ -28,7 +27,8 @@ public:
 
 	BodyData& GetData();
 
-
+	ICollisionObject* GetCollisionObject();
+	virtual void SetCollisionObject() = 0;
 	virtual void Update(float dt) = 0;	// for every player controlable unit just call the inputhandler in it and then define the if else statement;
 
 private:
