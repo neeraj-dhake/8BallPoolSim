@@ -21,9 +21,21 @@ public:
 	void AddPosition(float  x, float  y, float  z);
 	void AddAccelera(float ax, float ay, float az);
 
+	void SetAngularVelocity(float vx, float vy, float vz);
+	void SetAngularAccelera(float tx, float ty, float tz);
+	void SetTheta(float ax, float ay, float az);
+
+	void AddTheta(float ax, float ay, float az);
+	void AddAngularVelocity(float ax, float ay, float az);
+	void AddAngularAccelera(float ax, float ay, float az);
+
 	Vector3D getPos();
 	Vector3D getVel();
 	Vector3D getAcc();
+
+	Vector3D getTheta();
+	Vector3D getOmega();
+	Vector3D getAlpha();
 
 	BodyData& GetData();
 

@@ -10,6 +10,11 @@ IPhysicsObject::IPhysicsObject()
 	data.onGroundX = false; data.onGroundY = false; data.onGroundZ = false;
 	data.restitution = 0.9999999f, data.invMass = 1.0f;
 
+	data.angular_accelera.x = 0.0f, data.angular_accelera.y = 0.0f, data.angular_accelera.z = 0.0f;
+	data.angular_velocity.x = 0.0f, data.angular_velocity.y = 0.0f, data.angular_velocity.z = 0.0f;
+	data.theta.x = 0.0f, data.theta.y = 0.0f, data.theta.z = 0.0f;
+
+
 }
 
 IPhysicsObject::~IPhysicsObject()
@@ -50,6 +55,36 @@ void IPhysicsObject::AddAccelera(float ax, float ay, float az)
 	data.accelera.x += ax;data.accelera.y += ay;data.accelera.z += az;
 }
 
+void IPhysicsObject::SetAngularVelocity(float vx, float vy, float vz)
+{
+	data.angular_velocity.x = vx;data.angular_velocity.y = vy;data.angular_velocity.z = vz;
+}
+
+void IPhysicsObject::SetAngularAccelera(float tx, float ty, float tz)
+{
+	data.angular_accelera.x = tx;data.angular_accelera.y = ty;data.angular_accelera.z = tz;
+}
+
+void IPhysicsObject::SetTheta(float x, float y, float z)
+{
+	data.theta.x = x;data.theta.y = y;data.theta.z = z;
+}
+
+void IPhysicsObject::AddTheta(float x, float y, float z)
+{
+	data.theta.x += x;data.theta.y += y;data.theta.z += z;
+}
+
+void IPhysicsObject::AddAngularVelocity(float vx, float vy, float vz)
+{
+	data.angular_velocity.x += vx;data.angular_velocity.y += vy;data.angular_velocity.z += vz;
+}
+
+void IPhysicsObject::AddAngularAccelera(float ax, float ay, float az)
+{
+	data.angular_accelera.x += ax;data.angular_accelera.y += ay;data.angular_accelera.z += az;
+}
+
 
 Vector3D IPhysicsObject::getPos()
 {
@@ -64,6 +99,21 @@ Vector3D IPhysicsObject::getVel()
 Vector3D IPhysicsObject::getAcc()
 {
 	return data.accelera;
+}
+
+Vector3D IPhysicsObject::getTheta()
+{
+	return data.theta;
+}
+
+Vector3D IPhysicsObject::getOmega()
+{
+	return data.angular_velocity;
+}
+
+Vector3D IPhysicsObject::getAlpha()
+{
+	return data.angular_accelera;
 }
 
 BodyData& IPhysicsObject::GetData()
