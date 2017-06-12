@@ -20,13 +20,16 @@ void GraphicsObject_cuboid::SetMesh()
 	material = (D3DXMATERIAL*)((LPD3DXBUFFER)(material_buffer))->GetBufferPointer();
 
 	mesh_material = new D3DMATERIAL9[numMat];
-	LPDIRECT3DTEXTURE9* g_pMeshTextures = new LPDIRECT3DTEXTURE9[numMat];
+	mesh_texture = new LPDIRECT3DTEXTURE9[numMat];
 
 	for (unsigned int i = 0; i < numMat; i++) 
 	{
 		((D3DMATERIAL9*)mesh_material)[i] = ((D3DXMATERIAL*)material)[i].MatD3D;
 		((D3DMATERIAL9*)mesh_material)[i].Ambient = ((D3DMATERIAL9*)mesh_material)[i].Diffuse;
-		D3DXCreateTextureFromFile(((LPDIRECT3DDEVICE9)device), ((D3DXMATERIAL*)material)[i].pTextureFilename, &g_pMeshTextures[i]);
+
+		((LPDIRECT3DTEXTURE9*)mesh_texture)[i] = nullptr;
+		if (((D3DXMATERIAL*)material)[i].pTextureFilename)
+			D3DXCreateTextureFromFile(((LPDIRECT3DDEVICE9)device), ((D3DXMATERIAL*)material)[i].pTextureFilename, &((LPDIRECT3DTEXTURE9*)mesh_texture)[i]);
 	}
 	((LPD3DXBUFFER)material_buffer)->Release();
 }
