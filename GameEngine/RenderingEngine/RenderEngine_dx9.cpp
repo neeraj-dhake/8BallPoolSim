@@ -68,7 +68,7 @@ void RenderEngine_dx9::end_frame() {
 
 void RenderEngine_dx9::Render(IGraphicsObject* gObject) {
 	if ((SUCCEEDED(((LPDIRECT3DDEVICE9)device)->BeginScene()))) {
-		((LPDIRECT3DDEVICE9)device)->SetTexture(0, (IDirect3DTexture9*)(gObject->GetTexture()));
+		//((LPDIRECT3DDEVICE9)device)->SetTexture(0, (IDirect3DTexture9*)(gObject->GetTexture()));
 
 		D3DXMATRIX matTranslate;
 		Vector3D pos = gObject->GetParent()->GetPos();
@@ -87,6 +87,7 @@ void RenderEngine_dx9::Render(IGraphicsObject* gObject) {
 
 		for (int i = 0; i < gObject->GetNum(); i++) {
 			((LPDIRECT3DDEVICE9)device)->SetMaterial(&((D3DMATERIAL9*)(gObject->GetMaterial()))[i]);
+			((LPDIRECT3DDEVICE9)device)->SetTexture(0,((LPDIRECT3DTEXTURE9*)(gObject->GetTexture()))[i]);
 			((ID3DXMesh*)(gObject->GetMesh()))->DrawSubset(i);
 		}
 
