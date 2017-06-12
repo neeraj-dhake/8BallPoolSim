@@ -6,12 +6,13 @@ class WorldObject_cuboid;
 class GraphicsObject_cuboid : public IGraphicsObject {
 public:
 	GraphicsObject_cuboid(WorldObject_cuboid*);
-	void SetIndices(void*);
-	void SetVertices(void*);
-	void SetVBuf(void*, int);
-	void SetIBuf(void*, int);
-	void SetTexture(void*);
+	//void SetIndices(void*);
+	//void SetVertices(void*);
+	//void SetVBuf(void*, int);
+	//void SetIBuf(void*, int);
+	//void SetTexture(void*);
 	void Init();
+	void SetMesh();
 	~GraphicsObject_cuboid();
 };
 
