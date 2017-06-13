@@ -13,21 +13,21 @@ protected:
 public:
 	IPhysicsObject();
 	~IPhysicsObject();
-	void SetVelocity(float vx, float vy, float vz);
-	void SetFriction(float fx, float fy, float fz);
-	void SetPosition(float  x, float  y, float  z);
-	void SetAccelera(float ax, float ay, float az);
-	void AddVelocity(float vx, float vy, float vz);
-	void AddPosition(float  x, float  y, float  z);
-	void AddAccelera(float ax, float ay, float az);
+	void SetVelocity(Vector3D);
+	void SetFriction(Vector3D);
+	void SetPosition(Vector3D);
+	void SetAccelera(Vector3D);
+	void AddVelocity(Vector3D);
+	void AddPosition(Vector3D);
+	void AddAccelera(Vector3D);
 
-	void SetAngularVelocity(float vx, float vy, float vz);
-	void SetAngularAccelera(float tx, float ty, float tz);
-	void SetTheta(float ax, float ay, float az);
+	void SetAngularVelocity(Vector3D);
+	void SetAngularAccelera(Vector3D);
+	void SetTheta(Vector3D);
 
-	void AddTheta(float ax, float ay, float az);
-	void AddAngularVelocity(float ax, float ay, float az);
-	void AddAngularAccelera(float ax, float ay, float az);
+	void AddTheta(Vector3D);
+	void AddAngularVelocity(Vector3D);
+	void AddAngularAccelera(Vector3D);
 
 	Vector3D getPos();
 	Vector3D getVel();
@@ -41,7 +41,7 @@ public:
 
 	ICollisionObject* GetCollisionObject();
 	virtual void SetCollisionObject() = 0;
-	virtual void Update(float dt) = 0;	// for every player controlable unit just call the inputhandler in it and then define the if else statement;
+	void Update(float dt);	// for every player controlable unit just call the inputhandler in it and then define the if else statement;
 
 private:
 	

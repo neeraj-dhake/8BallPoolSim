@@ -3,11 +3,9 @@
 #include "../GameplayEngine/WorldObject_sphere.h"
 #include "../InputLib_Win/InputHandler.h"
 #include "../GameplayEngine/Vector3D.h"
-
-
+#include "SceneManager.h"
 
 GamePlayScene::GamePlayScene() {
-	phy = new PhysicsEngine;
 	is_active = false;
 }
 
@@ -30,47 +28,42 @@ void GamePlayScene::SetScene() {
 }
 
 GamePlayScene::~GamePlayScene() {
-	delete phy;
 }
 
-void GamePlayScene::UpdateScene()
-{
+void GamePlayScene::UpdateScene() {
 	if (InputHandler::instance().GetKeyState_current(KEY_D))
-		(objects_in_scene[obj1]->GetpObject())->AddVelocity(-5.0f, 0, 0);
+		(objects_in_scene[obj1]->GetpObject())->AddVelocity(Vector3D(-5.0f, 0, 0));
 
 	if (InputHandler::instance().GetKeyState_current(KEY_A))
-		(objects_in_scene[obj1]->GetpObject())->AddVelocity(+5.0f, 0, 0);
+		(objects_in_scene[obj1]->GetpObject())->AddVelocity(Vector3D(+5.0f, 0, 0));
 
 	if (InputHandler::instance().GetKeyState_current(KEY_W))
-		(objects_in_scene[obj1]->GetpObject())->AddVelocity(0, 5.0f, 0);
+		(objects_in_scene[obj1]->GetpObject())->AddVelocity(Vector3D(0, 5.0f, 0));
 
 	if (InputHandler::instance().GetKeyState_current(KEY_S))
-		(objects_in_scene[obj1]->GetpObject())->AddVelocity(0, -5.0f, 0);
+		(objects_in_scene[obj1]->GetpObject())->AddVelocity(Vector3D(0, -5.0f, 0));
 
 	if(InputHandler::instance().GetKeyState_current(KEY_UP))
-		(objects_in_scene[obj2]->GetpObject())->AddVelocity(0, 5.0f, 0);
+		(objects_in_scene[obj2]->GetpObject())->AddVelocity(Vector3D(0, 5.0f, 0));
 
 	if (InputHandler::instance().GetKeyState_current(KEY_DOWN))
-		(objects_in_scene[obj2]->GetpObject())->AddVelocity(0, -5.0f, 0);
+		(objects_in_scene[obj2]->GetpObject())->AddVelocity(Vector3D(0, -5.0f, 0));
 
 	if (InputHandler::instance().GetKeyState_current(KEY_LEFT))
-		(objects_in_scene[obj2]->GetpObject())->AddVelocity(+5.0f, 0, 0);
+		(objects_in_scene[obj2]->GetpObject())->AddVelocity(Vector3D(+5.0f, 0, 0));
 
 	if (InputHandler::instance().GetKeyState_current(KEY_RIGHT))
-		(objects_in_scene[obj2]->GetpObject())->AddVelocity(-5.0f, 0, 0);
+		(objects_in_scene[obj2]->GetpObject())->AddVelocity(Vector3D(-5.0f, 0, 0));
 
-
-
-
-	for (unsigned int i = 0;i < objects_in_scene.size();i++) {
+	for (size_t i = 0;i < objects_in_scene.size(); i++) {
 		for (size_t j = i + 1; j < objects_in_scene.size(); j++) {
-			AABB* a = ((WorldObject_cuboid*)objects_in_scene[i])->GetAABB();
-			AABB* b = ((WorldObject_cuboid*)objects_in_scene[j])->GetAABB();
-			if (phy->DetectCollision(a, b))
-				phy->CollisionResponse(((WorldObject_cuboid*)objects_in_scene[i])->GetpObject()->GetData(), ((WorldObject_cuboid*)objects_in_scene[j])->GetpObject()->GetData());
-			float x = ((WorldObject_cuboid*)objects_in_scene[i])->GetpObject()->GetData().velocity.y;
+			ICollisionObject* a = (objects_in_scene[i])->GetpObject()->GetCollisionObject();
+			ICollisionObject* b = (objects_in_scene[j])->GetpObject()->GetCollisionObject();
+			if (Manager->physics_engine->DetectCollision(a, b)) {
+				Manager->physics_engine->CollisionResponse( (objects_in_scene[i])->GetpObject()->GetData(),
+															(objects_in_scene[j])->GetpObject()->GetData() );
+			}
 		}
-
 		(objects_in_scene[i])->GetpObject()->Update(dt);
 	}
 }

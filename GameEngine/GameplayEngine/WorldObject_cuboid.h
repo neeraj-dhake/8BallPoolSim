@@ -7,7 +7,6 @@ protected:
 public:
 	WorldObject_cuboid();
 	Vector3D GetDim();
-	AABB* GetAABB();
 	void SetDim(float, float, float);
 	~WorldObject_cuboid();
 };

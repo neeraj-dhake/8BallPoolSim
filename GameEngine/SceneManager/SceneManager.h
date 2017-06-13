@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include "../InputLib_Win/InputHandler.h"
 #include "../RenderingEngine/IRenderer.h"
+#include "../GameplayEngine/PhysicsEngine.h"
 #include <vector>
 #pragma once
 class SceneManager {
@@ -12,7 +13,6 @@ class SceneManager {
 	SCENE_STATE current_state;
 	SCENE_STATE next_state;
 
-
 public:
 	SceneManager(int width, int height, void* HWND);
 	~SceneManager();
@@ -21,6 +21,7 @@ public:
 	void Draw();
 	void AddScene(Scene*);
 	IRenderer* render_engine;
+	PhysicsEngine* physics_engine;
 	
 };
 

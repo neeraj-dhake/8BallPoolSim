@@ -19,7 +19,7 @@ Vector3D IWorldObject::GetRotation() {
 
 void IWorldObject::SetCoordinates(Vector3D pos) {
 	position = pos;
-	pObject->SetPosition(pos.x, pos.y, pos.z);
+	pObject->SetPosition(pos);
 }
 
 void IWorldObject::SetRotation(Vector3D rot) {
