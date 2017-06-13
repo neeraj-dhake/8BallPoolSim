@@ -23,7 +23,7 @@ void GamePlayScene::SetScene() {
 
 	WorldObject_sphere* obj3 = new WorldObject_sphere;
 	obj3->SetCoordinates(Vector3D(10.0f, 10.0f, 0.0f));
-	obj3->SetRadius(10.0f);
+	obj3->SetRadius(5.0f);
 	AddObject(obj3);
 }
 
