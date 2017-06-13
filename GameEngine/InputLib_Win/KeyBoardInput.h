@@ -2,9 +2,9 @@
 #include "IInput.h"
 #include <vector>
 #pragma once
-#define Num 6
+#define Num 10
 
-enum KEY_STATE { KEY_ESCAPE, KEY_W, KEY_A, KEY_S, KEY_D, KEY_SPACEBAR};
+enum KEY_STATE { KEY_ESCAPE, KEY_W, KEY_A, KEY_S, KEY_D, KEY_SPACEBAR,KEY_UP,KEY_DOWN,KEY_RIGHT,KEY_LEFT};
 
 class KeyBoardInput : public IInput
 {

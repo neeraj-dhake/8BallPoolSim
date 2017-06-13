@@ -5,7 +5,6 @@
 IGraphicsObject::IGraphicsObject() {
 }
 
-
 IGraphicsObject::~IGraphicsObject() {
 }
 
@@ -13,34 +12,26 @@ void IGraphicsObject::SetDevice(void* dev) {
 	device = dev;
 }
 
-int IGraphicsObject::GetNumPrimitives() {
-	return num_primitives;
+void * IGraphicsObject::GetMaterial()
+{
+	return mesh_material;
 }
 
-int IGraphicsObject::GetNumVertices() {
-	return num_vertices;
+void * IGraphicsObject::GetMesh()
+{
+	return mesh;
+}
+
+void * IGraphicsObject::GetTexture()
+{
+	return mesh_texture;
+}
+
+int IGraphicsObject::GetNum()
+{
+	return numMat;
 }
 
 IWorldObject* IGraphicsObject::GetParent() {
 	return parent;
-}
-
-void* IGraphicsObject::GetTexture() {
-	return texture;
-}
-
-void* IGraphicsObject::GetVBuf() {
-	return vertex_buffer;
-}
-
-void* IGraphicsObject::GetIBuf() {
-	return index_buffer;
-}
-
-void IGraphicsObject::SetColor(Vector3D col) {
-	color = col;
-}
-
-Vector3D IGraphicsObject::GetColor() {
-	return color;
 }

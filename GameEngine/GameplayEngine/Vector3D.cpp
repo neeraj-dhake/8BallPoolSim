@@ -16,7 +16,7 @@ Vector3D & Vector3D::operator=(const Vector3D& v) {
 
 Vector3D Vector3D::operator+(const Vector3D &v) const
 {
-	return Vector3D(x + v.x, y + v.y,z + v.z);
+	return Vector3D(x + v.x, y + v.y, z + v.z);
 }
 
 Vector3D Vector3D::operator-(const Vector3D &v) const
@@ -79,7 +79,13 @@ float Vector3D::DotProduct(const Vector3D &v1, const Vector3D &v2)
 	return (v1.x*v2.x + v1.y*v2.y + v1.z*v2.z);
 }
 
-
+bool Vector3D::lies_between(const Vector3D a, const Vector3D b) {
+	if (a.x <= x && x <= b.x &&
+		a.y <= y && y <= b.y &&
+		a.z <= z && z <= b.z)
+		return true;
+	else return false;
+}
 
 float Vector3D::Magnitude(const Vector3D &v)
 {

@@ -1,8 +1,10 @@
 #include "WorldObject_cuboid.h"
+#include "PhysicsObject_cuboid.h"
 #include "../RenderingEngine/GraphicsObject_cuboid.h"
 
+
 WorldObject_cuboid::WorldObject_cuboid() {
-	pObject = NULL;
+	pObject = new PhysicsObject_cuboid(this);
 	gObject = new GraphicsObject_cuboid(this);
 }
 
@@ -14,6 +16,9 @@ void WorldObject_cuboid::SetDim(float w, float h, float d) {
 	width = w;
 	depth = d;
 	height = h;
+	((PhysicsObject_cuboid*)(pObject))->SetDim(w, h, d);
+	((PhysicsObject_cuboid*)(pObject))->SetCollisionObject();
+
 }
 
 WorldObject_cuboid::~WorldObject_cuboid() {

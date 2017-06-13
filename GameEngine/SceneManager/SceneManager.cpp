@@ -2,42 +2,44 @@
 #include "../RenderingEngine/RenderEngine_dx9.h"
 #include "../GameplayEngine/IWorldObject.h"
 
-typedef std::list<IWorldObject*>::const_iterator list_object_iterator;
+
 
 SceneManager::SceneManager(int width, int height, void* HWND) {
 	next_scene = nullptr;
-	next_state = MAIN_MENU;
+	next_state = GAMEPLAY_SCENE;
 	render_engine = new RenderEngine_dx9(width, height);
 	render_engine->SetHandle(HWND);
 	render_engine->SetWindow();
+	physics_engine = new PhysicsEngine;
 }
 
 
 SceneManager::~SceneManager() {
+	delete physics_engine;
 }
 
 void SceneManager::Update() {
 	if (next_scene!=nullptr)
 		current_scene = next_scene;
 	else {
-		current_scene = all_scenes[MAIN_MENU];
+		current_scene = all_scenes[GAMEPLAY_SCENE];
 	}
 	current_state = next_state;
 	switch (current_state) {
 		case MAIN_MENU:
-			if (InputHandler::instance().GetKeyState_current(KEY_W) == 0 && InputHandler::instance().GetKeyState_prev(KEY_W) == 1) {
+			if (InputHandler::instance().GetKeyState_current(KEY_SPACEBAR) == 0 && InputHandler::instance().GetKeyState_prev(KEY_SPACEBAR) == 1) {
 				next_state = GAMEPLAY_SCENE;
 				next_scene = all_scenes[GAMEPLAY_SCENE];
 			}
 			break;
 		case GAMEPLAY_SCENE:
-			if (InputHandler::instance().GetKeyState_current(KEY_W) == 0 && InputHandler::instance().GetKeyState_prev(KEY_W) == 1) {
+			if (InputHandler::instance().GetKeyState_current(KEY_SPACEBAR) == 0 && InputHandler::instance().GetKeyState_prev(KEY_SPACEBAR) == 1) {
 				next_state = PAUSE_MENU;
 				next_scene = all_scenes[PAUSE_MENU];
 			}
 			break;
 		case PAUSE_MENU:
-			if (InputHandler::instance().GetKeyState_current(KEY_W) == 0 && InputHandler::instance().GetKeyState_prev(KEY_W) == 1) {
+			if (InputHandler::instance().GetKeyState_current(KEY_SPACEBAR) == 0 && InputHandler::instance().GetKeyState_prev(KEY_SPACEBAR) == 1) {
 				next_state = MAIN_MENU;
 				next_scene = all_scenes[MAIN_MENU];
 			}
@@ -45,15 +47,17 @@ void SceneManager::Update() {
 		default:
 			break;
 	}
+		current_scene->UpdateScene();
 }
 
 void SceneManager::SetRenderList(Scene* scene) {
+
+	
 	size_t num = (scene->objects_in_scene).size();
 	IWorldObject* RenderList = new IWorldObject[num];
-	int i = 0;
-	for (list_object_iterator it = (scene->objects_in_scene).begin(); it != (scene->objects_in_scene).end(); ++it) {
-		RenderList[i] = **it;
-		i++;
+
+	for (size_t i = 0; i < num; i++) {
+		RenderList[i] = *(scene->objects_in_scene[i]);
 	}
 	render_engine->SetList(RenderList);
 	render_engine->SetNum(num);

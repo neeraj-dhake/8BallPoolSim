@@ -1,8 +1,7 @@
 #include "Vector3D.h"
+#include "ICollisionObject.h"
 #pragma once
-struct AABB
-{
-	Vector3D min;
-	Vector3D max;
-
+struct AABB : public ICollisionObject {
+	Vector3D dimensions;
+	float GetNearestDistance(Vector3D*) const;
 };

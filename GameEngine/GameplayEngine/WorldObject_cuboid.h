@@ -1,5 +1,6 @@
 #pragma once
 #include "IWorldObject.h"
+#include "AABB.h"
 class WorldObject_cuboid : public IWorldObject {
 protected:
 	float width, height, depth;

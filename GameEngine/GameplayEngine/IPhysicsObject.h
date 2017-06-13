@@ -1,29 +1,47 @@
 #include "BodyData.h"
+#include "ICollisionObject.h"
 #pragma once
 
 class IWorldObject;
-class IPhysicsObject
-{
+class IPhysicsObject {
 
 protected:
 	IWorldObject* parent;
 	BodyData data;
-
+	ICollisionObject* collision_object;
 	
-
 public:
 	IPhysicsObject();
 	~IPhysicsObject();
-	void SetVelocity(float vx, float vy, float vz);
-	void SetFriction(float fx, float fy, float fz);
-	void SetPosition(float  x, float  y, float  z);
-	void SetAccelera(float ax, float ay, float az);
+	void SetVelocity(Vector3D);
+	void SetFriction(Vector3D);
+	void SetPosition(Vector3D);
+	void SetAccelera(Vector3D);
+	void AddVelocity(Vector3D);
+	void AddPosition(Vector3D);
+	void AddAccelera(Vector3D);
+
+	void SetAngularVelocity(Vector3D);
+	void SetAngularAccelera(Vector3D);
+	void SetTheta(Vector3D);
+
+	void AddTheta(Vector3D);
+	void AddAngularVelocity(Vector3D);
+	void AddAngularAccelera(Vector3D);
+
 	Vector3D getPos();
 	Vector3D getVel();
 	Vector3D getAcc();
 
+	Vector3D getTheta();
+	Vector3D getOmega();
+	Vector3D getAlpha();
 
-	virtual void Update(float dt) = 0;	// for every player controlable unit just call the inputhandler in it and then define the if else statement;
+	BodyData& GetData();
+
+	ICollisionObject* GetCollisionObject();
+	virtual void SetCollisionObject() = 0;
+	void Update(float dt);	// for every player controlable unit just call the inputhandler in it and then define the if else statement;
 
 private:
 	

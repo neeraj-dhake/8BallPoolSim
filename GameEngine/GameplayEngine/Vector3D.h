@@ -18,6 +18,8 @@ struct Vector3D {
 	Vector3D operator*(const float&) const;
 	Vector3D operator/(const float&) const;
 
+	bool lies_between(Vector3D, Vector3D);
+
 	//Product functions
 	static float DotProduct(const Vector3D&, const Vector3D&);
 

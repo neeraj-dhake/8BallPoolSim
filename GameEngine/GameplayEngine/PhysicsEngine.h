@@ -1,5 +1,7 @@
 #include "BodyData.h"
 #include "AABB.h"
+#include "Sphere.h"
+#include "ICollisionObject.h"
 #include <math.h>
 #pragma once
 class PhysicsEngine
@@ -7,9 +9,7 @@ class PhysicsEngine
 public:
 	PhysicsEngine();
 	~PhysicsEngine();
-
-	bool DetectCollision(Vector3D v1,Vector3D v2,Vector3D dim1, Vector3D dim2);	// cuboid with cuboid
-	bool DetectCollision(AABB obj1, AABB obj2);
+	bool DetectCollision(const ICollisionObject*, const ICollisionObject*);
 	void CollisionResponse(BodyData &obj1, BodyData &obj2);
 
 	void impulseX(Vector3D &v,float vel);	// used by collision reponse

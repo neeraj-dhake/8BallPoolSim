@@ -1,8 +1,8 @@
 #include "RenderEngine_dx9.h"
 #include <d3d9.h>
 #include "../Include/d3dx9.h"
-#define CUSTOMFVF (D3DFVF_XYZ | D3DFVF_DIFFUSE)
-#include "CUSTOMVERTEX.h"
+#include "../Include/d3dx9math.h"
+
 
 RenderEngine_dx9::RenderEngine_dx9(int w, int h) {
 	SCREEN_WIDTH = w;
@@ -40,8 +40,8 @@ void RenderEngine_dx9::clean() {
 }
 
 void RenderEngine_dx9::init_frame(void* pos, void* look, void* up) {
-	((LPDIRECT3DDEVICE9)device)->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(255, 255, 255), 1.0f, 0);
-	((LPDIRECT3DDEVICE9)device)->Clear(0, NULL, D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(255, 255, 255), 1.0f, 0);
+	((LPDIRECT3DDEVICE9)device)->Clear(0, NULL, D3DCLEAR_TARGET,  D3DCOLOR_XRGB(0, 40, 100), 1.0f, 0);
+	((LPDIRECT3DDEVICE9)device)->Clear(0, NULL, D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(0, 40, 100), 1.0f, 0);
 
 	D3DXMATRIX matView;
 	D3DXMatrixLookAtLH(&matView, (D3DXVECTOR3*)pos, (D3DXVECTOR3*)look, (D3DXVECTOR3*)up);
@@ -68,22 +68,31 @@ void RenderEngine_dx9::end_frame() {
 
 void RenderEngine_dx9::Render(IGraphicsObject* gObject) {
 	if ((SUCCEEDED(((LPDIRECT3DDEVICE9)device)->BeginScene()))) {
-		((LPDIRECT3DDEVICE9)device)->SetTexture(0, (IDirect3DTexture9*)(gObject->GetTexture()));
-		((LPDIRECT3DDEVICE9)device)->SetFVF(CUSTOMFVF);
+		//((LPDIRECT3DDEVICE9)device)->SetTexture(0, (IDirect3DTexture9*)(gObject->GetTexture()));
 
 		D3DXMATRIX matTranslate;
 		Vector3D pos = gObject->GetParent()->GetPos();
 		D3DXMatrixTranslation(&matTranslate, pos.x, pos.y, pos.z);
 
-		D3DXMATRIX matRotateX;
-		D3DXMatrixRotationX(&matRotateX, D3DXToRadian(90));
-		((LPDIRECT3DDEVICE9)device)->SetTransform(D3DTS_WORLD, &(matTranslate*matRotateX));
+		D3DXMATRIX matRotate;
+		Vector3D rotation = gObject->GetParent()->GetRotation();
+		D3DXMatrixRotationYawPitchRoll(&matRotate, rotation.y, rotation.x, rotation.z);
+		((LPDIRECT3DDEVICE9)device)->SetTransform(D3DTS_WORLD, &(matRotate*matTranslate));
 
-		((LPDIRECT3DDEVICE9)device)->SetStreamSource(0, (LPDIRECT3DVERTEXBUFFER9)(gObject->GetVBuf()), 0, sizeof(CUSTOMVERTEX));
+		/*((LPDIRECT3DDEVICE9)device)->SetStreamSource(0, (LPDIRECT3DVERTEXBUFFER9)(gObject->GetVBuf()), 0, sizeof(CUSTOMVERTEX));
 		((LPDIRECT3DDEVICE9)device)->SetIndices((LPDIRECT3DINDEXBUFFER9)(gObject->GetIBuf()));
 		((LPDIRECT3DDEVICE9)device)->SetFVF(CUSTOMFVF);
 		((LPDIRECT3DDEVICE9)device)->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, gObject->GetNumVertices(), 0, gObject->GetNumPrimitives());
+		*/
+
+		for (int i = 0; i < gObject->GetNum(); i++) {
+			((LPDIRECT3DDEVICE9)device)->SetMaterial(&((D3DMATERIAL9*)(gObject->GetMaterial()))[i]);
+			((LPDIRECT3DDEVICE9)device)->SetTexture(0,((LPDIRECT3DTEXTURE9*)(gObject->GetTexture()))[i]);
+			((ID3DXMesh*)(gObject->GetMesh()))->DrawSubset(i);
+		}
+
 		((LPDIRECT3DDEVICE9)device)->EndScene();
+
 	}
 }
 

@@ -4,8 +4,6 @@ class CUSTOMVERTEX{
 	float x, y, z;
 	DWORD color;
 public:
-	CUSTOMVERTEX();
-	~CUSTOMVERTEX();
 	void set(float, float, float, DWORD);
 };
 

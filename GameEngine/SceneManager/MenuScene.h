@@ -4,6 +4,7 @@ class MenuScene : public Scene {
 public:
 	MenuScene();
 	void SetScene();
+
 	~MenuScene();
 };
 

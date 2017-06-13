@@ -1,13 +1,18 @@
 #pragma once
 class IWorldObject;
 #include "../GameplayEngine/Vector3D.h"
+#include <string>
+typedef unsigned long DWORD;
 
 class IGraphicsObject {
 protected:
 	void* device;
-	void* index_buffer;
-	void* vertex_buffer;
-	void* texture;
+	void* mesh;
+	DWORD numMat;
+	void* material_buffer;
+	void* material;
+	void* mesh_material;
+	void* mesh_texture;
 	IWorldObject* parent;
 	int num_primitives;
 	int num_vertices;
@@ -16,19 +21,13 @@ public:
 	IGraphicsObject();
 	IWorldObject* GetParent();
 	void SetDevice(void*);
-	virtual void SetIndices(void*) = 0;
-	virtual void SetVertices(void*) = 0;
-	virtual void SetVBuf(void*, int) = 0;
-	virtual void SetIBuf(void*, int) = 0;
-	virtual void SetTexture(void*) = 0;
 	virtual void Init() = 0;
-	void SetColor(Vector3D);
+	virtual void SetMesh() = 0;
+	void* GetMaterial();
+	void* GetMesh();
 	void* GetTexture();
-	void* GetVBuf();
-	void* GetIBuf();
-	Vector3D GetColor();
-	int GetNumPrimitives();
-	int GetNumVertices();
+	int GetNum();
+	// make set and get functions functiions ------------
 	~IGraphicsObject();
 };
 
