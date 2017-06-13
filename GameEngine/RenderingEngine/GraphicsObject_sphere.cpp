@@ -4,6 +4,7 @@
 #include "../Include/d3dx9.h"
 #include "../Include/d3dx9mesh.h"
 #include <memory>
+#include <string>
 
 GraphicsObject_sphere::GraphicsObject_sphere(WorldObject_sphere * par)
 {
@@ -17,7 +18,7 @@ GraphicsObject_sphere::~GraphicsObject_sphere()
 
 void GraphicsObject_sphere::Init()
 {
-	D3DXLoadMeshFromX("../Resources/Meshes/sphere_10.x", D3DXMESH_SYSTEMMEM, (LPDIRECT3DDEVICE9)device, NULL, (LPD3DXBUFFER*)&material_buffer, NULL, &numMat, (LPD3DXMESH*)&mesh);
+	D3DXLoadMeshFromX("../Resources/Meshes/ball.x", D3DXMESH_SYSTEMMEM, (LPDIRECT3DDEVICE9)device, NULL, (LPD3DXBUFFER*)&material_buffer, NULL, &numMat, (LPD3DXMESH*)&mesh);
 	SetMesh();
 }
 
@@ -34,8 +35,10 @@ void GraphicsObject_sphere::SetMesh()
 		((D3DMATERIAL9*)mesh_material)[i].Ambient = ((D3DMATERIAL9*)mesh_material)[i].Diffuse;
 
 		((LPDIRECT3DTEXTURE9*)mesh_texture)[i] = nullptr;
+		std::string path;
 		if (((D3DXMATERIAL*)material)[i].pTextureFilename)
-			D3DXCreateTextureFromFile(((LPDIRECT3DDEVICE9)device), ((D3DXMATERIAL*)material)[i].pTextureFilename, &((LPDIRECT3DTEXTURE9*)mesh_texture)[i]);
+			path = "../Resources/Meshes/" + (std::string)((D3DXMATERIAL*)material)[i].pTextureFilename;
+			D3DXCreateTextureFromFile(((LPDIRECT3DDEVICE9)device), path.c_str(), &((LPDIRECT3DTEXTURE9*)mesh_texture)[i]);
 	}
 	((LPD3DXBUFFER)material_buffer)->Release();
 }
