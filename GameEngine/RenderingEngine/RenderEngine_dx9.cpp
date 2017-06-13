@@ -85,7 +85,6 @@ void RenderEngine_dx9::Render(IGraphicsObject* gObject) {
 		((LPDIRECT3DDEVICE9)device)->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, gObject->GetNumVertices(), 0, gObject->GetNumPrimitives());
 		*/
 
-
 		for (int i = 0; i < gObject->GetNum(); i++) {
 			((LPDIRECT3DDEVICE9)device)->SetMaterial(&((D3DMATERIAL9*)(gObject->GetMaterial()))[i]);
 			((LPDIRECT3DDEVICE9)device)->SetTexture(0,((LPDIRECT3DTEXTURE9*)(gObject->GetTexture()))[i]);
