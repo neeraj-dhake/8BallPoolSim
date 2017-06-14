@@ -106,6 +106,7 @@
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <DebugInformationFormat>OldStyle</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -152,6 +153,9 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BulletPhysicsEngine\BulletPhysicsEngine.vcxproj">
+      <Project>{325c7288-83f5-4b44-8f6f-2f65d9368a90}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\GameplayEngine\GameplayEngine.vcxproj">
       <Project>{012d426e-d1a2-411e-8740-954a85625b98}</Project>
     </ProjectReference>

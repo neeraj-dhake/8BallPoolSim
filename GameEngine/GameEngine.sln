@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Performance1.psess = Performance1.psess
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BulletPhysicsEngine", "BulletPhysicsEngine\BulletPhysicsEngine.vcxproj", "{325C7288-83F5-4B44-8F6F-2F65D9368A90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -66,6 +68,14 @@ Global
 		{2A0CF5FB-70C6-4CFE-9AAD-01EC63417BFA}.Release|x64.Build.0 = Release|x64
 		{2A0CF5FB-70C6-4CFE-9AAD-01EC63417BFA}.Release|x86.ActiveCfg = Release|Win32
 		{2A0CF5FB-70C6-4CFE-9AAD-01EC63417BFA}.Release|x86.Build.0 = Release|Win32
+		{325C7288-83F5-4B44-8F6F-2F65D9368A90}.Debug|x64.ActiveCfg = Debug|x64
+		{325C7288-83F5-4B44-8F6F-2F65D9368A90}.Debug|x64.Build.0 = Debug|x64
+		{325C7288-83F5-4B44-8F6F-2F65D9368A90}.Debug|x86.ActiveCfg = Debug|Win32
+		{325C7288-83F5-4B44-8F6F-2F65D9368A90}.Debug|x86.Build.0 = Debug|Win32
+		{325C7288-83F5-4B44-8F6F-2F65D9368A90}.Release|x64.ActiveCfg = Release|x64
+		{325C7288-83F5-4B44-8F6F-2F65D9368A90}.Release|x64.Build.0 = Release|x64
+		{325C7288-83F5-4B44-8F6F-2F65D9368A90}.Release|x86.ActiveCfg = Release|Win32
+		{325C7288-83F5-4B44-8F6F-2F65D9368A90}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

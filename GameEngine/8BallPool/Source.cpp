@@ -9,6 +9,7 @@
 #include "../SceneManager/PauseScene.h"
 #include "../SceneManager/MenuScene.h"
 #include "../Include/btBulletDynamicsCommon.h"
+#include "../BulletPhysicsEngine/BulletWorld.h"
 
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
@@ -16,6 +17,7 @@ const int SCREEN_HEIGHT = 600;
 #pragma comment (lib, "GameplayEngine.lib")
 #pragma comment (lib, "RenderingEngine.lib")
 #pragma comment (lib, "InputLib_Win.lib")
+#pragma comment (lib, "BulletPhysicsEngine")
 #pragma comment (lib, "d3d9.lib")
 #pragma comment (lib, "d3dx9.lib")
 #pragma comment (lib, "BulletDynamics_vs2010_x64_debug.lib")
@@ -66,10 +68,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	ShowWindow(hwnd, nCmdShow);
 
-	btDefaultCollisionConfiguration* collisionConfiguration = new btDefaultCollisionConfiguration();
 
 	KeyBoardInput *input = new KeyBoardInput;
 	InputHandler::instance().SetKey(input->getKeys_current(), input->getKeys_prev());
+
+	BulletWorld w;
+
 
 	Scene* menu_scene = new MenuScene;
 	Scene* pause_scene = new PauseScene;
