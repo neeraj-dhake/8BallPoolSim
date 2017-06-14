@@ -8,6 +8,7 @@
 #include "../SceneManager/GamePlayScene.h"
 #include "../SceneManager/PauseScene.h"
 #include "../SceneManager/MenuScene.h"
+#include "../Include/btBulletDynamicsCommon.h"
 
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
@@ -17,6 +18,9 @@ const int SCREEN_HEIGHT = 600;
 #pragma comment (lib, "InputLib_Win.lib")
 #pragma comment (lib, "d3d9.lib")
 #pragma comment (lib, "d3dx9.lib")
+#pragma comment (lib, "BulletDynamics_vs2010_x64_debug.lib")
+#pragma comment (lib, "BulletCollision_vs2010_x64_debug.lib")
+#pragma comment (lib, "LinearMath_vs2010_x64_debug.lib")
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 	switch (msg) {
@@ -61,6 +65,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	hwnd = CreateWindowEx(WS_EX_CLIENTEDGE, "myClass", "3DGame", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 800, 600, NULL, NULL, hInstance, NULL);
 
 	ShowWindow(hwnd, nCmdShow);
+
+	btDefaultCollisionConfiguration* collisionConfiguration = new btDefaultCollisionConfiguration();
 
 	KeyBoardInput *input = new KeyBoardInput;
 	InputHandler::instance().SetKey(input->getKeys_current(), input->getKeys_prev());
