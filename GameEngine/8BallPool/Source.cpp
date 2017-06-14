@@ -72,7 +72,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	KeyBoardInput *input = new KeyBoardInput;
 	InputHandler::instance().SetKey(input->getKeys_current(), input->getKeys_prev());
 
-	BulletWorld w;
 
 
 	Scene* menu_scene = new MenuScene;

@@ -14,9 +14,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InputLib_Win", "InputLib_Win\InputLib_Win.vcxproj", "{2A0CF5FB-70C6-4CFE-9AAD-01EC63417BFA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{59EAC269-DF73-4D64-9CF7-6C98E6E7C8F2}"
-	ProjectSection(SolutionItems) = preProject
-		Performance1.psess = Performance1.psess
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BulletPhysicsEngine", "BulletPhysicsEngine\BulletPhysicsEngine.vcxproj", "{325C7288-83F5-4B44-8F6F-2F65D9368A90}"
 EndProject

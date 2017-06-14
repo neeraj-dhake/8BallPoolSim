@@ -38,11 +38,15 @@ void Scene::AddObject(IWorldObject* obj) {
 	(obj->GetgObject())->SetDevice(Manager->render_engine->GetDevice());
 	(obj->GetgObject())->Init();
 	objects_in_scene.push_back(obj);
+	// create is to be called
+
+	// obj->Create(Manager->PhyWorld);
 }
 
 void Scene::DeleteObject(IWorldObject* obj) {
 	//objects_in_scene.remove(obj);
 	// To be implemented
+
 
 }
 

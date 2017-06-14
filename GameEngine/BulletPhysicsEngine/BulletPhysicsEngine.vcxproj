@@ -138,10 +138,25 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BulletPhysicsObject.h" />
     <ClInclude Include="BulletWorld.h" />
+    <ClInclude Include="IBulletCollisionObject.h" />
+    <ClInclude Include="IBulletPhysicsObject.h" />
+    <ClInclude Include="IWorldObject.h" />
+    <ClInclude Include="BulletPhysicsObject_cuboid.h" />
+    <ClInclude Include="BulletPhysicsObject_sphere.h" />
+    <ClInclude Include="WorldObject_cuboid.h" />
+    <ClInclude Include="WorldObject_sphere.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BulletPhysicsObject.cpp" />
     <ClCompile Include="BulletWorld.cpp" />
+    <ClCompile Include="IBulletPhysicsObject.cpp" />
+    <ClCompile Include="BulletPhysicsObject_cuboid.cpp" />
+    <ClCompile Include="BulletPhysicsObject_sphere.cpp" />
+    <ClCompile Include="WorldObject_cuboid.cpp" />
+    <ClCompile Include="WorldObject_sphere.cpp" />
+    <ClCompile Include="IWorldObject.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

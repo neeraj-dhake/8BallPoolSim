@@ -11,6 +11,7 @@ SceneManager::SceneManager(int width, int height, void* HWND) {
 	render_engine->SetHandle(HWND);
 	render_engine->SetWindow();
 	physics_engine = new PhysicsEngine;
+	//PhyWorld = new BulletWorld;
 }
 
 
