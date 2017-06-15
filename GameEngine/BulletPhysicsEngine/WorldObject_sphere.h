@@ -8,7 +8,7 @@ public:
 	WorldObject_sphere();
 	float GetRadius();
 	void SetRadius(float x);
-	void Create(BulletWorld*);
+	void CreateObject(BulletWorld*);
 
 	~WorldObject_sphere();
 };

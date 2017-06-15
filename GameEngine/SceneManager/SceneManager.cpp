@@ -49,8 +49,8 @@ void SceneManager::Update() {
 		default:
 			break;
 	}
-		//current_scene->UpdateScene();
-		PhyWorld->update();
+		current_scene->UpdateScene();
+		/*PhyWorld->update();*/			// ship it inside gameplays scene
 }
 
 void SceneManager::SetRenderList(Scene* scene) {
@@ -74,5 +74,6 @@ void SceneManager::Draw() {
 void SceneManager::AddScene(Scene* scene) {
 	scene->SetManager(this);
 	scene->SetScene();
+	scene->PhyWorld = PhyWorld;
 	all_scenes.push_back(scene);
 }

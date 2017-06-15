@@ -19,18 +19,19 @@ Vector3D IWorldObject::GetRotation() {
 
 void IWorldObject::SetCoordinates(Vector3D pos) {
 	position = pos;
-	pObject->SetPosition(pos);
+	//pObject->SetPosition(pos);
 }
 
 void IWorldObject::SetRotation(Vector3D rot) {
 	rotation = rot;
 }
 
-void IWorldObject::Create(BulletWorld *)
-{
-}
+//void IWorldObject::CreateObject(BulletWorld *)
+//{
+//
+//}
 
-IBulletPhysicsObject* IWorldObject::GetpObject() {
+btRigidBody* IWorldObject::GetpObject() {
 	return pObject;
 }
 

@@ -7,7 +7,7 @@ protected:
 public:
 	WorldObject_cuboid();
 	Vector3D GetDim();
-	void Create(BulletWorld*);
+	void CreateObject(BulletWorld*);
 	void SetDim(float, float, float);
 	~WorldObject_cuboid();
 };

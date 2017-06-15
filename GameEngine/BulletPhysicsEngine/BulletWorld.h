@@ -5,10 +5,8 @@
 
 #pragma once
 #pragma comment (lib, "BulletDynamics_vs2010_x64_debug.lib")
-//#pragma comment (lib, "BulletCollision_vs2010_x64_debug.lib")
 #pragma comment (lib, "Bullet3Collision_vs2010_x64_debug.lib")
 #pragma comment (lib, "LinearMath_vs2010_x64_debug.lib")
-
 
 enum TypeOfObject {Sphere,Cuboid};
 
@@ -28,6 +26,6 @@ public:
 	~BulletWorld();
 	void clean();
 	void update();
-	void AddObject(TypeOfObject,void*);
+	btRigidBody* AddObject(TypeOfObject,void*);			///Adds the object and returns it reference back to the world
 };
 

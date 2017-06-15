@@ -1,5 +1,6 @@
 #pragma once
 #include "../BulletPhysicsEngine/IWorldObject.h"
+#include "../BulletPhysicsEngine/BulletWorld.h"
 #include "../BulletPhysicsEngine/Vector3D.h"
 #include <vector>
 class SceneManager;
@@ -26,6 +27,9 @@ public:
 	void DeleteObject(IWorldObject*);
 	virtual void SetScene() = 0;
 	virtual void UpdateScene();
+	BulletWorld *PhyWorld;
+	
+	
 	~Scene();
 };
 
