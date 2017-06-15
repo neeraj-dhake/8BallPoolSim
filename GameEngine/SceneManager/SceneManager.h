@@ -1,8 +1,8 @@
 #include "Scene.h"
 #include "../InputLib_Win/InputHandler.h"
 #include "../RenderingEngine/IRenderer.h"
-#include "../GameplayEngine/PhysicsEngine.h"
-//#include "../BulletPhysicsEngine/BulletWorld.h"
+//#include "../BulletPhysicsEngine/PhysicsEngine.h"
+#include "../BulletPhysicsEngine/BulletWorld.h"
 
 #include <vector>
 #pragma once
@@ -23,10 +23,10 @@ public:
 	void Draw();
 	void AddScene(Scene*);
 	IRenderer* render_engine;
-	PhysicsEngine* physics_engine;
+	//PhysicsEngine* physics_engine;
 
 	// Initialize the 
-	//BulletWorld* PhyWorld;		Use it as public later on can be made private
+	BulletWorld* PhyWorld;		//Use it as public later on can be made private
 	
 };
 

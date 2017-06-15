@@ -1,6 +1,6 @@
 #pragma once
-#include "../GameplayEngine/IWorldObject.h"
-#include "../GameplayEngine/Vector3D.h"
+#include "../BulletPhysicsEngine/IWorldObject.h"
+#include "../BulletPhysicsEngine/Vector3D.h"
 #include <vector>
 class SceneManager;
 

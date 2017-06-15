@@ -1,5 +1,5 @@
 #pragma once
-#include "../GameplayEngine/IWorldObject.h"
+#include "../BulletPhysicsEngine/IWorldObject.h"
 #include <vector>
 class IRenderer {
 protected:

@@ -1,5 +1,3 @@
-#include "BodyData.h"
-#include "ICollisionObject.h"
 #pragma once
 
 class IWorldObject;
@@ -7,8 +5,6 @@ class IPhysicsObject {
 
 protected:
 	IWorldObject* parent;
-	BodyData data;
-	ICollisionObject* collision_object;
 	
 public:
 	IPhysicsObject();
@@ -37,7 +33,6 @@ public:
 	Vector3D getOmega();
 	Vector3D getAlpha();
 
-	BodyData& GetData();
 
 	ICollisionObject* GetCollisionObject();
 	virtual void SetCollisionObject() = 0;

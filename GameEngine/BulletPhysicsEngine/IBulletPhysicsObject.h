@@ -35,7 +35,6 @@ public:
 	Vector3D getOmega();
 	Vector3D getAlpha();
 
-	IBulletCollisionObject* GetCollisionObject();
 	virtual void SetCollisionObject() = 0;
 	void Update(float dt);	// for every player controlable unit just call the inputhandler in it and then define the if else statement;
 

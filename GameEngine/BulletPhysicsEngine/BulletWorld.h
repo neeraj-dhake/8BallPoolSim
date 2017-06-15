@@ -1,5 +1,13 @@
 #include "../Include/btBulletDynamicsCommon.h"
+#include "../Include/LinearMath/btVector3.h"
+#include "../Include/LinearMath/btAlignedObjectArray.h"
+#include "../Include/BulletCollision/CollisionShapes/btCollisionShape.h"
+
 #pragma once
+#pragma comment (lib, "BulletDynamics_vs2010_x64_debug.lib")
+//#pragma comment (lib, "BulletCollision_vs2010_x64_debug.lib")
+#pragma comment (lib, "Bullet3Collision_vs2010_x64_debug.lib")
+#pragma comment (lib, "LinearMath_vs2010_x64_debug.lib")
 
 
 enum TypeOfObject {Sphere,Cuboid};

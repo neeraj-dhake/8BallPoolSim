@@ -1,5 +1,5 @@
 #include "GraphicsObject_sphere.h"
-#include "../GameplayEngine/WorldObject_sphere.h"
+#include "../BulletPhysicsEngine/WorldObject_sphere.h"
 #include <d3d9.h>
 #include "../Include/d3dx9.h"
 #include "../Include/d3dx9mesh.h"

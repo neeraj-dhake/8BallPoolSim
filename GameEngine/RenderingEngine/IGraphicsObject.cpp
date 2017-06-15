@@ -1,5 +1,5 @@
 #include "IGraphicsObject.h"
-#include "../GameplayEngine/IWorldObject.h"
+#include "../BulletPhysicsEngine/IWorldObject.h"
 
 
 IGraphicsObject::IGraphicsObject() {

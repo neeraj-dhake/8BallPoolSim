@@ -26,6 +26,10 @@ void IWorldObject::SetRotation(Vector3D rot) {
 	rotation = rot;
 }
 
+void IWorldObject::Create(BulletWorld *)
+{
+}
+
 IBulletPhysicsObject* IWorldObject::GetpObject() {
 	return pObject;
 }

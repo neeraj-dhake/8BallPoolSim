@@ -40,7 +40,7 @@ void Scene::AddObject(IWorldObject* obj) {
 	objects_in_scene.push_back(obj);
 	// create is to be called
 
-	// obj->Create(Manager->PhyWorld);
+	obj->Create(Manager->PhyWorld);
 }
 
 void Scene::DeleteObject(IWorldObject* obj) {
@@ -52,8 +52,8 @@ void Scene::DeleteObject(IWorldObject* obj) {
 
 void Scene::UpdateScene()
 {
-	for (unsigned int i = 0;i < objects_in_scene.size();i++)
-		(objects_in_scene[i]->GetpObject())->Update(dt);
+	/*for (unsigned int i = 0;i < objects_in_scene.size();i++)
+		(objects_in_scene[i]->GetpObject())->Update(dt);*/
 }
 
 Scene::~Scene() {

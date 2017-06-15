@@ -1,8 +1,8 @@
 #include "GamePlayScene.h"
-#include "../GameplayEngine/WorldObject_cuboid.h"
-#include "../GameplayEngine/WorldObject_sphere.h"
+#include "../BulletPhysicsEngine/WorldObject_cuboid.h"
+#include "../BulletPhysicsEngine/WorldObject_sphere.h"
 #include "../InputLib_Win/InputHandler.h"
-#include "../GameplayEngine/Vector3D.h"
+#include "../BulletPhysicsEngine/Vector3D.h"
 #include "SceneManager.h"
 
 GamePlayScene::GamePlayScene() {
@@ -55,7 +55,7 @@ void GamePlayScene::UpdateScene() {
 	if (InputHandler::instance().GetKeyState_current(KEY_RIGHT))
 		(objects_in_scene[obj2]->GetpObject())->AddVelocity(Vector3D(-5.0f, 0, 0));
 
-	for (size_t i = 0;i < objects_in_scene.size(); i++) {
+	/*for (size_t i = 0;i < objects_in_scene.size(); i++) {
 		for (size_t j = i + 1; j < objects_in_scene.size(); j++) {
 			ICollisionObject* a = (objects_in_scene[i])->GetpObject()->GetCollisionObject();
 			ICollisionObject* b = (objects_in_scene[j])->GetpObject()->GetCollisionObject();
@@ -65,5 +65,5 @@ void GamePlayScene::UpdateScene() {
 			}
 		}
 		(objects_in_scene[i])->GetpObject()->Update(dt);
-	}
+	}*/
 }

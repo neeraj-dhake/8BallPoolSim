@@ -1,5 +1,5 @@
 #pragma once
-#include "../GameplayEngine/Vector3D.h"
+#include "../BulletPhysicsEngine/Vector3D.h"
 #include "IBulletPhysicsObject.h"
 #include "../RenderingEngine/IGraphicsObject.h"
 #include "BulletWorld.h"
@@ -15,7 +15,7 @@ public:
 	~IWorldObject();
 	void SetCoordinates(Vector3D);
 	void SetRotation(Vector3D);
-	virtual void Create(BulletWorld*) = 0;
+	virtual void Create(BulletWorld*) ;			// it should be kept a pure virtual have to keep an eye on it
 	Vector3D GetPos();
 	Vector3D GetRotation();
 	IBulletPhysicsObject* GetpObject();
