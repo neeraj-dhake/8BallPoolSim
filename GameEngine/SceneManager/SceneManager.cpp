@@ -50,12 +50,9 @@ void SceneManager::Update() {
 			break;
 	}
 		current_scene->UpdateScene();
-		/*PhyWorld->update();*/			// ship it inside gameplays scene
 }
 
 void SceneManager::SetRenderList(Scene* scene) {
-
-	
 	size_t num = (scene->objects_in_scene).size();
 	IWorldObject* RenderList = new IWorldObject[num];
 
