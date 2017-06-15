@@ -26,10 +26,10 @@ void IWorldObject::SetRotation(Vector3D rot) {
 	rotation = rot;
 }
 
-//void IWorldObject::CreateObject(BulletWorld *)
-//{
-//
-//}
+void IWorldObject::CreateObject(BulletWorld *)
+{
+
+}
 
 btRigidBody* IWorldObject::GetpObject() {
 	return pObject;
