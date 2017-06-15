@@ -23,8 +23,8 @@ void WorldObject_cuboid::SetDim(float w, float h, float d) {
 	width = w;
 	depth = d;
 	height = h;
-	((BulletPhysicsObject_cuboid*)(pObject))->SetDim(w, h, d);
-	((BulletPhysicsObject_cuboid*)(pObject))->SetCollisionObject();
+	//((BulletPhysicsObject_cuboid*)(pObject))->SetDim(w, h, d);
+	//((BulletPhysicsObject_cuboid*)(pObject))->SetCollisionObject();
 
 }
 
