@@ -1,6 +1,6 @@
 #include "MenuScene.h"
-#include "../GameplayEngine/WorldObject_cuboid.h"
-#include "../GameplayEngine/Vector3D.h"
+#include "../BulletPhysicsEngine/WorldObject_cuboid.h"
+#include "../BulletPhysicsEngine/Vector3D.h"
 
 MenuScene::MenuScene() {
 	is_active = false;

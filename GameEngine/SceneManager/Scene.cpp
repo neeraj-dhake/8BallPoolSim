@@ -37,19 +37,24 @@ void Scene::SetManager(SceneManager* manager) {
 void Scene::AddObject(IWorldObject* obj) {
 	(obj->GetgObject())->SetDevice(Manager->render_engine->GetDevice());
 	(obj->GetgObject())->Init();
+	obj->CreateObject(Manager->PhyWorld);
 	objects_in_scene.push_back(obj);
+	// create is to be called
+
+	
 }
 
 void Scene::DeleteObject(IWorldObject* obj) {
 	//objects_in_scene.remove(obj);
 	// To be implemented
 
+
 }
 
 void Scene::UpdateScene()
 {
-	for (unsigned int i = 0;i < objects_in_scene.size();i++)
-		(objects_in_scene[i]->GetpObject())->Update(dt);
+	/*for (unsigned int i = 0;i < objects_in_scene.size();i++)
+		(objects_in_scene[i]->GetpObject())->Update(dt);*/
 }
 
 Scene::~Scene() {

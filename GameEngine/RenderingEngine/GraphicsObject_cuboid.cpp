@@ -1,5 +1,5 @@
 #include "GraphicsObject_cuboid.h"
-#include "../GameplayEngine/WorldObject_cuboid.h"
+#include "../BulletPhysicsEngine/WorldObject_cuboid.h"
 #include <d3d9.h>
 #include "../Include/d3dx9.h"
 #include "../Include/d3dx9mesh.h"

@@ -1,6 +1,6 @@
 #pragma once
 class IWorldObject;
-#include "../GameplayEngine/Vector3D.h"
+#include "../BulletPhysicsEngine/Vector3D.h"
 #include <string>
 typedef unsigned long DWORD;
 

@@ -1,6 +1,6 @@
 #include "SceneManager.h"
 #include "../RenderingEngine/RenderEngine_dx9.h"
-#include "../GameplayEngine/IWorldObject.h"
+#include "../BulletPhysicsEngine/IWorldObject.h"
 
 
 
@@ -10,12 +10,14 @@ SceneManager::SceneManager(int width, int height, void* HWND) {
 	render_engine = new RenderEngine_dx9(width, height);
 	render_engine->SetHandle(HWND);
 	render_engine->SetWindow();
-	physics_engine = new PhysicsEngine;
+	//physics_engine = new PhysicsEngine;
+	PhyWorld = new BulletWorld;
 }
 
 
 SceneManager::~SceneManager() {
-	delete physics_engine;
+	//delete physics_engine;
+	delete PhyWorld;
 }
 
 void SceneManager::Update() {
@@ -51,8 +53,6 @@ void SceneManager::Update() {
 }
 
 void SceneManager::SetRenderList(Scene* scene) {
-
-	
 	size_t num = (scene->objects_in_scene).size();
 	IWorldObject* RenderList = new IWorldObject[num];
 
@@ -71,5 +71,6 @@ void SceneManager::Draw() {
 void SceneManager::AddScene(Scene* scene) {
 	scene->SetManager(this);
 	scene->SetScene();
+	scene->PhyWorld = PhyWorld;
 	all_scenes.push_back(scene);
 }
