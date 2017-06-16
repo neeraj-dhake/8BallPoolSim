@@ -1,8 +1,12 @@
 #pragma once
+#include "../Include/btBulletDynamicsCommon.h"
 struct Vector3D {
 	float x, y, z;
 	Vector3D();
 	Vector3D(float,float,float);
+	Vector3D(btVector3);
+
+	btVector3 to_btVector3();
 
 	Vector3D &operator=(const Vector3D& v);
 	Vector3D operator+(const Vector3D&) const;

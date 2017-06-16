@@ -7,6 +7,16 @@ Vector3D::Vector3D(float X,float Y, float Z) {
 	z = Z;
 }
 
+Vector3D::Vector3D(btVector3 vec) {
+	x = vec.getX();
+	y = vec.getY();
+	z = vec.getZ();
+}
+
+btVector3 Vector3D::to_btVector3() {
+	return btVector3(x, y, z);
+}
+
 Vector3D & Vector3D::operator=(const Vector3D& v) {
 	x = v.x;
 	y = v.y;

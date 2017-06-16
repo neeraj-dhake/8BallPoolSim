@@ -56,7 +56,7 @@ void GamePlayScene::UpdateScene() {
 	if (InputHandler::instance().GetKeyState_current(KEY_RIGHT))
 		(objects_in_scene[obj2]->GetpObject())->applyCentralImpulse(btVector3(btScalar(-0.5), btScalar(0), btScalar(0)));
 
-	PhyWorld->update();		// physics world gets updated
+	PhyWorld->update();
 	
 	for (size_t i = 0;i < objects_in_scene.size(); i++) {
 		char msgbuf[200];

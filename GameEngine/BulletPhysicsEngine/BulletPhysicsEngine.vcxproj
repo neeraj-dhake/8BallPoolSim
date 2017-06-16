@@ -70,7 +70,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\mbhargava\Desktop\8BallPoolSim\GameEngine\Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -141,7 +141,6 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BulletPhysicsObject.h" />
     <ClInclude Include="BulletWorld.h" />
     <ClInclude Include="IBulletCollisionObject.h" />
     <ClInclude Include="IBulletPhysicsObject.h" />
@@ -153,7 +152,6 @@
     <ClInclude Include="WorldObject_sphere.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BulletPhysicsObject.cpp" />
     <ClCompile Include="BulletWorld.cpp" />
     <ClCompile Include="IBulletPhysicsObject.cpp" />
     <ClCompile Include="BulletPhysicsObject_cuboid.cpp" />

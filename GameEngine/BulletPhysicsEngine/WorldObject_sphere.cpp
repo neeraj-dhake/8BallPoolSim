@@ -4,7 +4,6 @@
 
 
 WorldObject_sphere::WorldObject_sphere() {
-	//pObject = new BulletPhysicsObject_sphere(this);
 	gObject = new GraphicsObject_sphere(this);
 }
 
@@ -18,11 +17,8 @@ float WorldObject_sphere::GetRadius() {
 
 void WorldObject_sphere::SetRadius(float r) {
 	radius = r;
-	//((BulletPhysicsObject_sphere*)(pObject))->SetRadius(radius);
-	//((BulletPhysicsObject_sphere*)(pObject))->SetCollisionObject();
 }
 
-void WorldObject_sphere::CreateObject(BulletWorld* PhyWorld_)
-{
+void WorldObject_sphere::CreateObject(BulletWorld* PhyWorld_) {
 	pObject = PhyWorld_->AddObject(Sphere, this);
 }

@@ -6,7 +6,6 @@
 
 
 WorldObject_cuboid::WorldObject_cuboid() {
-	//pObject = new BulletPhysicsObject_cuboid(this);
 	gObject = new GraphicsObject_cuboid(this);
 }
 
@@ -14,9 +13,7 @@ Vector3D WorldObject_cuboid::GetDim() {
 	return Vector3D(width, height, depth);
 }
 
-void WorldObject_cuboid::CreateObject(BulletWorld* PhyWorld_)
-{
-	
+void WorldObject_cuboid::CreateObject(BulletWorld* PhyWorld_) {
 	pObject = PhyWorld_->AddObject(Cuboid, this);
 }
 
@@ -24,8 +21,6 @@ void WorldObject_cuboid::SetDim(float w, float h, float d) {
 	width = w;
 	depth = d;
 	height = h;
-	//((BulletPhysicsObject_cuboid*)(pObject))->SetDim(w, h, d);
-	//((BulletPhysicsObject_cuboid*)(pObject))->SetCollisionObject();
 
 }
 

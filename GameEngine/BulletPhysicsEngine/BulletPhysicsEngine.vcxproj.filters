@@ -13,8 +13,11 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Interfaces">
+      <UniqueIdentifier>{b41724b2-29fa-46da-84dc-985441779916}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\Objects">
-      <UniqueIdentifier>{6c09e11f-f08e-4c53-a800-423ce4de26da}</UniqueIdentifier>
+      <UniqueIdentifier>{05a48c70-7b56-4eba-b9c5-44542c15780a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -22,9 +25,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BulletWorld.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BulletPhysicsObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IBulletCollisionObject.h">
@@ -56,26 +56,23 @@
     <ClCompile Include="BulletWorld.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BulletPhysicsObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="IBulletPhysicsObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BulletPhysicsObject_cuboid.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BulletPhysicsObject_sphere.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Interfaces</Filter>
     </ClCompile>
     <ClCompile Include="IWorldObject.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Interfaces</Filter>
     </ClCompile>
-    <ClCompile Include="WorldObject_sphere.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="BulletPhysicsObject_cuboid.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletPhysicsObject_sphere.cpp">
+      <Filter>Source Files\Objects</Filter>
     </ClCompile>
     <ClCompile Include="WorldObject_cuboid.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldObject_sphere.cpp">
+      <Filter>Source Files\Objects</Filter>
     </ClCompile>
     <ClCompile Include="Vector3D.cpp">
       <Filter>Source Files</Filter>
