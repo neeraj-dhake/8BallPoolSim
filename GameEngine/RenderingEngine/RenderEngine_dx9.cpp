@@ -16,6 +16,19 @@ void RenderEngine_dx9::SetHandle(void* HWND) {
 void RenderEngine_dx9::SetWindow() {
 	intrfc = Direct3DCreate9(D3D_SDK_VERSION);
 
+	light = new D3DLIGHT9;
+	ZeroMemory(light, sizeof(D3DLIGHT9));
+	((D3DLIGHT9*)(light))->Type = D3DLIGHT_DIRECTIONAL;
+	((D3DLIGHT9*)(light))->Diffuse.r = 1.0f;
+	((D3DLIGHT9*)(light))->Diffuse.g = 1.0f;
+	((D3DLIGHT9*)(light))->Diffuse.b = 1.0f;
+	((D3DLIGHT9*)(light))->Direction.x = -1.0f;
+	((D3DLIGHT9*)(light))->Direction.y = -1.0f;
+	((D3DLIGHT9*)(light))->Direction.z = 1.0f;
+
+	
+
+
 	D3DPRESENT_PARAMETERS d3dpp;
 
 	ZeroMemory(&d3dpp, sizeof(d3dpp));
@@ -27,11 +40,14 @@ void RenderEngine_dx9::SetWindow() {
 	d3dpp.BackBufferHeight = SCREEN_HEIGHT;
 
 	((LPDIRECT3D9)intrfc)->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, (HWND)hwnd, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, (LPDIRECT3DDEVICE9*)&device);
-	((LPDIRECT3DDEVICE9)device)->SetRenderState(D3DRS_LIGHTING, FALSE);
+	((LPDIRECT3DDEVICE9)device)->SetRenderState(D3DRS_LIGHTING, TRUE);
 	((LPDIRECT3DDEVICE9)device)->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
 	((LPDIRECT3DDEVICE9)device)->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	((LPDIRECT3DDEVICE9)device)->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 	((LPDIRECT3DDEVICE9)device)->SetRenderState(D3DRS_ZENABLE, TRUE);    // turn on the z-buffer
+
+	((LPDIRECT3DDEVICE9)device)->LightEnable(0, TRUE);
+	((LPDIRECT3DDEVICE9)device)->SetLight(0, ((D3DLIGHT9*)(light)));
 }
 
 void RenderEngine_dx9::clean() {

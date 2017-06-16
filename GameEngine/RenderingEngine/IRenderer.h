@@ -8,6 +8,7 @@ protected:
 	int SCREEN_HEIGHT;
 	void* intrfc;
 	void* device;
+	void* light;
 	IWorldObject* list_to_render;
 	size_t num_objects;
 public:

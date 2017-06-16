@@ -6,6 +6,7 @@
 #pragma comment (lib, "d3dx9.lib")
 
 class RenderEngine_dx9 : public IRenderer {
+
 public:
 	RenderEngine_dx9(int w, int h);
 	void init_frame(void*, void*, void*);
