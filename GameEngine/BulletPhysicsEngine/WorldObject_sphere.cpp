@@ -3,8 +3,9 @@
 #include "../RenderingEngine/GraphicsObject_sphere.h"
 
 
-WorldObject_sphere::WorldObject_sphere() {
+WorldObject_sphere::WorldObject_sphere(property property_) {
 	gObject = new GraphicsObject_sphere(this);
+	prp = property_;
 }
 
 
@@ -20,5 +21,5 @@ void WorldObject_sphere::SetRadius(float r) {
 }
 
 void WorldObject_sphere::CreateObject(BulletWorld* PhyWorld_) {
-	pObject = PhyWorld_->AddObject(Sphere, this);
+	pObject = PhyWorld_->AddObject(Sphere, prp, this);
 }

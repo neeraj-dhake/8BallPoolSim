@@ -5,7 +5,7 @@ class WorldObject_sphere : public IWorldObject {
 protected:
 	float radius;
 public:
-	WorldObject_sphere();
+	WorldObject_sphere(property);
 	float GetRadius();
 	void SetRadius(float x);
 	void CreateObject(BulletWorld*);

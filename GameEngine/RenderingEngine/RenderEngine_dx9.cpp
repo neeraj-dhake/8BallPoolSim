@@ -22,9 +22,9 @@ void RenderEngine_dx9::SetWindow() {
 	((D3DLIGHT9*)(light))->Diffuse.r = 1.0f;
 	((D3DLIGHT9*)(light))->Diffuse.g = 1.0f;
 	((D3DLIGHT9*)(light))->Diffuse.b = 1.0f;
-	((D3DLIGHT9*)(light))->Direction.x = -1.0f;
-	((D3DLIGHT9*)(light))->Direction.y = -1.0f;
-	((D3DLIGHT9*)(light))->Direction.z = 1.0f;
+	((D3DLIGHT9*)(light))->Direction.x = 0.0f;
+	((D3DLIGHT9*)(light))->Direction.y = 0.0f;
+	((D3DLIGHT9*)(light))->Direction.z = -100.0f;
 
 	
 

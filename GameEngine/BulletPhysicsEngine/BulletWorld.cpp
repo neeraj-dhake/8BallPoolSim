@@ -9,14 +9,14 @@ BulletWorld::BulletWorld() {
 	solver = new btSequentialImpulseConstraintSolver;
 	dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);
 
-	dynamicsWorld->setGravity(btVector3(0, 0, 0));
+	dynamicsWorld->setGravity(btVector3(0, -10, 0));
 }
 
 void BulletWorld::update() {
 	dynamicsWorld->stepSimulation(1.f / 60.f, 10);
 }
 
-btRigidBody* BulletWorld::AddObject(TypeOfObject type,void* parent) {
+btRigidBody* BulletWorld::AddObject(TypeOfObject type,property prp ,void* parent) {
 	btCollisionShape* Shape;
 	switch (type) {
 		case Cuboid: {
@@ -34,10 +34,17 @@ btRigidBody* BulletWorld::AddObject(TypeOfObject type,void* parent) {
 
 	}
 
+	btScalar mass(0);
+
+	if (prp == STATIC)
+		mass = 0;
+	else if (prp == DYNAMIC)
+		mass = 1.;
+
+
 	Shape->setMargin(0.1);
 	collisionShapes.push_back(Shape);
 
-	btScalar mass(1.);
 	Vector3D position = ((WorldObject_cuboid*)parent)->GetPos();
 	btDefaultMotionState* myMotionState = new btDefaultMotionState( btTransform( btQuaternion(0, 0, 0, 1), 
 																				 position.to_btVector3() ) );

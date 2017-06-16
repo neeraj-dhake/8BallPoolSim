@@ -4,8 +4,11 @@
 #include "../RenderingEngine/IGraphicsObject.h"
 #include "BulletWorld.h"
 
+
+
 class IWorldObject {
 protected:
+	property prp;
 	Vector3D position;
 	Vector3D rotation;
 	btRigidBody* pObject;
