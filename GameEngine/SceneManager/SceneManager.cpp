@@ -32,23 +32,46 @@ void SceneManager::Update() {
 			if (InputHandler::instance().GetKeyState_current(KEY_SPACEBAR) == 0 && InputHandler::instance().GetKeyState_prev(KEY_SPACEBAR) == 1) {
 				next_state = GAMEPLAY_SCENE;
 				next_scene = all_scenes[GAMEPLAY_SCENE];
+				for (size_t i = 0; i < all_scenes.size(); i++)
+				{
+					if (all_scenes[i] != next_scene)
+						all_scenes[i]->DeactivateScene();
+					else
+						all_scenes[i]->ActivateScene();
+				}
 			}
 			break;
 		case GAMEPLAY_SCENE:
 			if (InputHandler::instance().GetKeyState_current(KEY_SPACEBAR) == 0 && InputHandler::instance().GetKeyState_prev(KEY_SPACEBAR) == 1) {
 				next_state = PAUSE_MENU;
 				next_scene = all_scenes[PAUSE_MENU];
+				for (size_t i = 0; i < all_scenes.size(); i++)
+				{
+					if (all_scenes[i] != next_scene)
+						all_scenes[i]->DeactivateScene();
+					else
+						all_scenes[i]->ActivateScene();
+				}
 			}
 			break;
 		case PAUSE_MENU:
 			if (InputHandler::instance().GetKeyState_current(KEY_SPACEBAR) == 0 && InputHandler::instance().GetKeyState_prev(KEY_SPACEBAR) == 1) {
 				next_state = MAIN_MENU;
 				next_scene = all_scenes[MAIN_MENU];
+				for (size_t i = 0; i < all_scenes.size(); i++)
+				{
+					if (all_scenes[i] != next_scene)
+						all_scenes[i]->DeactivateScene();
+					else
+						all_scenes[i]->ActivateScene();
+				}
 			}
 			break;
 		default:
 			break;
 	}
+	
+
 		current_scene->UpdateScene();
 }
 

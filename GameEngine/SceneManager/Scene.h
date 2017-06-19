@@ -31,6 +31,8 @@ public:
 	virtual void SetScene() = 0;
 	virtual void UpdateScene();
 	BulletWorld *PhyWorld;
+	void ActivateScene();
+	void DeactivateScene();
 	
 	
 	~Scene();

@@ -66,6 +66,22 @@ void Scene::UpdateScene()
 		(objects_in_scene[i]->GetpObject())->Update(dt);*/
 }
 
+void Scene::ActivateScene()
+{
+	for (size_t i = 0; i < objects_in_scene.size() ; i++)
+	{
+		objects_in_scene[i]->CreateObject(Manager->PhyWorld);
+	}
+}
+
+void Scene::DeactivateScene()
+{
+	for (size_t i = 0; i < objects_in_scene.size(); i++)
+	{
+		Manager->PhyWorld->GetDynamicWorld()->removeCollisionObject(objects_in_scene[i]->GetpObject());
+	}
+}
+
 Scene::~Scene() {
 	objects_in_scene.clear();
 }
