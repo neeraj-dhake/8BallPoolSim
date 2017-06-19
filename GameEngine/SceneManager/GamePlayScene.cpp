@@ -16,16 +16,19 @@ void GamePlayScene::SetScene() {
 	obj1->SetCoordinates(Vector3D(10, -10, 0));
 	obj1->SetDim(100.0f, 10.0f, 10.0f);
 	AddObject(obj1);
+	
 
 	WorldObject_sphere* obj2 = new WorldObject_sphere(DYNAMIC);
 	obj2->SetCoordinates(Vector3D(-10, 10, 0));
 	obj2->SetRadius(5.0f);
 	AddObject(obj2);
+	obj2->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
 
 	WorldObject_sphere* obj3 = new WorldObject_sphere(DYNAMIC);
 	obj3->SetCoordinates(Vector3D(10.0f, 10.0f, 0.0f));
 	obj3->SetRadius(5.0f);
 	AddObject(obj3);
+	obj3->GetpObject()->setActivationState(DISABLE_DEACTIVATION);
 }
 
 GamePlayScene::~GamePlayScene() {
@@ -90,7 +93,6 @@ void GamePlayScene::UpdateScene() {
 		OutputDebugString(msgbuf);
 		objects_in_scene[i]->SetCoordinates(Vector3D(objects_in_scene[i]->GetpObject()->getCenterOfMassPosition()));
 		objects_in_scene[i]->SetRotation(Vector3D(toEulerianAngle(objects_in_scene[i]->GetpObject()->getOrientation())));
-
 
 	}
 }
