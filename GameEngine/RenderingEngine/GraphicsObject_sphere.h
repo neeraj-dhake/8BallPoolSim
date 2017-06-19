@@ -10,7 +10,5 @@ public:
 	GraphicsObject_sphere(WorldObject_sphere*);
 	~GraphicsObject_sphere();
 	void Init();
-	void SetMesh();
-
 };
 

@@ -1,7 +1,6 @@
 #include "WorldObject_cuboid.h"
 #include "BulletPhysicsObject_cuboid.h"
 #include "../RenderingEngine/GraphicsObject_cuboid.h"
-
 #include "BulletWorld.h"
 
 

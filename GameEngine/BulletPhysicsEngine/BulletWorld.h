@@ -8,29 +8,23 @@
 #pragma comment (lib, "Bullet3Collision_vs2010_x64_debug.lib")
 #pragma comment (lib, "LinearMath_vs2010_x64_debug.lib")
 
-enum TypeOfObject {Sphere,Cuboid};
+enum TypeOfObject {Sphere, Cuboid, Railing};
 enum property {STATIC, DYNAMIC};
 
-class BulletWorld
-{
+class BulletWorld {
 	btDefaultCollisionConfiguration* collisionConfiguration;
 	btCollisionDispatcher* dispatcher;
 	btBroadphaseInterface* overlappingPairCache;
 	btSequentialImpulseConstraintSolver* solver;
 	btDiscreteDynamicsWorld* dynamicsWorld;			// the whole world the most important character of bullet3d game engine 
 													// All the power of the engine resides with this guy  #Respect :P
-
-	btAlignedObjectArray<btCollisionShape*> collisionShapes;  // list of shapes of object
-
-	
-
+	btAlignedObjectArray<btCollisionShape*> collisionShapes;
 public:
 	BulletWorld();
 	~BulletWorld();
 	void clean();
 	void update();
-	btRigidBody* AddObject(TypeOfObject,property, void*);			///Adds the object and returns it reference back to the world
+	btRigidBody* AddObject(TypeOfObject,property, void*);
 	btDiscreteDynamicsWorld* GetDynamicWorld();
-
 };
 

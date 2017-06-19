@@ -22,7 +22,6 @@ public:
 	IWorldObject* GetParent();
 	void SetDevice(void*);
 	virtual void Init() = 0;
-	virtual void SetMesh() = 0;
 	void* GetMaterial();
 	void* GetMesh();
 	void* GetTexture();

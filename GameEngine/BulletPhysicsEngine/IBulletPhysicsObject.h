@@ -3,7 +3,6 @@
 
 class IWorldObject;
 class IBulletPhysicsObject {
-	
 protected:
 	IWorldObject* parent;
 	IBulletCollisionObject* collision_object;
@@ -36,7 +35,7 @@ public:
 	Vector3D getAlpha();
 
 	virtual void SetCollisionObject() = 0;
-	void Update(float dt);	// for every player controlable unit just call the inputhandler in it and then define the if else statement;
+	void Update(float dt);
 
 private:
 	

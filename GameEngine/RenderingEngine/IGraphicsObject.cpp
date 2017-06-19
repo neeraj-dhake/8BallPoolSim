@@ -12,23 +12,19 @@ void IGraphicsObject::SetDevice(void* dev) {
 	device = dev;
 }
 
-void * IGraphicsObject::GetMaterial()
-{
+void * IGraphicsObject::GetMaterial() {
 	return mesh_material;
 }
 
-void * IGraphicsObject::GetMesh()
-{
+void * IGraphicsObject::GetMesh() {
 	return mesh;
 }
 
-void * IGraphicsObject::GetTexture()
-{
+void * IGraphicsObject::GetTexture() {
 	return mesh_texture;
 }
 
-int IGraphicsObject::GetNum()
-{
+int IGraphicsObject::GetNum() {
 	return numMat;
 }
 
