@@ -65,7 +65,7 @@ void SceneManager::SetRenderList(Scene* scene) {
 
 void SceneManager::Draw() {
 	SetRenderList(current_scene);
-	render_engine->Draw(&(current_scene->GetCameraPosition()), &(current_scene->GetCameraLookAt()), &(current_scene->GetCameraUp()));
+	render_engine->Draw(&(current_scene->GetCameraPosition()), &(current_scene->GetCameraLookAt()), &(current_scene->GetCameraUp()), &(current_scene->GetLight()));
 }
 
 void SceneManager::AddScene(Scene* scene) {

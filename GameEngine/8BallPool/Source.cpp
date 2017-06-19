@@ -84,9 +84,16 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	
 	D3DXVECTOR3 pos(0, 0, 150), lookat(0, 0, 0), up(0, 1, 0);
 
+	D3DXVECTOR3 light(0, 0, -100);
+
 	menu_scene->SetCamera(pos, lookat, up);
 	pause_scene->SetCamera(pos, lookat, up);
 	gameplay_scene->SetCamera(pos, lookat, up);
+
+	menu_scene->SetLight(light);
+	pause_scene->SetLight(light);
+	gameplay_scene->SetLight(light);
+
 
 	scene_manager->AddScene(menu_scene);
 	scene_manager->AddScene(gameplay_scene);
