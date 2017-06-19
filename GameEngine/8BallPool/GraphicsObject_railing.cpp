@@ -12,7 +12,7 @@ GraphicsObject_railing::GraphicsObject_railing(WorldObject_railing* parent_) {
 }
 
 void GraphicsObject_railing::Init() {
-	/*D3DXLoadMeshFromX("../Resources/Meshes/railing.x", D3DXMESH_SYSTEMMEM, (LPDIRECT3DDEVICE9)device, NULL, (LPD3DXBUFFER*)&material_buffer, NULL, &numMat, (ID3DXMesh**)&mesh);
+	D3DXLoadMeshFromX("../Resources/Meshes/cuboid_10.x", D3DXMESH_SYSTEMMEM, (LPDIRECT3DDEVICE9)device, NULL, (LPD3DXBUFFER*)&material_buffer, NULL, &numMat, (ID3DXMesh**)&mesh);
 	material = (D3DXMATERIAL*)((LPD3DXBUFFER)(material_buffer))->GetBufferPointer();
 	mesh_material = new D3DMATERIAL9[numMat];
 	mesh_texture = new LPDIRECT3DTEXTURE9[numMat];
@@ -26,7 +26,12 @@ void GraphicsObject_railing::Init() {
 			D3DXCreateTextureFromFile(((LPDIRECT3DDEVICE9)device), path.c_str(), &((LPDIRECT3DTEXTURE9*)mesh_texture)[i]);
 		}
 	}
-	((LPD3DXBUFFER)material_buffer)->Release();*/
+	((LPD3DXBUFFER)material_buffer)->Release();
+
+	((ID3DXMesh*)mesh)->GetVertexBuffer((LPDIRECT3DVERTEXBUFFER9*)&v_buf);
+	((ID3DXMesh*)mesh)->GetIndexBuffer((LPDIRECT3DINDEXBUFFER9*)&i_buf);
+	num_vertices = ((ID3DXMesh*)mesh)->GetNumVertices();
+	num_primitives = ((ID3DXMesh*)mesh)->GetNumFaces();
 }
 
 

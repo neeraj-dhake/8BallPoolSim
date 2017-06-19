@@ -13,6 +13,8 @@ protected:
 	void* material;
 	void* mesh_material;
 	void* mesh_texture;
+	void* v_buf;
+	void* i_buf;
 	IWorldObject* parent;
 	int num_primitives;
 	int num_vertices;
@@ -23,6 +25,10 @@ public:
 	void SetDevice(void*);
 	virtual void Init() = 0;
 	void* GetMaterial();
+	void* GetVBuf();
+	void* GetIBuf();
+	int GetNumVertices();
+	int GetNumPrimitives();
 	void* GetMesh();
 	void* GetTexture();
 	int GetNum();
