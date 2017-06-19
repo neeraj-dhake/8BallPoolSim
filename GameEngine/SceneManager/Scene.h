@@ -16,7 +16,6 @@ protected:
 	float dt = 0.016f;
 public:
 	Scene();
-	bool IsActive();
 	std::vector<IWorldObject*> objects_in_scene;
 	Vector3D GetCameraPosition();
 	Vector3D GetCameraLookAt();
@@ -24,7 +23,6 @@ public:
 	Vector3D GetLight();
 	void SetCamera(void*, void*, void*);
 	void SetLight(void* direc);
-	void SetActive(bool);
 	void SetManager(SceneManager*);
 	void AddObject(IWorldObject*);
 	void DeleteObject(IWorldObject*);

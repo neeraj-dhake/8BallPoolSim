@@ -4,13 +4,7 @@
 Scene::Scene() {
 }
 
-bool Scene::IsActive() {
-	return is_active;
-}
 
-void Scene::SetActive(bool active) {
-	is_active = active;
-}
 
 Vector3D Scene::GetCameraPosition() {
 	return camera_position;
@@ -62,8 +56,6 @@ void Scene::DeleteObject(IWorldObject* obj) {
 
 void Scene::UpdateScene()
 {
-	/*for (unsigned int i = 0;i < objects_in_scene.size();i++)
-		(objects_in_scene[i]->GetpObject())->Update(dt);*/
 }
 
 void Scene::ActivateScene()
