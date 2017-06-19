@@ -1,6 +1,7 @@
 #include "GamePlayScene.h"
 #include "../BulletPhysicsEngine/WorldObject_cuboid.h"
 #include "../BulletPhysicsEngine/WorldObject_sphere.h"
+#include "../8BallPool/WorldObject_railing.h"
 #include "../InputLib_Win/InputHandler.h"
 #include "../BulletPhysicsEngine/Vector3D.h"
 #include "SceneManager.h"
@@ -12,9 +13,8 @@ GamePlayScene::GamePlayScene() {
 
 void GamePlayScene::SetScene() {
 	is_active = true;
-	WorldObject_cuboid* obj1 = new WorldObject_cuboid(STATIC);
+	WorldObject_railing* obj1 = new WorldObject_railing(STATIC);
 	obj1->SetCoordinates(Vector3D(10, -10, 0));
-	obj1->SetDim(100.0f, 10.0f, 10.0f);
 	AddObject(obj1);
 	
 

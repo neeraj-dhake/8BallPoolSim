@@ -32,8 +32,9 @@ btRigidBody* BulletWorld::AddObject(TypeOfObject type, property prp, void* paren
 		}
 		case Railing: {
 			btVector3* points = ((WorldObject_railing*)parent)->GetPoints();
-			int num = ((WorldObject_railing*)parent)->GetNumPoints();
-			Shape = new btConvexHullShape(points, num);
+			btTriangleMesh* meshIntrfc = new btTriangleMesh;
+			meshIntrfc->addTriangle(points[0], points[1], points[2]);
+			Shape = new btBvhTriangleMeshShape(meshIntrfc, true);
 			break;
 		}
 		default:

@@ -21,7 +21,9 @@ btVector3* WorldObject_railing::GetPoints() {
 		btVector3(28, 3, -5),
 		btVector3(-28, 3, -5),
 	};
-	return points;
+	btVector3* pt = new btVector3[8];
+	memcpy(pt, points, 8 * sizeof(btVector3));
+	return pt;
 }
 
 int WorldObject_railing::GetNumPoints() {
