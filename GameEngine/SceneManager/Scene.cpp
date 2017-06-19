@@ -4,13 +4,7 @@
 Scene::Scene() {
 }
 
-bool Scene::IsActive() {
-	return is_active;
-}
 
-void Scene::SetActive(bool active) {
-	is_active = active;
-}
 
 Vector3D Scene::GetCameraPosition() {
 	return camera_position;
@@ -62,8 +56,22 @@ void Scene::DeleteObject(IWorldObject* obj) {
 
 void Scene::UpdateScene()
 {
-	/*for (unsigned int i = 0;i < objects_in_scene.size();i++)
-		(objects_in_scene[i]->GetpObject())->Update(dt);*/
+}
+
+void Scene::ActivateScene()
+{
+	for (size_t i = 0; i < objects_in_scene.size() ; i++)
+	{
+		objects_in_scene[i]->CreateObject(Manager->PhyWorld);
+	}
+}
+
+void Scene::DeactivateScene()
+{
+	for (size_t i = 0; i < objects_in_scene.size(); i++)
+	{
+		Manager->PhyWorld->GetDynamicWorld()->removeCollisionObject(objects_in_scene[i]->GetpObject());
+	}
 }
 
 Scene::~Scene() {

@@ -61,6 +61,11 @@ btRigidBody* BulletWorld::AddObject(TypeOfObject type,property prp ,void* parent
 
 }
 
+btDiscreteDynamicsWorld * BulletWorld::GetDynamicWorld()
+{
+	return dynamicsWorld;
+}
+
 BulletWorld::~BulletWorld() {
 	clean();
 }

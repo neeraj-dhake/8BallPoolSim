@@ -30,5 +30,7 @@ public:
 	void clean();
 	void update();
 	btRigidBody* AddObject(TypeOfObject,property, void*);			///Adds the object and returns it reference back to the world
+	btDiscreteDynamicsWorld* GetDynamicWorld();
+
 };
 

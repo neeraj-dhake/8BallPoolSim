@@ -108,6 +108,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		scene_manager->Draw();
 	}
 
+	
+	delete gameplay_scene;
+	delete pause_scene;
+	delete menu_scene;
+
+	delete scene_manager;
 	delete input;
 	return 0;
 }

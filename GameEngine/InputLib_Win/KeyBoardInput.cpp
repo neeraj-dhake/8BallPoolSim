@@ -7,9 +7,8 @@ LRESULT CALLBACK process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam, 
 	case WM_KEYDOWN:
 		switch (wParam) {
 		case VK_ESCAPE:
-			DestroyWindow(hwnd);
-			return -1;
 			keys[KEY_ESCAPE] = 1;
+			return -1;
 			break;
 		case 0x57:
 			keys[KEY_W] = 1;
@@ -94,6 +93,7 @@ LRESULT CALLBACK process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam, 
 KeyBoardInput::KeyBoardInput() {
 	keys_current.resize(Num, false);
 	keys_prev.resize(Num, false);
+	mark_for_death = false;
 }
 
 KeyBoardInput::~KeyBoardInput(void) {
@@ -104,8 +104,14 @@ bool KeyBoardInput::handle(MSG &msg) {
 	while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
+		if (mark_for_death)
+		{
+			DestroyWindow(hwnd);
+			return false;		// just so that it can wait for one update loop before it  closes the window so that destructors can be called
+		}
 		if (process(msg.hwnd, msg.message, msg.wParam, msg.lParam, keys_current) == -1)	 // normally DefWindowProc is zero
-			return false;
+			mark_for_death = true;
+			
 	}
 	return true;
 }
