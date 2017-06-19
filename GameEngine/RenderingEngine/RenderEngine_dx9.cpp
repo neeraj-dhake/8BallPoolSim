@@ -16,18 +16,16 @@ void RenderEngine_dx9::SetHandle(void* HWND) {
 void RenderEngine_dx9::SetWindow() {
 	intrfc = Direct3DCreate9(D3D_SDK_VERSION);
 
+	
+
+	
+
 	light = new D3DLIGHT9;
 	ZeroMemory(light, sizeof(D3DLIGHT9));
 	((D3DLIGHT9*)(light))->Type = D3DLIGHT_DIRECTIONAL;
 	((D3DLIGHT9*)(light))->Diffuse.r = 1.0f;
 	((D3DLIGHT9*)(light))->Diffuse.g = 1.0f;
 	((D3DLIGHT9*)(light))->Diffuse.b = 1.0f;
-	((D3DLIGHT9*)(light))->Direction.x = 0.0f;
-	((D3DLIGHT9*)(light))->Direction.y = 0.0f;
-	((D3DLIGHT9*)(light))->Direction.z = -100.0f;
-
-	
-
 
 	D3DPRESENT_PARAMETERS d3dpp;
 
@@ -46,8 +44,7 @@ void RenderEngine_dx9::SetWindow() {
 	((LPDIRECT3DDEVICE9)device)->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 	((LPDIRECT3DDEVICE9)device)->SetRenderState(D3DRS_ZENABLE, TRUE);    // turn on the z-buffer
 
-	((LPDIRECT3DDEVICE9)device)->LightEnable(0, TRUE);
-	((LPDIRECT3DDEVICE9)device)->SetLight(0, ((D3DLIGHT9*)(light)));
+
 }
 
 void RenderEngine_dx9::clean() {
@@ -55,12 +52,22 @@ void RenderEngine_dx9::clean() {
 	((LPDIRECT3D9)intrfc)->Release();
 }
 
-void RenderEngine_dx9::init_frame(void* pos, void* look, void* up) {
+void RenderEngine_dx9::init_frame(void* pos, void* look, void* up, void* _light) {
 	((LPDIRECT3DDEVICE9)device)->Clear(0, NULL, D3DCLEAR_TARGET,  D3DCOLOR_XRGB(0, 40, 100), 1.0f, 0);
 	((LPDIRECT3DDEVICE9)device)->Clear(0, NULL, D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(0, 40, 100), 1.0f, 0);
 
 	D3DXMATRIX matView;
 	D3DXMatrixLookAtLH(&matView, (D3DXVECTOR3*)pos, (D3DXVECTOR3*)look, (D3DXVECTOR3*)up);
+
+	
+
+	((D3DLIGHT9*)(light))->Direction.x = ((D3DXVECTOR3*)_light)->x;
+	((D3DLIGHT9*)(light))->Direction.y = ((D3DXVECTOR3*)_light)->y;
+	((D3DLIGHT9*)(light))->Direction.z = ((D3DXVECTOR3*)_light)->z;
+
+	((LPDIRECT3DDEVICE9)device)->LightEnable(0, TRUE);
+	((LPDIRECT3DDEVICE9)device)->SetLight(0, ((D3DLIGHT9*)(light)));
+
 
 	D3DXMATRIX matProjection;
 	D3DXMatrixPerspectiveFovLH(&matProjection, D3DXToRadian(45), (FLOAT)SCREEN_WIDTH / (FLOAT)SCREEN_HEIGHT, -100.0f, 100.0f);
@@ -112,8 +119,8 @@ void RenderEngine_dx9::Render(IGraphicsObject* gObject) {
 	}
 }
 
-void RenderEngine_dx9::Draw(void* pos, void* look, void* up) {
-	init_frame(pos, look, up);
+void RenderEngine_dx9::Draw(void* pos, void* look, void* up,void* light) {
+	init_frame(pos, look, up,light);
 	for (int i = 0; i < num_objects; i++)
 		Render(list_to_render[i].GetgObject());
 	end_frame();

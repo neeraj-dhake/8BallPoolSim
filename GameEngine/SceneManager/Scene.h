@@ -12,6 +12,7 @@ protected:
 	Vector3D camera_position;
 	Vector3D camera_lookat;
 	Vector3D camera_up;
+	Vector3D lightDirec;
 	float dt = 0.016f;
 public:
 	Scene();
@@ -20,7 +21,9 @@ public:
 	Vector3D GetCameraPosition();
 	Vector3D GetCameraLookAt();
 	Vector3D GetCameraUp();
+	Vector3D GetLight();
 	void SetCamera(void*, void*, void*);
+	void SetLight(void* direc);
 	void SetActive(bool);
 	void SetManager(SceneManager*);
 	void AddObject(IWorldObject*);
