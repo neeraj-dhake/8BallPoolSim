@@ -14,6 +14,7 @@ private:
 	HWND hwnd;
 	std::vector<bool> keys_current;
 	std::vector<bool> keys_prev;
+	bool mark_for_death;
 public:
 	KeyBoardInput();
 	~KeyBoardInput(void);

@@ -10,7 +10,6 @@ SceneManager::SceneManager(int width, int height, void* HWND) {
 	render_engine = new RenderEngine_dx9(width, height);
 	render_engine->SetHandle(HWND);
 	render_engine->SetWindow();
-	//physics_engine = new PhysicsEngine;
 	PhyWorld = new BulletWorld;
 
 
@@ -19,8 +18,8 @@ SceneManager::SceneManager(int width, int height, void* HWND) {
 
 
 SceneManager::~SceneManager() {
-	//delete physics_engine;
 	delete PhyWorld;
+	delete render_engine;
 }
 
 void SceneManager::Update() {
