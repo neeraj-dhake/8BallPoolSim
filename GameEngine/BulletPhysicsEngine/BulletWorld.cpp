@@ -1,6 +1,7 @@
 #include "BulletWorld.h"
 #include "WorldObject_cuboid.h"
 #include "WorldObject_sphere.h"
+#include "../8BallPool/WorldObject_railing.h"
 
 BulletWorld::BulletWorld() {
 	collisionConfiguration = new btDefaultCollisionConfiguration();
@@ -16,7 +17,7 @@ void BulletWorld::update() {
 	dynamicsWorld->stepSimulation(1.f / 60.f, 10);
 }
 
-btRigidBody* BulletWorld::AddObject(TypeOfObject type,property prp ,void* parent) {
+btRigidBody* BulletWorld::AddObject(TypeOfObject type, property prp, void* parent) {
 	btCollisionShape* Shape;
 	switch (type) {
 		case Cuboid: {
@@ -27,6 +28,12 @@ btRigidBody* BulletWorld::AddObject(TypeOfObject type,property prp ,void* parent
 		case Sphere: {
 			float radius = ((WorldObject_sphere*)parent)->GetRadius();
 			Shape = new btSphereShape(radius);
+			break;
+		}
+		case Railing: {
+			btVector3* points = ((WorldObject_railing*)parent)->GetPoints();
+			int num = ((WorldObject_railing*)parent)->GetNumPoints();
+			Shape = new btConvexHullShape(points, num);
 			break;
 		}
 		default:
@@ -69,6 +76,7 @@ btDiscreteDynamicsWorld * BulletWorld::GetDynamicWorld()
 BulletWorld::~BulletWorld() {
 	clean();
 }
+
 void BulletWorld::clean() {
 	for (int i = dynamicsWorld->getNumCollisionObjects() - 1; i >= 0; i--) {
 		btCollisionObject* obj = dynamicsWorld->getCollisionObjectArray()[i];

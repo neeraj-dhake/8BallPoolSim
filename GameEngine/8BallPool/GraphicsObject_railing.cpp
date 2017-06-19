@@ -1,17 +1,18 @@
-#include "GraphicsObject_cuboid.h"
-#include "../BulletPhysicsEngine/WorldObject_cuboid.h"
+#include "GraphicsObject_railing.h"
+#include "WorldObject_railing.h"
 #include <d3d9.h>
 #include "../Include/d3dx9.h"
 #include "../Include/d3dx9mesh.h"
 #include <memory>
 #include <string>
 
-GraphicsObject_cuboid::GraphicsObject_cuboid(WorldObject_cuboid* par) {
-	parent = par;
+
+GraphicsObject_railing::GraphicsObject_railing(WorldObject_railing* parent_) {
+	parent = parent_;
 }
 
-void GraphicsObject_cuboid::Init() {
-	D3DXLoadMeshFromX("../Resources/Meshes/cuboid_10.x", D3DXMESH_SYSTEMMEM, (LPDIRECT3DDEVICE9)device, NULL, (LPD3DXBUFFER*)&material_buffer, NULL, &numMat, (ID3DXMesh**)&mesh);
+void GraphicsObject_railing::Init() {
+	D3DXLoadMeshFromX("../Resources/Meshes/railing.x", D3DXMESH_SYSTEMMEM, (LPDIRECT3DDEVICE9)device, NULL, (LPD3DXBUFFER*)&material_buffer, NULL, &numMat, (ID3DXMesh**)&mesh);
 	material = (D3DXMATERIAL*)((LPD3DXBUFFER)(material_buffer))->GetBufferPointer();
 	mesh_material = new D3DMATERIAL9[numMat];
 	mesh_texture = new LPDIRECT3DTEXTURE9[numMat];
@@ -26,10 +27,10 @@ void GraphicsObject_cuboid::Init() {
 		}
 	}
 	((LPD3DXBUFFER)material_buffer)->Release();
-
 }
 
-GraphicsObject_cuboid::~GraphicsObject_cuboid() {
+
+GraphicsObject_railing::~GraphicsObject_railing() {
 	delete[] mesh_material;
 	delete[] mesh_texture;
 }

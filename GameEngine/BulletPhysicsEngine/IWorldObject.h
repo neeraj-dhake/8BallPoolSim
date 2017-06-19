@@ -4,8 +4,6 @@
 #include "../RenderingEngine/IGraphicsObject.h"
 #include "BulletWorld.h"
 
-
-
 class IWorldObject {
 protected:
 	property prp;
@@ -18,7 +16,7 @@ public:
 	~IWorldObject();
 	void SetCoordinates(Vector3D);
 	void SetRotation(Vector3D);
-	virtual void CreateObject(BulletWorld*) ;			// it should be kept a pure virtual have to keep an eye on it
+	virtual void CreateObject(BulletWorld*);
 	Vector3D GetPos();
 	Vector3D GetRotation();
 	btRigidBody* GetpObject();

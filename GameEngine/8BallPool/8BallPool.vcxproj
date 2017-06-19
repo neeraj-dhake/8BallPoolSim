@@ -153,7 +153,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BulletPhysicsObject_railing.cpp" />
+    <ClCompile Include="GraphicsObject_railing.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="WorldObject_railing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BulletPhysicsEngine\BulletPhysicsEngine.vcxproj">
@@ -168,6 +171,11 @@
     <ProjectReference Include="..\SceneManager\SceneManager.vcxproj">
       <Project>{7054fe7d-3fcf-4223-a2ec-e606903c18d0}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BulletPhysicsObject_railing.h" />
+    <ClInclude Include="GraphicsObject_railing.h" />
+    <ClInclude Include="WorldObject_railing.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
