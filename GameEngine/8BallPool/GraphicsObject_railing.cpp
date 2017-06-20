@@ -43,7 +43,6 @@ void GraphicsObject_railing::Init() {
 	BYTE* pIndices;
 	unsigned int isize = sizeof(short);
 	i_buf = new short[3 * num_primitives];
-	short index;
 	((ID3DXMesh*)mesh)->LockIndexBuffer(0, (void**)&pIndices);
 	for (size_t i = 0;i < 3 * num_primitives;i++) {
 		((short*)i_buf)[i] = *((short*)(pIndices + i*isize));

@@ -13,9 +13,8 @@ GamePlayScene::GamePlayScene() {
 
 void GamePlayScene::SetScene() {
 	is_active = true;
-	WorldObject_cuboid* obj1 = new WorldObject_cuboid(STATIC);
+	WorldObject_railing* obj1 = new WorldObject_railing(STATIC);
 	obj1->SetCoordinates(Vector3D(10, -10, 0));
-	obj1->SetDim(10, 10, 10);
 	AddObject(obj1);
 	
 
