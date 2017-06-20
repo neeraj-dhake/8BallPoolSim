@@ -94,7 +94,7 @@ void GamePlayScene::UpdateScene() {
 	for (size_t i = 0;i < objects_in_scene.size(); i++) {
 		char msgbuf[200];
 		sprintf_s(msgbuf, 200, "%d %f %f %f\n", i, objects_in_scene[i]->GetpObject()->getCenterOfMassPosition().getX(), objects_in_scene[i]->GetpObject()->getCenterOfMassPosition().getY(), objects_in_scene[i]->GetpObject()->getCenterOfMassPosition().getZ());
-		//OutputDebugString(msgbuf);
+		OutputDebugString(msgbuf);
 		objects_in_scene[i]->SetCoordinates(Vector3D(objects_in_scene[i]->GetpObject()->getCenterOfMassPosition()));
 		objects_in_scene[i]->SetRotation(Vector3D(toEulerianAngle(objects_in_scene[i]->GetpObject()->getOrientation())));
 

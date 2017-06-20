@@ -2,6 +2,8 @@
 #include "WorldObject_cuboid.h"
 #include "WorldObject_sphere.h"
 #include "../8BallPool/WorldObject_railing.h"
+#include "../Include/BulletCollision/CollisionShapes/btShapeHull.h"
+#include "Vector3D.h"
 
 BulletWorld::BulletWorld() {
 	collisionConfiguration = new btDefaultCollisionConfiguration();
@@ -52,7 +54,30 @@ btRigidBody* BulletWorld::AddObject(TypeOfObject type, property prp, void* paren
 			meshInterface->addIndexedMesh(part, PHY_SHORT);
 
 			bool	useQuantizedAabbCompression = true;
-			Shape = new btBvhTriangleMeshShape(meshInterface, useQuantizedAabbCompression);
+			btTriangleIndexVertexArray* meshInterface1 = new btTriangleIndexVertexArray();
+			btVector3* vert = new btVector3[num_vertices];
+			//Shape = new btConvexTriangleMeshShape(meshInterface, useQuantizedAabbCompression);
+			for (size_t i = 0; i < num_vertices; i++) {
+				vert[i].setX(((Vector3D*)vertices)[i].x);
+				vert[i].setY(((Vector3D*)vertices)[i].y);
+				vert[i].setZ(((Vector3D*)vertices)[i].z);
+			}
+			Shape = new btConvexHullShape((btScalar*)vert, num_vertices, 4 * sizeof(double));
+			btIndexedMesh part1;
+			btShapeHull* hull = new btShapeHull((btConvexShape*)Shape);
+			btScalar margin = Shape->getMargin();
+			hull->buildHull(margin);
+			/*part1.m_vertexBase = (const unsigned char*)(hull->getVertexPointer());
+			part1.m_vertexStride = sizeof(float) * 3;
+			part1.m_numVertices = hull->numVertices();
+			part1.m_triangleIndexBase = (const unsigned char*)(hull->getIndexPointer());
+			part1.m_triangleIndexStride = sizeof(short) * 3;
+			part1.m_numTriangles = hull->numTriangles();
+			part1.m_indexType = PHY_SHORT;
+			part1.m_vertexType = PHY_FLOAT;
+			meshInterface1->addIndexedMesh(part1, PHY_SHORT);*/
+			delete Shape;
+			Shape = new btConvexHullShape((btScalar*)(hull->getVertexPointer()), hull->numVertices());
 			break;
 		}
 		default:
