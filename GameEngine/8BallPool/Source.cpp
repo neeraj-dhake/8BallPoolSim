@@ -103,7 +103,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	while (TRUE) {
 		if (!input->handle(msg) || msg.message == WM_QUIT)
 			break;
-		InputHandler::instance().SetKey(input->getKeys_current(), input->getKeys_prev());
+		InputHandler::instance().Set(input);
 		scene_manager->Update();
 		scene_manager->Draw();
 	}
