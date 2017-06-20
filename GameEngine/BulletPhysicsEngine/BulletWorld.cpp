@@ -37,20 +37,36 @@ btRigidBody* BulletWorld::AddObject(TypeOfObject type, property prp, void* paren
 			int num_vertices = (((WorldObject_railing*)parent)->GetgObject())->GetNumVertices();
 			void* vertices = (((WorldObject_railing*)parent)->GetgObject())->GetVBuf();
 			void* indices = (((WorldObject_railing*)parent)->GetgObject())->GetIBuf();
-			btTriangleIndexVertexArray* meshes = new btTriangleIndexVertexArray(
+			/*btTriangleIndexVertexArray* meshes = new btTriangleIndexVertexArray(
 				(int)(num_triangles),
 				(int*)indices,
 				(int)(3 * sizeof(int)),
 				(int)(num_vertices),
 				(btScalar*)vertices,
 				24
-				);
+				);*/
 			
+			btTriangleIndexVertexArray* meshInterface = new btTriangleIndexVertexArray();
+			btIndexedMesh part;
+
+
+			part.m_vertexBase = (const unsigned char*)vertices;
+			part.m_vertexStride = sizeof(float) * 3;
+			part.m_numVertices = num_vertices;
+			part.m_triangleIndexBase = (const unsigned char*)indices;
+			part.m_triangleIndexStride = sizeof(short) * 3;
+			part.m_numTriangles = num_triangles;
+			part.m_indexType = PHY_SHORT;
+			part.m_vertexType = PHY_FLOAT;
+			meshInterface->addIndexedMesh(part, PHY_SHORT);
+
+			bool	useQuantizedAabbCompression = true;
+			Shape = new btBvhTriangleMeshShape(meshInterface, useQuantizedAabbCompression);
 
 			/*btTriangleMesh* meshIntrfc = new btTriangleMesh;
 			meshIntrfc->*/
 			//meshIntrfc->addTriangle(points[0], points[1], points[2]);
-			Shape = new btBvhTriangleMeshShape(meshes, true);
+			//Shape = new btBvhTriangleMeshShape(meshes, true);
 			//Shape = new btSphereShape(5);
 			break;
 		}
