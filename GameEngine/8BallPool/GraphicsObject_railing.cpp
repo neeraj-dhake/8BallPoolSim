@@ -31,38 +31,25 @@ void GraphicsObject_railing::Init() {
 	num_vertices = ((ID3DXMesh*)mesh)->GetNumVertices();
 	num_primitives = ((ID3DXMesh*)mesh)->GetNumFaces();
 
-	std::vector<D3DXVECTOR3> vecVertices;
-	vecVertices.reserve(num_vertices);
 	BYTE* pVerts;
 	unsigned int uiSize = ((ID3DXMesh*)mesh)->GetNumBytesPerVertex();
+	v_buf = new D3DXVECTOR3[num_vertices];
 	((ID3DXMesh*)mesh)->LockVertexBuffer(0, (void**)&pVerts);
-	D3DXVECTOR3 vec3Vertice;
 	for (size_t i = 0;i < num_vertices;i++) {
-		vec3Vertice = *((D3DXVECTOR3*)(pVerts + i*uiSize));
-		vecVertices.push_back(vec3Vertice);
+		((D3DXVECTOR3*)v_buf)[i] = *((D3DXVECTOR3*)(pVerts + i*uiSize));
 	}
 	((ID3DXMesh*)mesh)->UnlockVertexBuffer();
 
-	std::vector<short> indices;
-	indices.reserve(3 * num_primitives);
 	BYTE* pIndices;
 	unsigned int isize = sizeof(short);
+	i_buf = new short[3 * num_primitives];
+	short index;
 	((ID3DXMesh*)mesh)->LockIndexBuffer(0, (void**)&pIndices);
 	for (size_t i = 0;i < 3 * num_primitives;i++) {
-		short vec3Vertice1 = *((short*)(pIndices + i*isize));
-		indices.push_back(vec3Vertice1);
+		((short*)i_buf)[i] = *((short*)(pIndices + i*isize));
 	}
 	((ID3DXMesh*)mesh)->UnlockIndexBuffer();
 
-	v_buf = new D3DXVECTOR3[num_vertices];
-	i_buf = new short[3 * num_primitives];
-	for (size_t i = 0;i < num_vertices;i++) {
-		((D3DXVECTOR3*)v_buf)[i] = vecVertices[i];
-	}
-
-	for (size_t i = 0; i < 3 * num_primitives; i++) {
-		((short*)i_buf)[i] = indices[i];
-	}
 }
 
 

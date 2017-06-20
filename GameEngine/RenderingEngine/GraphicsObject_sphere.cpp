@@ -14,7 +14,7 @@ GraphicsObject_sphere::~GraphicsObject_sphere(){
 }
 
 void GraphicsObject_sphere::Init() {
-	D3DXLoadMeshFromX("../Resources/Meshes/ball.x", D3DXMESH_SYSTEMMEM, (LPDIRECT3DDEVICE9)device, NULL, (LPD3DXBUFFER*)&material_buffer, NULL, &numMat, (LPD3DXMESH*)&mesh);
+	D3DXLoadMeshFromX("../Resources/Meshes/PoolAssets/PoolBall.x", D3DXMESH_SYSTEMMEM, (LPDIRECT3DDEVICE9)device, NULL, (LPD3DXBUFFER*)&material_buffer, NULL, &numMat, (LPD3DXMESH*)&mesh);
 	material = (D3DXMATERIAL*)((LPD3DXBUFFER)(material_buffer))->GetBufferPointer();
 	mesh_material = new D3DMATERIAL9[numMat];
 	mesh_texture = new LPDIRECT3DTEXTURE9[numMat];

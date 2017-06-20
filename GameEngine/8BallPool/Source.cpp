@@ -82,9 +82,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	SceneManager* scene_manager = new SceneManager(SCREEN_WIDTH, SCREEN_HEIGHT, hwnd);
 	
-	D3DXVECTOR3 pos(0, 0, 150), lookat(0, 0, 0), up(0, 1, 0);
+	D3DXVECTOR3 pos(0, 10, 150), lookat(0, 0, 0), up(0, 1, 0);
 
-	D3DXVECTOR3 light(0, 0, -100);
+	D3DXVECTOR3 light(0, -100, -100);
 
 	menu_scene->SetCamera(pos, lookat, up);
 	pause_scene->SetCamera(pos, lookat, up);

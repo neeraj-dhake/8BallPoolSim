@@ -136,3 +136,73 @@ void BulletWorld::clean() {
 
 	collisionShapes.clear();
 }
+
+			Shape = new btBvhTriangleMeshShape(meshInterface, useQuantizedAabbCompression);
+			break;
+		}
+		default:
+			return nullptr;
+
+	}
+
+	btScalar mass(0);
+
+	if (prp == STATIC)
+		mass = 0;
+	else if (prp == DYNAMIC)
+		mass = 1.;
+
+
+	Shape->setMargin(0.1);
+	collisionShapes.push_back(Shape);
+
+	Vector3D position = ((WorldObject_cuboid*)parent)->GetPos();
+	btDefaultMotionState* myMotionState = new btDefaultMotionState( btTransform( btQuaternion(0, 0, 0, 1), 
+																				 position.to_btVector3() ) );
+
+	bool isDynamic = (mass != 0.f);
+	btVector3 localInertia(0, 0, 0);
+	if (isDynamic)
+		Shape->calculateLocalInertia(mass, localInertia);
+
+	btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState, Shape, localInertia);
+	btRigidBody* body = new btRigidBody(rbInfo);
+	dynamicsWorld->addRigidBody(body);
+	return body;
+
+}
+
+btDiscreteDynamicsWorld * BulletWorld::GetDynamicWorld()
+{
+	return dynamicsWorld;
+}
+
+BulletWorld::~BulletWorld() {
+	clean();
+}
+
+void BulletWorld::clean() {
+	for (int i = dynamicsWorld->getNumCollisionObjects() - 1; i >= 0; i--) {
+		btCollisionObject* obj = dynamicsWorld->getCollisionObjectArray()[i];
+		btRigidBody* body = btRigidBody::upcast(obj);
+		if (body && body->getMotionState()) {
+			delete body->getMotionState();
+		}
+		dynamicsWorld->removeCollisionObject(obj);
+		delete obj;
+	}
+
+	for (int j = 0; j < collisionShapes.size(); j++) {
+		btCollisionShape* shape = collisionShapes[j];
+		collisionShapes[j] = 0;
+		delete shape;
+	}
+
+	delete dynamicsWorld;
+	delete solver;
+	delete overlappingPairCache;
+	delete dispatcher;
+	delete collisionConfiguration;
+
+	collisionShapes.clear();
+}
