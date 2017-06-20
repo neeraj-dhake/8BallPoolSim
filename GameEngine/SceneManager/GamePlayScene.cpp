@@ -13,8 +13,9 @@ GamePlayScene::GamePlayScene() {
 
 void GamePlayScene::SetScene() {
 	is_active = true;
-	WorldObject_railing* obj1 = new WorldObject_railing(STATIC);
+	WorldObject_cuboid* obj1 = new WorldObject_cuboid(STATIC);
 	obj1->SetCoordinates(Vector3D(10, -10, 0));
+	obj1->SetDim(10, 10, 10);
 	AddObject(obj1);
 	
 
@@ -85,12 +86,16 @@ void GamePlayScene::UpdateScene() {
 	if (InputHandler::instance().GetKeyState_current(KEY_RIGHT))
 		(objects_in_scene[obj2]->GetpObject())->applyCentralImpulse(btVector3(btScalar(-0.5), btScalar(0), btScalar(0)));
 
+
+
+	//InputHandler::instance().GetMouseX
+
 	PhyWorld->update();
 	
 	for (size_t i = 0;i < objects_in_scene.size(); i++) {
 		char msgbuf[200];
 		sprintf_s(msgbuf, 200, "%d %f %f %f\n", i, objects_in_scene[i]->GetpObject()->getCenterOfMassPosition().getX(), objects_in_scene[i]->GetpObject()->getCenterOfMassPosition().getY(), objects_in_scene[i]->GetpObject()->getCenterOfMassPosition().getZ());
-		OutputDebugString(msgbuf);
+		//OutputDebugString(msgbuf);
 		objects_in_scene[i]->SetCoordinates(Vector3D(objects_in_scene[i]->GetpObject()->getCenterOfMassPosition()));
 		objects_in_scene[i]->SetRotation(Vector3D(toEulerianAngle(objects_in_scene[i]->GetpObject()->getOrientation())));
 

@@ -25,9 +25,12 @@ bool InputHandler::GetKeyState_prev(KEY_STATE state) {
 }
 
 
-void InputHandler::SetKey(std::vector<bool> keys_current_ , std::vector<bool> keys_prev_) {
-	keys_current = keys_current_;
-	keys_prev = keys_prev_;
+void InputHandler::Set(KeyBoardInput* input) {
+	keys_current = input->getKeys_current();
+	keys_prev = input->getKeys_prev();
+	mouseX = input->mouseX;
+	mouseY = input->mouseY;
+
 
 }
 
@@ -37,5 +40,14 @@ std::vector<bool> InputHandler::GetKey_current() {
 std::vector<bool> InputHandler::GetKey_prev() {
 	return keys_prev;
 }
+float InputHandler::GetMouseX()
+{
+	return mouseX;
+}
+float InputHandler::GetMouseY()
+{
+	return mouseY;
+}
+
 
 
