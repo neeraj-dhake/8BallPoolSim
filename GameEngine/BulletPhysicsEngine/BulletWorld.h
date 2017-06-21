@@ -24,7 +24,7 @@ public:
 	~BulletWorld();
 	void clean();
 	void update();
-	btRigidBody* AddObject(TypeOfObject,property, void*);
+	btRigidBody* AddObject(TypeOfObject, property, kind Kind_, void*);
 	btDiscreteDynamicsWorld* GetDynamicWorld();
 };
 

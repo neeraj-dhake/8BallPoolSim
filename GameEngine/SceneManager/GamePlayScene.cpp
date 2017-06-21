@@ -13,9 +13,18 @@ GamePlayScene::GamePlayScene() {
 
 void GamePlayScene::SetScene() {
 	is_active = true;
-	WorldObject_railing* obj1 = new WorldObject_railing(STATIC);
-	obj1->SetCoordinates(Vector3D(0, -10, -50));
-	AddObject(obj1);
+	WorldObject_railing* baseObj = new WorldObject_railing(STATIC, base);
+	baseObj->SetCoordinates(Vector3D(0, -10, -50));
+	AddObject(baseObj);
+
+	//WorldObject_railing* leftCushionObj = new WorldObject_railing(STATIC, left_cushion);
+	//leftCushionObj->SetCoordinates(Vector3D(0, -10, -50));
+	//AddObject(leftCushionObj);
+
+	//WorldObject_railing* rightCushionObj = new WorldObject_railing(STATIC, right_cushion);
+	//rightCushionObj->SetCoordinates(Vector3D(0, -10, -50));
+	//AddObject(rightCushionObj);
+
 	
 
 	WorldObject_sphere* obj2 = new WorldObject_sphere(DYNAMIC);

@@ -19,7 +19,7 @@ void BulletWorld::update() {
 	dynamicsWorld->stepSimulation(1.f / 60.f, 10);
 }
 
-btRigidBody* BulletWorld::AddObject(TypeOfObject type, property prp, void* parent) {
+btRigidBody* BulletWorld::AddObject(TypeOfObject type, property prp, kind Kind_, void* parent) {
 	btCollisionShape* Shape;
 	switch (type) {
 		case Cuboid: {
@@ -33,7 +33,6 @@ btRigidBody* BulletWorld::AddObject(TypeOfObject type, property prp, void* paren
 			break;
 		}
 		case Railing: {
-			btVector3* points = ((WorldObject_railing*)parent)->GetPoints();
 			
 			int num_triangles = (((WorldObject_railing*)parent)->GetgObject())->GetNumPrimitives();
 			int num_vertices = (((WorldObject_railing*)parent)->GetgObject())->GetNumVertices();
