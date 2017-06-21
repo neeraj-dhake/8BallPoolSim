@@ -33,29 +33,26 @@ btRigidBody* BulletWorld::AddObject(TypeOfObject type, property prp, void* paren
 			break;
 		}
 		case pool: {
-			
 			int num_triangles = (((WorldObject_pool*)parent)->GetgObject())->GetNumPrimitives();
 			int num_vertices = (((WorldObject_pool*)parent)->GetgObject())->GetNumVertices();
 			void* vertices = (((WorldObject_pool*)parent)->GetgObject())->GetVBuf();
-			void* indices = (((WorldObject_pool*)parent)->GetgObject())->GetIBuf();
-			btTriangleIndexVertexArray* meshInterface = new btTriangleIndexVertexArray();
-			btIndexedMesh part;
-			part.m_vertexBase = (const unsigned char*)vertices;
-			part.m_vertexStride = sizeof(float) * 3;
-			part.m_numVertices = num_vertices;
-			part.m_triangleIndexBase = (const unsigned char*)indices;
-			part.m_triangleIndexStride = sizeof(short) * 3;
-			part.m_numTriangles = num_triangles;
-			part.m_indexType = PHY_SHORT;
-			part.m_vertexType = PHY_FLOAT;
-			meshInterface->addIndexedMesh(part, PHY_SHORT);
 
-			if ((((WorldObject_pool*)parent)->GetgObject())->isConcave)
+			if (/*(((WorldObject_pool*)parent)->GetgObject())->isConcave*/1) {
+				void* indices = (((WorldObject_pool*)parent)->GetgObject())->GetIBuf();
+				btTriangleIndexVertexArray* meshInterface = new btTriangleIndexVertexArray();
+				btIndexedMesh part;
+				part.m_vertexBase = (const unsigned char*)vertices;
+				part.m_vertexStride = sizeof(float) * 3;
+				part.m_numVertices = num_vertices;
+				part.m_triangleIndexBase = (const unsigned char*)indices;
+				part.m_triangleIndexStride = sizeof(short) * 3;
+				part.m_numTriangles = num_triangles;
+				part.m_indexType = PHY_SHORT;
+				part.m_vertexType = PHY_FLOAT;
+				meshInterface->addIndexedMesh(part, PHY_SHORT);
 				Shape = new btBvhTriangleMeshShape(meshInterface, true);
-			else
-			{
-				bool	useQuantizedAabbCompression = true;
-				btTriangleIndexVertexArray* meshInterface1 = new btTriangleIndexVertexArray();
+			}
+			else {
 				btVector3* vert = new btVector3[num_vertices];
 				for (size_t i = 0; i < num_vertices; i++) {
 					vert[i].setX(((Vector3D*)vertices)[i].x);
@@ -63,23 +60,24 @@ btRigidBody* BulletWorld::AddObject(TypeOfObject type, property prp, void* paren
 					vert[i].setZ(((Vector3D*)vertices)[i].z);
 				}
 				Shape = new btConvexHullShape((btScalar*)vert, num_vertices, 4 * sizeof(double));
-				btShapeHull* hull = new btShapeHull((btConvexShape*)Shape);				btScalar margin = Shape->getMargin();				hull->buildHull(margin);				delete Shape;
+				Shape->setMargin(0.1);
+				btShapeHull* hull = new btShapeHull((btConvexShape*)Shape);
+				btScalar margin = Shape->getMargin();
+				hull->buildHull(margin);
+				delete Shape;
 				Shape = new btConvexHullShape((btScalar*)(hull->getVertexPointer()), hull->numVertices());
 			}
 			break;
 		}
 		default:
 			return nullptr;
-
 	}
 
 	btScalar mass(0);
-
 	if (prp == STATIC)
 		mass = 0;
 	else if (prp == DYNAMIC)
 		mass = 1.;
-
 
 	Shape->setMargin(0.1);
 	collisionShapes.push_back(Shape);
@@ -97,11 +95,9 @@ btRigidBody* BulletWorld::AddObject(TypeOfObject type, property prp, void* paren
 	btRigidBody* body = new btRigidBody(rbInfo);
 	dynamicsWorld->addRigidBody(body);
 	return body;
-
 }
 
-btDiscreteDynamicsWorld * BulletWorld::GetDynamicWorld()
-{
+btDiscreteDynamicsWorld * BulletWorld::GetDynamicWorld() {
 	return dynamicsWorld;
 }
 
