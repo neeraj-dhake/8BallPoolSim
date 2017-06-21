@@ -10,7 +10,9 @@ public:
 
 	bool GetKeyState_current(KEY_STATE state);
 	bool GetKeyState_prev(KEY_STATE state);
-	void SetKey(std::vector<bool>, std::vector<bool>);
+	void Set(KeyBoardInput* input);
+	float GetMouseX();
+	float GetMouseY();
 	std::vector<bool> GetKey_current();
 	std::vector<bool> GetKey_prev();
 
@@ -19,6 +21,7 @@ private:
 	InputHandler();
 	std::vector<bool> keys_current;
 	std::vector<bool> keys_prev;
+	float mouseX,mouseY;
 
 };
 

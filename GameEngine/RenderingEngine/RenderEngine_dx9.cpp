@@ -39,10 +39,12 @@ void RenderEngine_dx9::SetWindow() {
 
 	((LPDIRECT3D9)intrfc)->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, (HWND)hwnd, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, (LPDIRECT3DDEVICE9*)&device);
 	((LPDIRECT3DDEVICE9)device)->SetRenderState(D3DRS_LIGHTING, TRUE);
-	((LPDIRECT3DDEVICE9)device)->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
+	((LPDIRECT3DDEVICE9)device)->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
 	((LPDIRECT3DDEVICE9)device)->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	((LPDIRECT3DDEVICE9)device)->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 	((LPDIRECT3DDEVICE9)device)->SetRenderState(D3DRS_ZENABLE, TRUE);    // turn on the z-buffer
+
+	((LPDIRECT3DDEVICE9)device)->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_MODULATE);
 
 
 }
@@ -70,7 +72,7 @@ void RenderEngine_dx9::init_frame(void* pos, void* look, void* up, void* _light)
 
 
 	D3DXMATRIX matProjection;
-	D3DXMatrixPerspectiveFovLH(&matProjection, D3DXToRadian(45), (FLOAT)SCREEN_WIDTH / (FLOAT)SCREEN_HEIGHT, -100.0f, 100.0f);
+	D3DXMatrixPerspectiveFovLH(&matProjection, D3DXToRadian(45), (FLOAT)SCREEN_WIDTH / (FLOAT)SCREEN_HEIGHT, 10.0f, 1000.0f);
 
 	((LPDIRECT3DDEVICE9)device)->SetTransform(D3DTS_PROJECTION, &(matView * matProjection));
 

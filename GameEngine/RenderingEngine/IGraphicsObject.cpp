@@ -3,6 +3,7 @@
 
 
 IGraphicsObject::IGraphicsObject() {
+	isConcave = false;
 }
 
 IGraphicsObject::~IGraphicsObject() {
@@ -16,8 +17,24 @@ void * IGraphicsObject::GetMaterial() {
 	return mesh_material;
 }
 
-void * IGraphicsObject::GetMesh() {
+void* IGraphicsObject::GetMesh() {
 	return mesh;
+}
+
+void* IGraphicsObject::GetVBuf() {
+	return v_buf;
+}
+
+void* IGraphicsObject::GetIBuf() {
+	return i_buf;
+}
+
+int IGraphicsObject::GetNumVertices() {
+	return num_vertices;
+}
+
+int IGraphicsObject::GetNumPrimitives() {
+	return num_primitives;
 }
 
 void * IGraphicsObject::GetTexture() {

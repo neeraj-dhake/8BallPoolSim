@@ -1,11 +1,41 @@
 #include "KeyBoardInput.h"
+#include "windowsx.h"
+const int SCREEN_WIDTH = 800;
+const int SCREEN_HEIGHT = 600;
 
+LRESULT CALLBACK process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam, std::vector<bool>& keys, float &mouseX, float &mouseY) {
 
-LRESULT CALLBACK process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam, std::vector<bool>& keys) {
 	switch (message)
 	{
+	case WM_LBUTTONDOWN:
+		// Capture mouse input. 
+
+
+		// Retrieve the screen coordinates of the client area, 
+		// and convert them into client coordinates. 
+
+		//mouseX = GET_X_LPARAM(lParam) - SCREEN_WIDTH / 2;
+		//mouseY = GET_Y_LPARAM(lParam) - SCREEN_HEIGHT / 2;
+
+
+	case WM_MOUSEMOVE:
+
+		mouseX = GET_X_LPARAM(lParam) - SCREEN_WIDTH / 2;
+		mouseY = GET_Y_LPARAM(lParam) - SCREEN_HEIGHT / 2;
+		char msgbuf[200];
+		sprintf_s(msgbuf, 200, "%f %f \n", mouseX, mouseY);
+		OutputDebugString(msgbuf);
+
+
+		break;
+
+	case WM_LBUTTONUP:
+		return 0;
+
+
 	case WM_KEYDOWN:
 		switch (wParam) {
+
 		case VK_ESCAPE:
 			keys[KEY_ESCAPE] = 1;
 			return -1;
@@ -104,14 +134,8 @@ bool KeyBoardInput::handle(MSG &msg) {
 	while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
-		if (mark_for_death)
-		{
-			DestroyWindow(hwnd);
-			return false;		// just so that it can wait for one update loop before it  closes the window so that destructors can be called
-		}
-		if (process(msg.hwnd, msg.message, msg.wParam, msg.lParam, keys_current) == -1)	 // normally DefWindowProc is zero
-			mark_for_death = true;
-			
+		if (process(msg.hwnd, msg.message, msg.wParam, msg.lParam, keys_current, mouseX, mouseY) == -1)	 // normally DefWindowProc is zero
+			return false;
 	}
 	return true;
 }
