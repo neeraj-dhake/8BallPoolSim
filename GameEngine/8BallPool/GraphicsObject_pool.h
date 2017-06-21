@@ -1,6 +1,6 @@
 #pragma once
 #include "../RenderingEngine/IGraphicsObject.h"
-enum kind { base, right_cushion, left_cushion,top_left_cushion,top_right_cushion, bottom_right_cushion , bottom_left_cushion};
+enum kind { base, right_cushion, left_cushion,top_left_cushion,top_right_cushion, bottom_right_cushion , bottom_left_cushion,PoolBall};
 
 class WorldObject_pool;
 class GraphicsObject_pool : public IGraphicsObject {

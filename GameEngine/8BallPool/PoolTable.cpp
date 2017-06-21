@@ -2,15 +2,17 @@
 
 
 
-PoolTable::PoolTable(property property_)
+PoolTable::PoolTable()
 {
-	baseObj = new WorldObject_pool(property_,base);
-	leftCushionObj = new WorldObject_pool(property_,left_cushion);
-	rightCushionObj = new WorldObject_pool(property_,right_cushion);
-	topleftCushionObj = new WorldObject_pool(property_,top_left_cushion);
-	toprightCushionObj = new WorldObject_pool(property_, top_right_cushion);
-	bottomleftCushionObj = new WorldObject_pool(property_, bottom_left_cushion);
-	bottomrightCushionObj = new WorldObject_pool(property_, bottom_right_cushion);
+	baseObj = new WorldObject_pool(STATIC,base);
+	leftCushionObj = new WorldObject_pool(STATIC,left_cushion);
+	rightCushionObj = new WorldObject_pool(STATIC,right_cushion);
+	topleftCushionObj = new WorldObject_pool(STATIC,top_left_cushion);
+	toprightCushionObj = new WorldObject_pool(STATIC, top_right_cushion);
+	bottomleftCushionObj = new WorldObject_pool(STATIC, bottom_left_cushion);
+	bottomrightCushionObj = new WorldObject_pool(STATIC, bottom_right_cushion);
+	PoolBall1 = new WorldObject_sphere(DYNAMIC);
+	PoolBall2 = new WorldObject_sphere(DYNAMIC);
 }
 
 void PoolTable::SetCoordinates(Vector3D v)
@@ -22,6 +24,10 @@ void PoolTable::SetCoordinates(Vector3D v)
 	toprightCushionObj->SetCoordinates(v);
 	bottomleftCushionObj->SetCoordinates(v);
 	bottomrightCushionObj->SetCoordinates(v);
+	PoolBall1->SetCoordinates(Vector3D(5, 0, 0));
+	PoolBall2->SetCoordinates(Vector3D(-5, 0, 0));
+	PoolBall1->SetRadius(2.5f);
+	PoolBall2->SetRadius(2.5f);
 
 }
 
@@ -34,6 +40,10 @@ void PoolTable::AddObject(Scene *scene)
 	scene->AddObject(toprightCushionObj);
 	scene->AddObject(bottomleftCushionObj);
 	scene->AddObject(bottomrightCushionObj);
+	scene->AddObject(PoolBall1);
+	PoolBall1->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
+	scene->AddObject(PoolBall2);
+	PoolBall2->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
 }
 
 

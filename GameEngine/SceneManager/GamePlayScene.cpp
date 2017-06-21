@@ -8,6 +8,8 @@
 #include "../8BallPool/PoolTable.h"
 
 
+
+
 GamePlayScene::GamePlayScene() {
 	is_active = false;
 }
@@ -15,26 +17,21 @@ GamePlayScene::GamePlayScene() {
 void GamePlayScene::SetScene() {
 	is_active = true;
 
-	PoolTable* poolTable = new PoolTable(STATIC);
+	PoolTable* poolTable = new PoolTable();		// total 7 objects are added in the scene list.
 	poolTable->SetCoordinates(Vector3D(0, -10, -50));
 	poolTable->AddObject(this);
 
-	//WorldObject_pool* baseObj = new WorldObject_pool(STATIC);
-	//baseObj->SetCoordinates(Vector3D(0, -10, -50));
-	//AddObject(baseObj);
+	//WorldObject_sphere* obj2 = new WorldObject_sphere(DYNAMIC);
+	//obj2->SetCoordinates(Vector3D(5, 0, 0));
+	//obj2->SetRadius(2.5f);
+	//AddObject(obj2);
+	//obj2->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
 
-
-	WorldObject_sphere* obj2 = new WorldObject_sphere(DYNAMIC);
-	obj2->SetCoordinates(Vector3D(5, 0, 0));
-	obj2->SetRadius(5.0f);
-	AddObject(obj2);
-	obj2->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
-
-	WorldObject_sphere* obj3 = new WorldObject_sphere(DYNAMIC);
-	obj3->SetCoordinates(Vector3D(5.0f, 0.0f, 0.0f));
-	obj3->SetRadius(5.0f);
-	AddObject(obj3);
-	obj3->GetpObject()->setActivationState(DISABLE_DEACTIVATION);
+	//WorldObject_sphere* obj3 = new WorldObject_sphere(DYNAMIC);
+	//obj3->SetCoordinates(Vector3D(5.0f, 0.0f, 0.0f));
+	//obj3->SetRadius(2.50f);
+	//AddObject(obj3);
+	//obj3->GetpObject()->setActivationState(DISABLE_DEACTIVATION);
 }
 
 GamePlayScene::~GamePlayScene() {
@@ -67,29 +64,29 @@ Vector3D toEulerianAngle(const btQuaternion& q)
 
 void GamePlayScene::UpdateScene() {
 	if (InputHandler::instance().GetKeyState_current(KEY_D))
-		(objects_in_scene[8]->GetpObject())->applyCentralImpulse(btVector3(btScalar(-0.5), btScalar(0), btScalar(0)));
+		(objects_in_scene[PoolBall1]->GetpObject())->applyCentralImpulse(btVector3(btScalar(-0.5), btScalar(0), btScalar(0)));
 
 	if (InputHandler::instance().GetKeyState_current(KEY_A))
-		(objects_in_scene[8]->GetpObject())->applyCentralImpulse(btVector3(btScalar(+0.5), btScalar(0), btScalar(0)));
+		(objects_in_scene[PoolBall1]->GetpObject())->applyCentralImpulse(btVector3(btScalar(+0.5), btScalar(0), btScalar(0)));
 
 	if (InputHandler::instance().GetKeyState_current(KEY_W))
-		(objects_in_scene[8]->GetpObject())->applyCentralImpulse(btVector3(btScalar(0), btScalar(0), btScalar(-0.5)));
+		(objects_in_scene[PoolBall1]->GetpObject())->applyCentralImpulse(btVector3(btScalar(0), btScalar(0), btScalar(-0.5)));
 
 	if (InputHandler::instance().GetKeyState_current(KEY_S))
-		(objects_in_scene[8]->GetpObject())->applyCentralImpulse(btVector3(btScalar(0), btScalar(-0), btScalar(0.5)));
+		(objects_in_scene[PoolBall1]->GetpObject())->applyCentralImpulse(btVector3(btScalar(0), btScalar(-0), btScalar(0.5)));
 
 
 	if (InputHandler::instance().GetKeyState_current(KEY_UP))
-		(objects_in_scene[7]->GetpObject())->applyCentralImpulse(btVector3(btScalar(0), btScalar(0), btScalar(-0.5)));
+		(objects_in_scene[PoolBall2]->GetpObject())->applyCentralImpulse(btVector3(btScalar(0), btScalar(0), btScalar(-0.5)));
 
 	if (InputHandler::instance().GetKeyState_current(KEY_DOWN))
-		(objects_in_scene[7]->GetpObject())->applyCentralImpulse(btVector3(btScalar(0), btScalar(-0), btScalar(0.5)));
+		(objects_in_scene[PoolBall2]->GetpObject())->applyCentralImpulse(btVector3(btScalar(0), btScalar(-0), btScalar(0.5)));
 
 	if (InputHandler::instance().GetKeyState_current(KEY_LEFT))
-		(objects_in_scene[7]->GetpObject())->applyCentralImpulse(btVector3(btScalar(+0.5), btScalar(0), btScalar(0)));
+		(objects_in_scene[PoolBall2]->GetpObject())->applyCentralImpulse(btVector3(btScalar(+0.5), btScalar(0), btScalar(0)));
 
 	if (InputHandler::instance().GetKeyState_current(KEY_RIGHT))
-		(objects_in_scene[7]->GetpObject())->applyCentralImpulse(btVector3(btScalar(-0.5), btScalar(0), btScalar(0)));
+		(objects_in_scene[PoolBall2]->GetpObject())->applyCentralImpulse(btVector3(btScalar(-0.5), btScalar(0), btScalar(0)));
 
 
 
