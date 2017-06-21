@@ -32,6 +32,7 @@ public:
 	void* GetMesh();
 	void* GetTexture();
 	int GetNum();
+	bool isConcave;
 	// make set and get functions functiions ------------
 	~IGraphicsObject();
 };

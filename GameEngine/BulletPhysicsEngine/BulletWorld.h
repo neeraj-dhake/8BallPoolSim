@@ -8,8 +8,9 @@
 #pragma comment (lib, "Bullet3Collision_vs2010_x64_debug.lib")
 #pragma comment (lib, "LinearMath_vs2010_x64_debug.lib")
 
-enum TypeOfObject {Sphere, Cuboid, Railing};
+enum TypeOfObject {Sphere, Cuboid, pool};
 enum property {STATIC, DYNAMIC};
+
 
 class BulletWorld {
 	btDefaultCollisionConfiguration* collisionConfiguration;
@@ -24,7 +25,7 @@ public:
 	~BulletWorld();
 	void clean();
 	void update();
-	btRigidBody* AddObject(TypeOfObject, property, kind Kind_, void*);
+	btRigidBody* AddObject(TypeOfObject, property, void*);
 	btDiscreteDynamicsWorld* GetDynamicWorld();
 };
 

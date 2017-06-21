@@ -1,10 +1,11 @@
 #include "GamePlayScene.h"
 #include "../BulletPhysicsEngine/WorldObject_cuboid.h"
 #include "../BulletPhysicsEngine/WorldObject_sphere.h"
-#include "../8BallPool/WorldObject_railing.h"
+#include "../8BallPool/WorldObject_pool.h"
 #include "../InputLib_Win/InputHandler.h"
 #include "../BulletPhysicsEngine/Vector3D.h"
 #include "SceneManager.h"
+#include "../8BallPool/PoolTable.h"
 
 
 GamePlayScene::GamePlayScene() {
@@ -13,19 +14,15 @@ GamePlayScene::GamePlayScene() {
 
 void GamePlayScene::SetScene() {
 	is_active = true;
-	WorldObject_railing* baseObj = new WorldObject_railing(STATIC, base);
-	baseObj->SetCoordinates(Vector3D(0, -10, -50));
-	AddObject(baseObj);
 
-	//WorldObject_railing* leftCushionObj = new WorldObject_railing(STATIC, left_cushion);
-	//leftCushionObj->SetCoordinates(Vector3D(0, -10, -50));
-	//AddObject(leftCushionObj);
+	PoolTable* poolTable = new PoolTable(STATIC);
+	poolTable->SetCoordinates(Vector3D(0, -10, -50));
+	poolTable->AddObject(this);
 
-	//WorldObject_railing* rightCushionObj = new WorldObject_railing(STATIC, right_cushion);
-	//rightCushionObj->SetCoordinates(Vector3D(0, -10, -50));
-	//AddObject(rightCushionObj);
+	//WorldObject_pool* baseObj = new WorldObject_pool(STATIC);
+	//baseObj->SetCoordinates(Vector3D(0, -10, -50));
+	//AddObject(baseObj);
 
-	
 
 	WorldObject_sphere* obj2 = new WorldObject_sphere(DYNAMIC);
 	obj2->SetCoordinates(Vector3D(5, 0, 0));

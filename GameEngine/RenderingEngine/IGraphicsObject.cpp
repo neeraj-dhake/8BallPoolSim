@@ -3,6 +3,7 @@
 
 
 IGraphicsObject::IGraphicsObject() {
+	isConcave = false;
 }
 
 IGraphicsObject::~IGraphicsObject() {

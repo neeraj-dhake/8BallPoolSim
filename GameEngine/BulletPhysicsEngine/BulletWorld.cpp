@@ -1,7 +1,7 @@
 #include "BulletWorld.h"
 #include "WorldObject_cuboid.h"
 #include "WorldObject_sphere.h"
-#include "../8BallPool/WorldObject_railing.h"
+#include "../8BallPool/WorldObject_pool.h"
 #include "../Include/BulletCollision/CollisionShapes/btShapeHull.h"
 #include "Vector3D.h"
 
@@ -19,7 +19,7 @@ void BulletWorld::update() {
 	dynamicsWorld->stepSimulation(1.f / 60.f, 10);
 }
 
-btRigidBody* BulletWorld::AddObject(TypeOfObject type, property prp, kind Kind_, void* parent) {
+btRigidBody* BulletWorld::AddObject(TypeOfObject type, property prp, void* parent) {	// user editable otherwise put that in else other object
 	btCollisionShape* Shape;
 	switch (type) {
 		case Cuboid: {
@@ -32,16 +32,14 @@ btRigidBody* BulletWorld::AddObject(TypeOfObject type, property prp, kind Kind_,
 			Shape = new btSphereShape(radius);
 			break;
 		}
-		case Railing: {
+		case pool: {
 			
-			int num_triangles = (((WorldObject_railing*)parent)->GetgObject())->GetNumPrimitives();
-			int num_vertices = (((WorldObject_railing*)parent)->GetgObject())->GetNumVertices();
-			void* vertices = (((WorldObject_railing*)parent)->GetgObject())->GetVBuf();
-			void* indices = (((WorldObject_railing*)parent)->GetgObject())->GetIBuf();
+			int num_triangles = (((WorldObject_pool*)parent)->GetgObject())->GetNumPrimitives();
+			int num_vertices = (((WorldObject_pool*)parent)->GetgObject())->GetNumVertices();
+			void* vertices = (((WorldObject_pool*)parent)->GetgObject())->GetVBuf();
+			void* indices = (((WorldObject_pool*)parent)->GetgObject())->GetIBuf();
 			btTriangleIndexVertexArray* meshInterface = new btTriangleIndexVertexArray();
 			btIndexedMesh part;
-
-
 			part.m_vertexBase = (const unsigned char*)vertices;
 			part.m_vertexStride = sizeof(float) * 3;
 			part.m_numVertices = num_vertices;
@@ -52,31 +50,22 @@ btRigidBody* BulletWorld::AddObject(TypeOfObject type, property prp, kind Kind_,
 			part.m_vertexType = PHY_FLOAT;
 			meshInterface->addIndexedMesh(part, PHY_SHORT);
 
-			//bool	useQuantizedAabbCompression = true;
-			//btTriangleIndexVertexArray* meshInterface1 = new btTriangleIndexVertexArray();
-			//btVector3* vert = new btVector3[num_vertices];
-			////Shape = new btConvexTriangleMeshShape(meshInterface, useQuantizedAabbCompression);
-			//for (size_t i = 0; i < num_vertices; i++) {
-			//	vert[i].setX(((Vector3D*)vertices)[i].x);
-			//	vert[i].setY(((Vector3D*)vertices)[i].y);
-			//	vert[i].setZ(((Vector3D*)vertices)[i].z);
-			//}
-			//Shape = new btConvexHullShape((btScalar*)vert, num_vertices, 4 * sizeof(double));
-			//btIndexedMesh part1;
-			Shape = new btBvhTriangleMeshShape(meshInterface,true);
-			//btScalar margin = Shape->getMargin();
-			//hull->buildHull(margin);
-			/*part1.m_vertexBase = (const unsigned char*)(hull->getVertexPointer());
-			part1.m_vertexStride = sizeof(float) * 3;
-			part1.m_numVertices = hull->numVertices();
-			part1.m_triangleIndexBase = (const unsigned char*)(hull->getIndexPointer());
-			part1.m_triangleIndexStride = sizeof(short) * 3;
-			part1.m_numTriangles = hull->numTriangles();
-			part1.m_indexType = PHY_SHORT;
-			part1.m_vertexType = PHY_FLOAT;
-			meshInterface1->addIndexedMesh(part1, PHY_SHORT);*/
-			//delete Shape;
-			//Shape = new btConvexHullShape((btScalar*)(hull->getVertexPointer()), hull->numVertices());
+			if ((((WorldObject_pool*)parent)->GetgObject())->isConcave)
+				Shape = new btBvhTriangleMeshShape(meshInterface, true);
+			else
+			{
+				bool	useQuantizedAabbCompression = true;
+				btTriangleIndexVertexArray* meshInterface1 = new btTriangleIndexVertexArray();
+				btVector3* vert = new btVector3[num_vertices];
+				for (size_t i = 0; i < num_vertices; i++) {
+					vert[i].setX(((Vector3D*)vertices)[i].x);
+					vert[i].setY(((Vector3D*)vertices)[i].y);
+					vert[i].setZ(((Vector3D*)vertices)[i].z);
+				}
+				Shape = new btConvexHullShape((btScalar*)vert, num_vertices, 4 * sizeof(double));
+				btShapeHull* hull = new btShapeHull((btConvexShape*)Shape);				btScalar margin = Shape->getMargin();				hull->buildHull(margin);				delete Shape;
+				Shape = new btConvexHullShape((btScalar*)(hull->getVertexPointer()), hull->numVertices());
+			}
 			break;
 		}
 		default:

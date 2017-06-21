@@ -18,24 +18,30 @@
     <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WorldObject_railing.cpp">
+    <ClCompile Include="BulletPhysicsObject_pool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GraphicsObject_railing.cpp">
+    <ClCompile Include="GraphicsObject_pool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BulletPhysicsObject_railing.cpp">
+    <ClCompile Include="WorldObject_pool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PoolTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="WorldObject_railing.h">
+    <ClInclude Include="BulletPhysicsObject_pool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GraphicsObject_railing.h">
+    <ClInclude Include="GraphicsObject_pool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BulletPhysicsObject_railing.h">
+    <ClInclude Include="WorldObject_pool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PoolTable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
