@@ -70,7 +70,7 @@ void RenderEngine_dx9::init_frame(void* pos, void* look, void* up, void* _light)
 
 
 	D3DXMATRIX matProjection;
-	D3DXMatrixPerspectiveFovLH(&matProjection, D3DXToRadian(45), (FLOAT)SCREEN_WIDTH / (FLOAT)SCREEN_HEIGHT, -100.0f, 100.0f);
+	D3DXMatrixPerspectiveFovLH(&matProjection, D3DXToRadian(45), (FLOAT)SCREEN_WIDTH / (FLOAT)SCREEN_HEIGHT, 10.0f, 1000.0f);
 
 	((LPDIRECT3DDEVICE9)device)->SetTransform(D3DTS_PROJECTION, &(matView * matProjection));
 

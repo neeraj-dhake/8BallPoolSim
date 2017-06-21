@@ -14,18 +14,18 @@ GamePlayScene::GamePlayScene() {
 void GamePlayScene::SetScene() {
 	is_active = true;
 	WorldObject_railing* obj1 = new WorldObject_railing(STATIC);
-	obj1->SetCoordinates(Vector3D(10, -10, 0));
+	obj1->SetCoordinates(Vector3D(0, -10, -50));
 	AddObject(obj1);
 	
 
 	WorldObject_sphere* obj2 = new WorldObject_sphere(DYNAMIC);
-	obj2->SetCoordinates(Vector3D(-10, 10, 0));
+	obj2->SetCoordinates(Vector3D(5, 0, 0));
 	obj2->SetRadius(5.0f);
 	AddObject(obj2);
 	obj2->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
 
 	WorldObject_sphere* obj3 = new WorldObject_sphere(DYNAMIC);
-	obj3->SetCoordinates(Vector3D(10.0f, 10.0f, 0.0f));
+	obj3->SetCoordinates(Vector3D(5.0f, 0.0f, 0.0f));
 	obj3->SetRadius(5.0f);
 	AddObject(obj3);
 	obj3->GetpObject()->setActivationState(DISABLE_DEACTIVATION);
@@ -67,17 +67,17 @@ void GamePlayScene::UpdateScene() {
 		(objects_in_scene[obj3]->GetpObject())->applyCentralImpulse(btVector3(btScalar(+0.5), btScalar(0), btScalar(0)));
 
 	if (InputHandler::instance().GetKeyState_current(KEY_W))
-		(objects_in_scene[obj3]->GetpObject())->applyCentralImpulse(btVector3(btScalar(0), btScalar(0.5), btScalar(0)));
+		(objects_in_scene[obj3]->GetpObject())->applyCentralImpulse(btVector3(btScalar(0), btScalar(0), btScalar(-0.5)));
 
 	if (InputHandler::instance().GetKeyState_current(KEY_S))
-		(objects_in_scene[obj3]->GetpObject())->applyCentralImpulse(btVector3(btScalar(0), btScalar(-0.5), btScalar(0)));
+		(objects_in_scene[obj3]->GetpObject())->applyCentralImpulse(btVector3(btScalar(0), btScalar(-0), btScalar(0.5)));
 
 
 	if (InputHandler::instance().GetKeyState_current(KEY_UP))
-		(objects_in_scene[obj2]->GetpObject())->applyCentralImpulse(btVector3(btScalar(0), btScalar(0.5), btScalar(0)));
+		(objects_in_scene[obj2]->GetpObject())->applyCentralImpulse(btVector3(btScalar(0), btScalar(0), btScalar(-0.5)));
 
 	if (InputHandler::instance().GetKeyState_current(KEY_DOWN))
-		(objects_in_scene[obj2]->GetpObject())->applyCentralImpulse(btVector3(btScalar(0), btScalar(-0.5), btScalar(0)));
+		(objects_in_scene[obj2]->GetpObject())->applyCentralImpulse(btVector3(btScalar(0), btScalar(-0), btScalar(0.5)));
 
 	if (InputHandler::instance().GetKeyState_current(KEY_LEFT))
 		(objects_in_scene[obj2]->GetpObject())->applyCentralImpulse(btVector3(btScalar(+0.5), btScalar(0), btScalar(0)));
