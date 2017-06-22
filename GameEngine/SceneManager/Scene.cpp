@@ -36,10 +36,19 @@ void Scene::SetManager(SceneManager* manager) {
 }
 
 void Scene::AddObject(IWorldObject* obj) {
-	(obj->GetgObject())->SetDevice(Manager->render_engine->GetDevice());
-	(obj->GetgObject())->Init();
+
+	if (obj->GetgObject() == nullptr)
+	{}
+	else
+	{
+		(obj->GetgObject())->SetDevice(Manager->render_engine->GetDevice());
+		(obj->GetgObject())->Init();
+	}
+
 	obj->CreateObject(Manager->PhyWorld);
 	objects_in_scene.push_back(obj);
+
+
 
 	
 }

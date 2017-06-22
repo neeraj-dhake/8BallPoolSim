@@ -17,7 +17,7 @@ GamePlayScene::GamePlayScene() {
 void GamePlayScene::SetScene() {
 	is_active = true;
 
-	PoolTable* poolTable = new PoolTable();		// total 7 objects are added in the scene list.
+	PoolTable* poolTable = new PoolTable();		
 	poolTable->SetCoordinates(Vector3D(0, 0, 0));
 	poolTable->AddObject(this);
 }

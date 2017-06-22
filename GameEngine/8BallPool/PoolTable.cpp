@@ -31,9 +31,9 @@ PoolTable::PoolTable()
 	PoolBallBrown_stripes = new PoolBall(DYNAMIC, brown_stripes);
 
 	PoolStick = new WorldObject_pool(DYNAMIC, stick);
-	plane1 = new WorldObject_plane(STATIC);
-	plane2 = new WorldObject_plane(STATIC);
-	plane3 = new WorldObject_plane(STATIC);
+	plane1 = new WorldObject_plane(STATIC, false);
+	plane2 = new WorldObject_plane(STATIC, false);
+	plane3 = new WorldObject_plane(STATIC, false);
 }
 
 void PoolTable::SetCoordinates(Vector3D v) {
@@ -111,8 +111,7 @@ void PoolTable::AddObject(Scene *scene)
 
 	for (size_t i = 0; i < scene->objects_in_scene.size(); i++)
 	{
-		(scene->objects_in_scene[i])->GetpObject()->setFriction(5.0f);
-		(scene->objects_in_scene[i])->GetpObject()->setAnisotropicFriction(btVector3(5, 5, 5));
+		(scene->objects_in_scene[i])->GetpObject()->setAnisotropicFriction(btVector3(1, 1, 1));
 	}
 
 

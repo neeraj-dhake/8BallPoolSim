@@ -93,7 +93,11 @@ void RenderEngine_dx9::end_frame() {
 }
 
 void RenderEngine_dx9::Render(IGraphicsObject* gObject) {
-	if ((SUCCEEDED(((LPDIRECT3DDEVICE9)device)->BeginScene())) && gObject != nullptr) {
+
+	if (gObject == nullptr)
+		return;
+
+	if ((SUCCEEDED(((LPDIRECT3DDEVICE9)device)->BeginScene()))) {
 		D3DXMATRIX matTranslate;
 		Vector3D pos = gObject->GetParent()->GetPos();
 		D3DXMatrixTranslation(&matTranslate, pos.x, pos.y, pos.z);
