@@ -47,6 +47,12 @@ void GraphicsObject_pool::Init() {
 	{
 		D3DXLoadMeshFromX("../Resources/Meshes/MyPoolAssets/PoolBottom2Cushion.blend.x", D3DXMESH_SYSTEMMEM, (LPDIRECT3DDEVICE9)device, NULL, (LPD3DXBUFFER*)&material_buffer, NULL, &numMat, (ID3DXMesh**)&mesh);
 	}
+	else if (Kind == stick)
+	{
+		D3DXLoadMeshFromX("../Resources/Meshes/MyPoolAssets/PoolStick.blend.x", D3DXMESH_SYSTEMMEM, (LPDIRECT3DDEVICE9)device, NULL, (LPD3DXBUFFER*)&material_buffer, NULL, &numMat, (ID3DXMesh**)&mesh);
+	}
+
+
 
 
 	material = (D3DXMATERIAL*)((LPD3DXBUFFER)(material_buffer))->GetBufferPointer();

@@ -36,14 +36,15 @@ void RenderEngine_dx9::SetWindow() {
 	d3dpp.BackBufferFormat = D3DFMT_X8R8G8B8;
 	d3dpp.BackBufferWidth = SCREEN_WIDTH;
 	d3dpp.BackBufferHeight = SCREEN_HEIGHT;
+	d3dpp.EnableAutoDepthStencil = TRUE;
+	d3dpp.AutoDepthStencilFormat = D3DFMT_D16;
 
 	((LPDIRECT3D9)intrfc)->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, (HWND)hwnd, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, (LPDIRECT3DDEVICE9*)&device);
 	((LPDIRECT3DDEVICE9)device)->SetRenderState(D3DRS_LIGHTING, TRUE);
-	((LPDIRECT3DDEVICE9)device)->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
+	((LPDIRECT3DDEVICE9)device)->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
 	((LPDIRECT3DDEVICE9)device)->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	((LPDIRECT3DDEVICE9)device)->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
-	((LPDIRECT3DDEVICE9)device)->SetRenderState(D3DRS_ZENABLE, TRUE);    // turn on the z-buffer
-
+	((LPDIRECT3DDEVICE9)device)->SetRenderState(D3DRS_ZENABLE, TRUE);
 	((LPDIRECT3DDEVICE9)device)->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_MODULATE);
 
 
@@ -92,6 +93,10 @@ void RenderEngine_dx9::end_frame() {
 }
 
 void RenderEngine_dx9::Render(IGraphicsObject* gObject) {
+
+	if (gObject == nullptr)
+		return;
+
 	if ((SUCCEEDED(((LPDIRECT3DDEVICE9)device)->BeginScene()))) {
 		//((LPDIRECT3DDEVICE9)device)->SetTexture(0, (IDirect3DTexture9*)(gObject->GetTexture()));
 
