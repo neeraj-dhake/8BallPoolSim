@@ -36,8 +36,8 @@ PoolTable::PoolTable()
 	plane3 = new WorldObject_plane(STATIC);
 }
 
-void PoolTable::SetCoordinates(Vector3D v)
-{
+void PoolTable::SetCoordinates(Vector3D v) {
+	v = v - Vector3D(0, 10, 0);
 	baseObj->SetCoordinates(v);
 	leftCushionObj->SetCoordinates(v);
 	rightCushionObj->SetCoordinates(v);
@@ -48,10 +48,10 @@ void PoolTable::SetCoordinates(Vector3D v)
 	plane1->SetPlane(Vector3D(0, 0, -1), -109);
 	plane2->SetPlane(Vector3D(-0.5, 3, 1), -76);
 	plane3->SetPlane(Vector3D(1, 0, 0), -100);
-	PoolBallBlack->GetObj()->SetCoordinates(Vector3D(5, 0, 0));
-	PoolBallBlue->GetObj()->SetCoordinates(Vector3D(-5, 0, 0));
+	PoolBallBlack->GetObj()->SetCoordinates(Vector3D(5, 5, 0));
+	PoolBallBlue->GetObj()->SetCoordinates(Vector3D(-5, 5, 0));
 
-	PoolBallWhite->GetObj()->SetCoordinates(Vector3D(-5, 0, 20));
+	PoolBallWhite->GetObj()->SetCoordinates(Vector3D(-5, 5, 20));
 
 	PoolStick->SetCoordinates(Vector3D(25, 0, 20));
 
@@ -86,9 +86,6 @@ void PoolTable::AddObject(Scene *scene)
 	scene->AddObject(toprightCushionObj);
 	scene->AddObject(bottomleftCushionObj);
 	scene->AddObject(bottomrightCushionObj);
-	scene->AddObject(plane1);
-	scene->AddObject(plane2);
-	scene->AddObject(plane3);
 	scene->AddObject(PoolBallWhite->GetObj());
 	PoolBallWhite->GetObj()->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
 	scene->AddObject(PoolBallBlue->GetObj());
@@ -108,6 +105,9 @@ void PoolTable::AddObject(Scene *scene)
 	scene->AddObject(PoolBallPurple_stripes->GetObj());
 
 	scene->AddObject(PoolBallBlack->GetObj());
+	scene->AddObject(plane1);
+	scene->AddObject(plane2);
+	scene->AddObject(plane3);
 
 	for (size_t i = 0; i < scene->objects_in_scene.size(); i++)
 	{
