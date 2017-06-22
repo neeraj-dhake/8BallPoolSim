@@ -13,6 +13,9 @@ PoolTable::PoolTable()
 	bottomrightCushionObj = new WorldObject_pool(STATIC, bottom_right_cushion);
 	PoolBall1 = new WorldObject_sphere(DYNAMIC);
 	PoolBall2 = new WorldObject_sphere(DYNAMIC);
+	plane1 = new WorldObject_plane(STATIC);
+	plane2 = new WorldObject_plane(STATIC);
+	plane3 = new WorldObject_plane(STATIC);
 }
 
 void PoolTable::SetCoordinates(Vector3D v)
@@ -24,11 +27,13 @@ void PoolTable::SetCoordinates(Vector3D v)
 	toprightCushionObj->SetCoordinates(v);
 	bottomleftCushionObj->SetCoordinates(v);
 	bottomrightCushionObj->SetCoordinates(v);
-	PoolBall1->SetCoordinates(Vector3D(5, 0, 0));
-	PoolBall2->SetCoordinates(Vector3D(-5, 0, 0));
+	PoolBall1->SetCoordinates(Vector3D(5, 5, 0));
+	PoolBall2->SetCoordinates(Vector3D(-5, 5, 0));
 	PoolBall1->SetRadius(2.5f);
 	PoolBall2->SetRadius(2.5f);
-
+	plane1->SetPlane(Vector3D(0, 0, -1), -109);
+	plane2->SetPlane(Vector3D(-0.5, 3, 1), -76);
+	plane3->SetPlane(Vector3D(1, 0, 0), -100);
 }
 
 void PoolTable::AddObject(Scene *scene)
@@ -44,6 +49,9 @@ void PoolTable::AddObject(Scene *scene)
 	PoolBall1->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
 	scene->AddObject(PoolBall2);
 	PoolBall2->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
+	scene->AddObject(plane1);
+	scene->AddObject(plane2);
+	scene->AddObject(plane3);
 }
 
 

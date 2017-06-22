@@ -7,7 +7,7 @@ WorldObject_pool::WorldObject_pool(property prp_,kind Kind) {
 }
 
 void WorldObject_pool::CreateObject(BulletWorld* PhyWorld_) {
-	pObject = PhyWorld_->AddObject(pool, prp, this);
+	pObject = PhyWorld_->AddObject(POOL, prp, this);
 }
 
 

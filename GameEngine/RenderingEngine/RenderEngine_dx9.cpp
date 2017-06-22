@@ -93,7 +93,7 @@ void RenderEngine_dx9::end_frame() {
 }
 
 void RenderEngine_dx9::Render(IGraphicsObject* gObject) {
-	if ((SUCCEEDED(((LPDIRECT3DDEVICE9)device)->BeginScene()))) {
+	if ((SUCCEEDED(((LPDIRECT3DDEVICE9)device)->BeginScene())) && gObject != nullptr) {
 		//((LPDIRECT3DDEVICE9)device)->SetTexture(0, (IDirect3DTexture9*)(gObject->GetTexture()));
 
 		D3DXMATRIX matTranslate;

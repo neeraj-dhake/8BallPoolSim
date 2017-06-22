@@ -1,12 +1,12 @@
 #include "WorldObject_pool.h"
 #include "../SceneManager/Scene.h"
 #include "../BulletPhysicsEngine/WorldObject_sphere.h"
+#include "../BulletPhysicsEngine/WorldObject_plane.h"
 
 const unsigned int PoolBall1 = 8;
 const unsigned int PoolBall2 = 7;
 #pragma once
-class PoolTable
-{
+class PoolTable {
 	WorldObject_pool* baseObj;
 	WorldObject_pool* leftCushionObj;
 	WorldObject_pool* rightCushionObj;
@@ -16,7 +16,9 @@ class PoolTable
 	WorldObject_pool* bottomrightCushionObj;
 	WorldObject_sphere* PoolBall1;
 	WorldObject_sphere* PoolBall2;
-
+	WorldObject_plane* plane1;
+	WorldObject_plane* plane2;
+	WorldObject_plane* plane3;
 public:
 	PoolTable();
 	void SetCoordinates(Vector3D);

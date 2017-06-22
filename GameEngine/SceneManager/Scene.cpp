@@ -4,8 +4,6 @@
 Scene::Scene() {
 }
 
-
-
 Vector3D Scene::GetCameraPosition() {
 	return camera_position;
 }
@@ -42,34 +40,24 @@ void Scene::AddObject(IWorldObject* obj) {
 	(obj->GetgObject())->Init();
 	obj->CreateObject(Manager->PhyWorld);
 	objects_in_scene.push_back(obj);
-	// create is to be called
 
 	
 }
 
 void Scene::DeleteObject(IWorldObject* obj) {
-	//objects_in_scene.remove(obj);
-	// To be implemented
-
-
 }
 
-void Scene::UpdateScene()
-{
+void Scene::UpdateScene(){
 }
 
-void Scene::ActivateScene()
-{
-	for (size_t i = 0; i < objects_in_scene.size() ; i++)
-	{
+void Scene::ActivateScene() {
+	for (size_t i = 0; i < objects_in_scene.size() ; i++) {
 		objects_in_scene[i]->CreateObject(Manager->PhyWorld);
 	}
 }
 
-void Scene::DeactivateScene()
-{
-	for (size_t i = 0; i < objects_in_scene.size(); i++)
-	{
+void Scene::DeactivateScene() {
+	for (size_t i = 0; i < objects_in_scene.size(); i++) {
 		Manager->PhyWorld->GetDynamicWorld()->removeCollisionObject(objects_in_scene[i]->GetpObject());
 	}
 }
