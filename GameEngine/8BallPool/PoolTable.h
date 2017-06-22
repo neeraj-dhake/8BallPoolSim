@@ -1,9 +1,10 @@
 #include "WorldObject_pool.h"
 #include "../SceneManager/Scene.h"
 #include "../BulletPhysicsEngine/WorldObject_sphere.h"
+#include "PoolBall.h"
 
-const unsigned int PoolBall1 = 8;
-const unsigned int PoolBall2 = 7;
+const unsigned int PoolBallBlack = 8;
+const unsigned int PoolBallBlue = 7;
 #pragma once
 class PoolTable
 {
@@ -14,8 +15,23 @@ class PoolTable
 	WorldObject_pool* toprightCushionObj;
 	WorldObject_pool* bottomleftCushionObj;
 	WorldObject_pool* bottomrightCushionObj;
-	WorldObject_sphere* PoolBall1;
-	WorldObject_sphere* PoolBall2;
+	PoolBall* PoolBallBlack;
+	PoolBall* PoolBallBlue;
+	PoolBall* PoolBallOchre;
+	PoolBall* PoolBallBrown;
+	PoolBall* PoolBallRed;
+	PoolBall* PoolBallYellow;
+	PoolBall* PoolBallGreen;
+	PoolBall* PoolBallPurple;
+
+	PoolBall* PoolBallBlack_stripes;
+	PoolBall* PoolBallBlue_stripes;
+	PoolBall* PoolBallOchre_stripes;
+	PoolBall* PoolBallBrown_stripes;
+	PoolBall* PoolBallRed_stripes;
+	PoolBall* PoolBallYellow_stripes;
+	PoolBall* PoolBallGreen_stripes;
+	PoolBall* PoolBallPurple_stripes;
 
 public:
 	PoolTable();

@@ -47,7 +47,7 @@ void GraphicsObject_pool::Init() {
 	{
 		D3DXLoadMeshFromX("../Resources/Meshes/MyPoolAssets/PoolBottom2Cushion.blend.x", D3DXMESH_SYSTEMMEM, (LPDIRECT3DDEVICE9)device, NULL, (LPD3DXBUFFER*)&material_buffer, NULL, &numMat, (ID3DXMesh**)&mesh);
 	}
-	else if (Kind == PoolBall)
+	else if (Kind == poolBall)
 	{
 		D3DXLoadMeshFromX("../Resources/Meshes/MyPoolAssets/PoolBall.blend.x", D3DXMESH_SYSTEMMEM, (LPDIRECT3DDEVICE9)device, NULL, (LPD3DXBUFFER*)&material_buffer, NULL, &numMat, (ID3DXMesh**)&mesh);
 	}

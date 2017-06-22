@@ -7,8 +7,9 @@ class WorldObject_sphere;
 class GraphicsObject_sphere : public IGraphicsObject
 {
 public:
-	GraphicsObject_sphere(WorldObject_sphere*);
+	GraphicsObject_sphere(WorldObject_sphere*,std::string address_ = "PoolBall.blend_yellow.x");
 	~GraphicsObject_sphere();
-	void Init();
+	virtual void Init();
+	std::string address;
 };
 

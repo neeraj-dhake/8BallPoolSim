@@ -64,29 +64,29 @@ Vector3D toEulerianAngle(const btQuaternion& q)
 
 void GamePlayScene::UpdateScene() {
 	if (InputHandler::instance().GetKeyState_current(KEY_D))
-		(objects_in_scene[PoolBall1]->GetpObject())->applyCentralImpulse(btVector3(btScalar(-0.5), btScalar(0), btScalar(0)));
+		(objects_in_scene[PoolBallBlack]->GetpObject())->applyCentralImpulse(btVector3(btScalar(-0.5), btScalar(0), btScalar(0)));
 
 	if (InputHandler::instance().GetKeyState_current(KEY_A))
-		(objects_in_scene[PoolBall1]->GetpObject())->applyCentralImpulse(btVector3(btScalar(+0.5), btScalar(0), btScalar(0)));
+		(objects_in_scene[PoolBallBlack]->GetpObject())->applyCentralImpulse(btVector3(btScalar(+0.5), btScalar(0), btScalar(0)));
 
 	if (InputHandler::instance().GetKeyState_current(KEY_W))
-		(objects_in_scene[PoolBall1]->GetpObject())->applyCentralImpulse(btVector3(btScalar(0), btScalar(0), btScalar(-0.5)));
+		(objects_in_scene[PoolBallBlack]->GetpObject())->applyCentralImpulse(btVector3(btScalar(0), btScalar(0), btScalar(-0.5)));
 
 	if (InputHandler::instance().GetKeyState_current(KEY_S))
-		(objects_in_scene[PoolBall1]->GetpObject())->applyCentralImpulse(btVector3(btScalar(0), btScalar(-0), btScalar(0.5)));
+		(objects_in_scene[PoolBallBlack]->GetpObject())->applyCentralImpulse(btVector3(btScalar(0), btScalar(-0), btScalar(0.5)));
 
 
 	if (InputHandler::instance().GetKeyState_current(KEY_UP))
-		(objects_in_scene[PoolBall2]->GetpObject())->applyCentralImpulse(btVector3(btScalar(0), btScalar(0), btScalar(-0.5)));
+		(objects_in_scene[PoolBallBlue]->GetpObject())->applyCentralImpulse(btVector3(btScalar(0), btScalar(0), btScalar(-0.5)));
 
 	if (InputHandler::instance().GetKeyState_current(KEY_DOWN))
-		(objects_in_scene[PoolBall2]->GetpObject())->applyCentralImpulse(btVector3(btScalar(0), btScalar(-0), btScalar(0.5)));
+		(objects_in_scene[PoolBallBlue]->GetpObject())->applyCentralImpulse(btVector3(btScalar(0), btScalar(-0), btScalar(0.5)));
 
 	if (InputHandler::instance().GetKeyState_current(KEY_LEFT))
-		(objects_in_scene[PoolBall2]->GetpObject())->applyCentralImpulse(btVector3(btScalar(+0.5), btScalar(0), btScalar(0)));
+		(objects_in_scene[PoolBallBlue]->GetpObject())->applyCentralImpulse(btVector3(btScalar(+0.5), btScalar(0), btScalar(0)));
 
 	if (InputHandler::instance().GetKeyState_current(KEY_RIGHT))
-		(objects_in_scene[PoolBall2]->GetpObject())->applyCentralImpulse(btVector3(btScalar(-0.5), btScalar(0), btScalar(0)));
+		(objects_in_scene[PoolBallBlue]->GetpObject())->applyCentralImpulse(btVector3(btScalar(-0.5), btScalar(0), btScalar(0)));
 
 
 

@@ -11,8 +11,25 @@ PoolTable::PoolTable()
 	toprightCushionObj = new WorldObject_pool(STATIC, top_right_cushion);
 	bottomleftCushionObj = new WorldObject_pool(STATIC, bottom_left_cushion);
 	bottomrightCushionObj = new WorldObject_pool(STATIC, bottom_right_cushion);
-	PoolBall1 = new WorldObject_sphere(DYNAMIC);
-	PoolBall2 = new WorldObject_sphere(DYNAMIC);
+	PoolBallBlack = new PoolBall(DYNAMIC,black);
+	PoolBallBlue = new PoolBall(DYNAMIC,blue);
+	PoolBallGreen = new PoolBall(DYNAMIC, green);
+	PoolBallRed = new PoolBall(DYNAMIC, red);
+	PoolBallYellow = new PoolBall(DYNAMIC, yellow);
+	PoolBallOchre = new PoolBall(DYNAMIC, ochre);
+	PoolBallPurple = new PoolBall(DYNAMIC, purple);
+	PoolBallBrown = new PoolBall(DYNAMIC, brown);
+
+	PoolBallBlue_stripes = new PoolBall(DYNAMIC, blue_stripes);
+	PoolBallGreen_stripes = new PoolBall(DYNAMIC, green_stripes);
+	PoolBallRed_stripes = new PoolBall(DYNAMIC, red_stripes);
+	PoolBallYellow_stripes = new PoolBall(DYNAMIC, yellow_stripes);
+	PoolBallOchre_stripes = new PoolBall(DYNAMIC, ochre_stripes);
+	PoolBallPurple_stripes = new PoolBall(DYNAMIC, purple_stripes);
+	PoolBallBrown_stripes = new PoolBall(DYNAMIC, brown_stripes);
+
+
+
 }
 
 void PoolTable::SetCoordinates(Vector3D v)
@@ -24,10 +41,26 @@ void PoolTable::SetCoordinates(Vector3D v)
 	toprightCushionObj->SetCoordinates(v);
 	bottomleftCushionObj->SetCoordinates(v);
 	bottomrightCushionObj->SetCoordinates(v);
-	PoolBall1->SetCoordinates(Vector3D(5, 0, 0));
-	PoolBall2->SetCoordinates(Vector3D(-5, 0, 0));
-	PoolBall1->SetRadius(2.5f);
-	PoolBall2->SetRadius(2.5f);
+	PoolBallBlack->GetObj()->SetCoordinates(Vector3D(5, 0, 0));
+	PoolBallBlue->GetObj()->SetCoordinates(Vector3D(-5, 0, 0));
+
+	// set radius
+	PoolBallBlue_stripes->GetObj()->SetRadius(2.5f);
+	PoolBallGreen_stripes->GetObj()->SetRadius(2.5f);
+	PoolBallRed_stripes->GetObj()->SetRadius(2.5f);
+	PoolBallYellow_stripes->GetObj()->SetRadius(2.5f);
+	PoolBallOchre_stripes->GetObj()->SetRadius(2.5f);
+	PoolBallPurple_stripes->GetObj()->SetRadius(2.5f);
+	PoolBallBrown_stripes->GetObj()->SetRadius(2.5f);
+
+	PoolBallBlack->GetObj()->SetRadius(2.5f);
+	PoolBallBlue->GetObj()->SetRadius(2.5f);
+	PoolBallGreen->GetObj()->SetRadius(2.5f);
+	PoolBallRed->GetObj()->SetRadius(2.5f);
+	PoolBallYellow->GetObj()->SetRadius(2.5f);
+	PoolBallOchre->GetObj()->SetRadius(2.5f);
+	PoolBallPurple->GetObj()->SetRadius(2.5f);
+	PoolBallBrown->GetObj()->SetRadius(2.5f);
 
 }
 
@@ -40,14 +73,53 @@ void PoolTable::AddObject(Scene *scene)
 	scene->AddObject(toprightCushionObj);
 	scene->AddObject(bottomleftCushionObj);
 	scene->AddObject(bottomrightCushionObj);
-	scene->AddObject(PoolBall1);
-	PoolBall1->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
-	scene->AddObject(PoolBall2);
-	PoolBall2->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
+	scene->AddObject(PoolBallBlack->GetObj());
+	PoolBallBlack->GetObj()->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
+	scene->AddObject(PoolBallBlue->GetObj());
+	PoolBallBlue->GetObj()->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
+
+	scene->AddObject(PoolBallBrown->GetObj());
+	scene->AddObject(PoolBallRed->GetObj());
+	scene->AddObject(PoolBallYellow->GetObj());
+	scene->AddObject(PoolBallGreen->GetObj());
+	scene->AddObject(PoolBallOchre->GetObj());
+	scene->AddObject(PoolBallPurple->GetObj());
+
+	scene->AddObject(PoolBallBlue_stripes->GetObj());
+	scene->AddObject(PoolBallBrown_stripes->GetObj());
+	scene->AddObject(PoolBallRed_stripes->GetObj());
+	scene->AddObject(PoolBallYellow_stripes->GetObj());
+	scene->AddObject(PoolBallGreen_stripes->GetObj());
+	scene->AddObject(PoolBallOchre_stripes->GetObj());
+	scene->AddObject(PoolBallPurple_stripes->GetObj());
+
+
 }
 
 
 PoolTable::~PoolTable()
 {
+	delete baseObj;
+	delete leftCushionObj;
+	delete rightCushionObj;
+	delete topleftCushionObj;
+	delete toprightCushionObj;
+	delete bottomleftCushionObj;
+	delete bottomrightCushionObj;
+	delete PoolBallBlack;
+	delete PoolBallBlue;
+	delete PoolBallGreen;
+	delete PoolBallRed;
+	delete PoolBallYellow;
+	delete PoolBallOchre;
+	delete PoolBallPurple;
+	delete PoolBallBrown;
 
+	delete PoolBallBlue_stripes;
+	delete PoolBallGreen_stripes;
+	delete PoolBallRed_stripes;
+	delete PoolBallYellow_stripes;
+	delete PoolBallOchre_stripes;
+	delete PoolBallPurple_stripes;
+	delete PoolBallBrown_stripes;
 }

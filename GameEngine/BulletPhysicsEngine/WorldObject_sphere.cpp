@@ -3,8 +3,8 @@
 #include "../RenderingEngine/GraphicsObject_sphere.h"
 
 
-WorldObject_sphere::WorldObject_sphere(property property_) {
-	gObject = new GraphicsObject_sphere(this);
+WorldObject_sphere::WorldObject_sphere(property property_, std::string address_) {
+	gObject = new GraphicsObject_sphere(this,address_);
 	prp = property_;
 }
 
