@@ -1,6 +1,7 @@
 #include "BulletWorld.h"
 #include "WorldObject_cuboid.h"
 #include "WorldObject_sphere.h"
+#include "WorldObject_plane.h"
 #include "../8BallPool/WorldObject_pool.h"
 #include "../Include/BulletCollision/CollisionShapes/btShapeHull.h"
 #include "Vector3D.h"
@@ -19,20 +20,20 @@ void BulletWorld::update() {
 	dynamicsWorld->stepSimulation(1.f / 60.f, 10);
 }
 
-btRigidBody* BulletWorld::AddObject(TypeOfObject type, property prp, void* parent) {	// user editable otherwise put that in else other object
+btRigidBody* BulletWorld::AddObject(TypeOfObject type, property prp, void* parent) {
 	btCollisionShape* Shape;
 	switch (type) {
-		case Cuboid: {
+		case CUBOID: {
 			Vector3D HalfDim = ((WorldObject_cuboid*)parent)->GetDim() / 2.0f;
 			Shape = new btBoxShape(HalfDim.to_btVector3());
 			break;
 		}
-		case Sphere: {
+		case SPHERE: {
 			float radius = ((WorldObject_sphere*)parent)->GetRadius();
 			Shape = new btSphereShape(radius);
 			break;
 		}
-		case pool: {
+		case POOL: {
 			int num_triangles = (((WorldObject_pool*)parent)->GetgObject())->GetNumPrimitives();
 			int num_vertices = (((WorldObject_pool*)parent)->GetgObject())->GetNumVertices();
 			void* vertices = (((WorldObject_pool*)parent)->GetgObject())->GetVBuf();
@@ -55,9 +56,7 @@ btRigidBody* BulletWorld::AddObject(TypeOfObject type, property prp, void* paren
 			else {
 				btVector3* vert = new btVector3[num_vertices];
 				for (size_t i = 0; i < num_vertices; i++) {
-					vert[i].setX(((Vector3D*)vertices)[i].x);
-					vert[i].setY(((Vector3D*)vertices)[i].y);
-					vert[i].setZ(((Vector3D*)vertices)[i].z);
+					vert[i] = ((Vector3D*)vertices)[i].to_btVector3();
 				}
 				Shape = new btConvexHullShape((btScalar*)vert, num_vertices, 4 * sizeof(double));
 				Shape->setMargin(0.1);
@@ -67,6 +66,12 @@ btRigidBody* BulletWorld::AddObject(TypeOfObject type, property prp, void* paren
 				delete Shape;
 				Shape = new btConvexHullShape((btScalar*)(hull->getVertexPointer()), hull->numVertices());
 			}
+			break;
+		}
+		case STATIC_PLANE: {
+			btVector3 normal = ((WorldObject_plane*)parent)->GetNormal().to_btVector3();
+			float dist = ((WorldObject_plane*)parent)->GetDist();
+			Shape = new btStaticPlaneShape(normal, dist);
 			break;
 		}
 		default:

@@ -18,20 +18,8 @@ void GamePlayScene::SetScene() {
 	is_active = true;
 
 	PoolTable* poolTable = new PoolTable();		// total 7 objects are added in the scene list.
-	poolTable->SetCoordinates(Vector3D(0, -10, -50));
+	poolTable->SetCoordinates(Vector3D(0, 0, 0));
 	poolTable->AddObject(this);
-
-	//WorldObject_sphere* obj2 = new WorldObject_sphere(DYNAMIC);
-	//obj2->SetCoordinates(Vector3D(5, 0, 0));
-	//obj2->SetRadius(2.5f);
-	//AddObject(obj2);
-	//obj2->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
-
-	//WorldObject_sphere* obj3 = new WorldObject_sphere(DYNAMIC);
-	//obj3->SetCoordinates(Vector3D(5.0f, 0.0f, 0.0f));
-	//obj3->SetRadius(2.50f);
-	//AddObject(obj3);
-	//obj3->GetpObject()->setActivationState(DISABLE_DEACTIVATION);
 }
 
 GamePlayScene::~GamePlayScene() {

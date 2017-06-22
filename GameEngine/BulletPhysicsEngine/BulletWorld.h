@@ -8,7 +8,7 @@
 #pragma comment (lib, "Bullet3Collision_vs2010_x64_debug.lib")
 #pragma comment (lib, "LinearMath_vs2010_x64_debug.lib")
 
-enum TypeOfObject {Sphere, Cuboid, pool};
+enum TypeOfObject {SPHERE, CUBOID, POOL, STATIC_PLANE};
 enum property {STATIC, DYNAMIC};
 
 

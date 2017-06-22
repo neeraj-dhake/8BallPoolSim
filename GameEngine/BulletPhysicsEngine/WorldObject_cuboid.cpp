@@ -4,8 +4,11 @@
 #include "BulletWorld.h"
 
 
-WorldObject_cuboid::WorldObject_cuboid(property property_) {
-	gObject = new GraphicsObject_cuboid(this);
+WorldObject_cuboid::WorldObject_cuboid(property property_, bool need_graphics) {
+	if (need_graphics)
+		gObject = new GraphicsObject_cuboid(this);
+	else
+		gObject = NULL;
 	prp = property_;
 }
 
@@ -14,7 +17,7 @@ Vector3D WorldObject_cuboid::GetDim() {
 }
 
 void WorldObject_cuboid::CreateObject(BulletWorld* PhyWorld_) {
-	pObject = PhyWorld_->AddObject(Cuboid, prp, this);
+	pObject = PhyWorld_->AddObject(CUBOID, prp, this);
 }
 
 void WorldObject_cuboid::SetDim(float w, float h, float d) {

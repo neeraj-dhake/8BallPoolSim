@@ -21,5 +21,5 @@ void WorldObject_sphere::SetRadius(float r) {
 }
 
 void WorldObject_sphere::CreateObject(BulletWorld* PhyWorld_) {
-	pObject = PhyWorld_->AddObject(Sphere, prp, this);
+	pObject = PhyWorld_->AddObject(SPHERE, prp, this);
 }

@@ -31,9 +31,9 @@ PoolTable::PoolTable()
 	PoolBallBrown_stripes = new PoolBall(DYNAMIC, brown_stripes);
 
 	PoolStick = new WorldObject_pool(DYNAMIC, stick);
-
-
-
+	plane1 = new WorldObject_plane(STATIC);
+	plane2 = new WorldObject_plane(STATIC);
+	plane3 = new WorldObject_plane(STATIC);
 }
 
 void PoolTable::SetCoordinates(Vector3D v)
@@ -45,6 +45,9 @@ void PoolTable::SetCoordinates(Vector3D v)
 	toprightCushionObj->SetCoordinates(v);
 	bottomleftCushionObj->SetCoordinates(v);
 	bottomrightCushionObj->SetCoordinates(v);
+	plane1->SetPlane(Vector3D(0, 0, -1), -109);
+	plane2->SetPlane(Vector3D(-0.5, 3, 1), -76);
+	plane3->SetPlane(Vector3D(1, 0, 0), -100);
 	PoolBallBlack->GetObj()->SetCoordinates(Vector3D(5, 0, 0));
 	PoolBallBlue->GetObj()->SetCoordinates(Vector3D(-5, 0, 0));
 
@@ -83,14 +86,12 @@ void PoolTable::AddObject(Scene *scene)
 	scene->AddObject(toprightCushionObj);
 	scene->AddObject(bottomleftCushionObj);
 	scene->AddObject(bottomrightCushionObj);
+	scene->AddObject(plane1);
+	scene->AddObject(plane2);
+	scene->AddObject(plane3);
 	scene->AddObject(PoolBallWhite->GetObj());
 	PoolBallWhite->GetObj()->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
-	//scene->AddObject(PoolStick);
-	//PoolStick->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
 	scene->AddObject(PoolBallBlue->GetObj());
-	
-
-
 	scene->AddObject(PoolBallBrown->GetObj());
 	scene->AddObject(PoolBallRed->GetObj());
 	scene->AddObject(PoolBallYellow->GetObj());
@@ -114,6 +115,9 @@ void PoolTable::AddObject(Scene *scene)
 		(scene->objects_in_scene[i])->GetpObject()->setAnisotropicFriction(btVector3(5, 5, 5));
 	}
 
+
+	//scene->AddObject(PoolStick);
+	//PoolStick->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
 }
 
 
