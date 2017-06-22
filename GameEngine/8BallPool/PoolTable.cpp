@@ -20,6 +20,8 @@ PoolTable::PoolTable()
 	PoolBallPurple = new PoolBall(DYNAMIC, purple);
 	PoolBallBrown = new PoolBall(DYNAMIC, brown);
 
+	PoolBallWhite = new PoolBall(DYNAMIC, white);
+
 	PoolBallBlue_stripes = new PoolBall(DYNAMIC, blue_stripes);
 	PoolBallGreen_stripes = new PoolBall(DYNAMIC, green_stripes);
 	PoolBallRed_stripes = new PoolBall(DYNAMIC, red_stripes);
@@ -27,6 +29,8 @@ PoolTable::PoolTable()
 	PoolBallOchre_stripes = new PoolBall(DYNAMIC, ochre_stripes);
 	PoolBallPurple_stripes = new PoolBall(DYNAMIC, purple_stripes);
 	PoolBallBrown_stripes = new PoolBall(DYNAMIC, brown_stripes);
+
+	PoolStick = new WorldObject_pool(DYNAMIC, stick);
 
 
 
@@ -44,6 +48,10 @@ void PoolTable::SetCoordinates(Vector3D v)
 	PoolBallBlack->GetObj()->SetCoordinates(Vector3D(5, 0, 0));
 	PoolBallBlue->GetObj()->SetCoordinates(Vector3D(-5, 0, 0));
 
+	PoolBallWhite->GetObj()->SetCoordinates(Vector3D(-5, 0, 20));
+
+	PoolStick->SetCoordinates(Vector3D(25, 0, 20));
+
 	// set radius
 	PoolBallBlue_stripes->GetObj()->SetRadius(2.5f);
 	PoolBallGreen_stripes->GetObj()->SetRadius(2.5f);
@@ -52,6 +60,8 @@ void PoolTable::SetCoordinates(Vector3D v)
 	PoolBallOchre_stripes->GetObj()->SetRadius(2.5f);
 	PoolBallPurple_stripes->GetObj()->SetRadius(2.5f);
 	PoolBallBrown_stripes->GetObj()->SetRadius(2.5f);
+
+	PoolBallWhite->GetObj()->SetRadius(2.5f);
 
 	PoolBallBlack->GetObj()->SetRadius(2.5f);
 	PoolBallBlue->GetObj()->SetRadius(2.5f);
@@ -73,10 +83,13 @@ void PoolTable::AddObject(Scene *scene)
 	scene->AddObject(toprightCushionObj);
 	scene->AddObject(bottomleftCushionObj);
 	scene->AddObject(bottomrightCushionObj);
-	scene->AddObject(PoolBallBlack->GetObj());
-	PoolBallBlack->GetObj()->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
+	scene->AddObject(PoolBallWhite->GetObj());
+	PoolBallWhite->GetObj()->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
+	//scene->AddObject(PoolStick);
+	//PoolStick->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
 	scene->AddObject(PoolBallBlue->GetObj());
-	PoolBallBlue->GetObj()->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
+	
+
 
 	scene->AddObject(PoolBallBrown->GetObj());
 	scene->AddObject(PoolBallRed->GetObj());
@@ -93,6 +106,13 @@ void PoolTable::AddObject(Scene *scene)
 	scene->AddObject(PoolBallOchre_stripes->GetObj());
 	scene->AddObject(PoolBallPurple_stripes->GetObj());
 
+	scene->AddObject(PoolBallBlack->GetObj());
+
+	for (size_t i = 0; i < scene->objects_in_scene.size(); i++)
+	{
+		(scene->objects_in_scene[i])->GetpObject()->setFriction(5.0f);
+		(scene->objects_in_scene[i])->GetpObject()->setAnisotropicFriction(btVector3(5, 5, 5));
+	}
 
 }
 
@@ -114,6 +134,9 @@ PoolTable::~PoolTable()
 	delete PoolBallOchre;
 	delete PoolBallPurple;
 	delete PoolBallBrown;
+
+	delete PoolStick;
+	delete PoolBallWhite;
 
 	delete PoolBallBlue_stripes;
 	delete PoolBallGreen_stripes;

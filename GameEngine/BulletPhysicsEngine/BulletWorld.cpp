@@ -37,7 +37,7 @@ btRigidBody* BulletWorld::AddObject(TypeOfObject type, property prp, void* paren
 			int num_vertices = (((WorldObject_pool*)parent)->GetgObject())->GetNumVertices();
 			void* vertices = (((WorldObject_pool*)parent)->GetgObject())->GetVBuf();
 
-			if (/*(((WorldObject_pool*)parent)->GetgObject())->isConcave*/1) {
+			if ((((WorldObject_pool*)parent)->GetgObject())->isConcave) {
 				void* indices = (((WorldObject_pool*)parent)->GetgObject())->GetIBuf();
 				btTriangleIndexVertexArray* meshInterface = new btTriangleIndexVertexArray();
 				btIndexedMesh part;

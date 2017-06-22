@@ -24,6 +24,8 @@ class PoolTable
 	PoolBall* PoolBallGreen;
 	PoolBall* PoolBallPurple;
 
+	PoolBall* PoolBallWhite;
+
 	PoolBall* PoolBallBlack_stripes;
 	PoolBall* PoolBallBlue_stripes;
 	PoolBall* PoolBallOchre_stripes;
@@ -32,6 +34,8 @@ class PoolTable
 	PoolBall* PoolBallYellow_stripes;
 	PoolBall* PoolBallGreen_stripes;
 	PoolBall* PoolBallPurple_stripes;
+
+	WorldObject_pool* PoolStick;
 
 public:
 	PoolTable();

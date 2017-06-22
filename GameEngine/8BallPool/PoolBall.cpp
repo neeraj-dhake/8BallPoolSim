@@ -32,6 +32,10 @@ PoolBall::PoolBall(property property_,colour c)
 		address = "PoolBall.blend_green.x";
 		break;
 
+	case white:
+		address = "PoolBall.blend_white.x";
+		break;
+
 	case blue_stripes:
 		address = "PoolBall.blend_blue_stripes.x";
 		break;
