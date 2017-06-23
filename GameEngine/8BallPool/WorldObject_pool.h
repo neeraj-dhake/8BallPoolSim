@@ -6,8 +6,9 @@
 
 class WorldObject_pool : public IWorldObject {
 protected:
+	kind Kind;
 public:
-	WorldObject_pool(property,kind);
+	WorldObject_pool(property,kind,TypeOfObject type_ = RIGID_BODY);
 	void CreateObject(BulletWorld*);
 	~WorldObject_pool();
 };

@@ -30,7 +30,7 @@ void IWorldObject::CreateObject(BulletWorld *)
 	// kept for allowing craetion of abstaract class since can't create class of virtual type
 }
 
-btRigidBody* IWorldObject::GetpObject() {
+btCollisionObject* IWorldObject::GetpObject() {
 	return pObject;
 }
 
