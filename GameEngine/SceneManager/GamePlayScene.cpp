@@ -87,7 +87,8 @@ void GamePlayScene::UpdateScene() {
 		sprintf_s(msgbuf, 200, "%d %f %f %f\n", i, objects_in_scene[i]->GetpObject()->getCenterOfMassPosition().getX(), objects_in_scene[i]->GetpObject()->getCenterOfMassPosition().getY(), objects_in_scene[i]->GetpObject()->getCenterOfMassPosition().getZ());
 		OutputDebugString(msgbuf);
 		objects_in_scene[i]->SetCoordinates(Vector3D(objects_in_scene[i]->GetpObject()->getCenterOfMassPosition()));
-		objects_in_scene[i]->SetRotation(Vector3D(toEulerianAngle(objects_in_scene[i]->GetpObject()->getOrientation())));
-
+		btQuaternion as = objects_in_scene[i]->GetpObject()->getOrientation();
+		objects_in_scene[i]->SetW(as.getW());
+		objects_in_scene[i]->SetRotation(Vector3D(as.getX(), as.getY(), as.getZ()));
 	}
 }

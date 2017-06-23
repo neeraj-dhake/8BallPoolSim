@@ -17,12 +17,20 @@ Vector3D IWorldObject::GetRotation() {
 	return rotation;
 }
 
+float IWorldObject::GetW() {
+	return w;
+}
+
 void IWorldObject::SetCoordinates(Vector3D pos) {
 	position = pos;
 }
 
 void IWorldObject::SetRotation(Vector3D rot) {
 	rotation = rot;
+}
+
+void IWorldObject::SetW(float ww) {
+	w = ww;
 }
 
 void IWorldObject::CreateObject(BulletWorld *)

@@ -104,7 +104,9 @@ void RenderEngine_dx9::Render(IGraphicsObject* gObject) {
 
 		D3DXMATRIX matRotate;
 		Vector3D rotation = gObject->GetParent()->GetRotation();
-		D3DXMatrixRotationYawPitchRoll(&matRotate, rotation.y, rotation.x, rotation.z);
+		float w = gObject->GetParent()->GetW();
+		D3DXQUATERNION rot(rotation.x, rotation.y, rotation.z, w);
+		D3DXMatrixRotationQuaternion(&matRotate, &rot);
 		((LPDIRECT3DDEVICE9)device)->SetTransform(D3DTS_WORLD, &(matRotate*matTranslate));
 
 		for (int i = 0; i < gObject->GetNum(); i++) {
