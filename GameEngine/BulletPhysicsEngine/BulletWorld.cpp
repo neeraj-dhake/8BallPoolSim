@@ -4,15 +4,21 @@
 #include "WorldObject_plane.h"
 #include "../8BallPool/WorldObject_pool.h"
 #include "../Include/BulletCollision/CollisionShapes/btShapeHull.h"
+#include "../Include/BulletCollision/BroadphaseCollision/btCollisionAlgorithm.h"
+#include "../Include/BulletDynamics/Character/btKinematicCharacterController.h"
+
+#include "../Include/BulletCollision/CollisionDispatch/btGhostObject.h"
+
 #include "Vector3D.h"
 
 BulletWorld::BulletWorld() {
+
+
 	collisionConfiguration = new btDefaultCollisionConfiguration();
 	dispatcher = new btCollisionDispatcher(collisionConfiguration);
 	overlappingPairCache = new btDbvtBroadphase();
 	solver = new btSequentialImpulseConstraintSolver;
 	dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);
-
 	dynamicsWorld->setGravity(btVector3(0, -10, 0));
 }
 
@@ -20,9 +26,9 @@ void BulletWorld::update() {
 	dynamicsWorld->stepSimulation(1.f / 60.f, 10);
 }
 
-btRigidBody* BulletWorld::AddObject(TypeOfObject type, property prp, void* parent) {
+btCollisionObject* BulletWorld::AddObject(ShapeOfObject shape, property prp, void* parent, TypeOfObject type) {
 	btCollisionShape* Shape;
-	switch (type) {
+	switch (shape) {
 		case CUBOID: {
 			Vector3D HalfDim = ((WorldObject_cuboid*)parent)->GetDim() / 2.0f;
 			Shape = new btBoxShape(HalfDim.to_btVector3());
@@ -96,10 +102,31 @@ btRigidBody* BulletWorld::AddObject(TypeOfObject type, property prp, void* paren
 	if (isDynamic)
 		Shape->calculateLocalInertia(mass, localInertia);
 
-	btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState, Shape, localInertia);
-	btRigidBody* body = new btRigidBody(rbInfo);
-	dynamicsWorld->addRigidBody(body);
-	return body;
+	if (type == GHOST_OBJECT)
+	{
+		btPairCachingGhostObject* ghost_body = new btPairCachingGhostObject();
+		ghost_body->setCollisionShape(Shape);
+
+								
+		btTransform bullet_matrix;
+		bullet_matrix.setOrigin(position.to_btVector3());
+		bullet_matrix.setRotation(btQuaternion(0, 0, 0, 1));
+		ghost_body->setWorldTransform(bullet_matrix);
+		ghost_body->setCollisionFlags(ghost_body->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
+		//dynamicsWorld->addCollisionObject(ghost_body, btBroadphaseProxy::SensorTrigger, btBroadphaseProxy::KinematicFilter);
+		dynamicsWorld->addCollisionObject(ghost_body, btBroadphaseProxy::DefaultFilter, btBroadphaseProxy::AllFilter);
+
+		return ghost_body;
+	}
+	else
+	{
+		btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState, Shape, localInertia);
+		btRigidBody* rigid_body = new btRigidBody(rbInfo);
+		dynamicsWorld->addRigidBody(rigid_body);
+		return rigid_body;
+	}
+
+
 }
 
 btDiscreteDynamicsWorld * BulletWorld::GetDynamicWorld() {

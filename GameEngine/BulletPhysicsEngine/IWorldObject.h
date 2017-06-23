@@ -7,9 +7,10 @@
 class IWorldObject {
 protected:
 	property prp;
+	TypeOfObject type;
 	Vector3D position;
 	Vector3D rotation;
-	btRigidBody* pObject;
+	btCollisionObject* pObject;
 	IGraphicsObject* gObject;
 public:
 	IWorldObject();
@@ -19,6 +20,6 @@ public:
 	virtual void CreateObject(BulletWorld*);
 	Vector3D GetPos();
 	Vector3D GetRotation();
-	btRigidBody* GetpObject();
+	btCollisionObject* GetpObject();
 	IGraphicsObject* GetgObject();
 };

@@ -37,9 +37,8 @@ void Scene::SetManager(SceneManager* manager) {
 
 void Scene::AddObject(IWorldObject* obj) {
 
-	if (obj->GetgObject() == nullptr)
-	{}
-	else
+
+	if(obj->GetgObject() != nullptr)
 	{
 		(obj->GetgObject())->SetDevice(Manager->render_engine->GetDevice());
 		(obj->GetgObject())->Init();

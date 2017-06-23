@@ -37,7 +37,7 @@ PoolTable::PoolTable()
 }
 
 void PoolTable::SetCoordinates(Vector3D v) {
-	v = v - Vector3D(0, 10, 0);
+	v = v - Vector3D(0, 0, 0);
 	baseObj->SetCoordinates(v);
 	leftCushionObj->SetCoordinates(v);
 	rightCushionObj->SetCoordinates(v);
@@ -51,9 +51,32 @@ void PoolTable::SetCoordinates(Vector3D v) {
 	PoolBallBlack->GetObj()->SetCoordinates(Vector3D(5, 5, 0));
 	PoolBallBlue->GetObj()->SetCoordinates(Vector3D(-5, 5, 0));
 
-	PoolBallWhite->GetObj()->SetCoordinates(Vector3D(-5, 5, 20));
 
-	PoolStick->SetCoordinates(Vector3D(25, 0, 20));
+	PoolBallBlue_stripes->GetObj()->SetCoordinates(Vector3D(15, 5, 5));
+	PoolBallGreen_stripes->GetObj()->SetCoordinates(Vector3D(-15, 5, -5));
+	PoolBallRed_stripes->GetObj()->SetCoordinates(Vector3D(25, 5, 10));
+	PoolBallYellow_stripes->GetObj()->SetCoordinates(Vector3D(-25, 5, -10));
+	PoolBallOchre_stripes->GetObj()->SetCoordinates(Vector3D(35, 5, 20));
+	PoolBallPurple_stripes->GetObj()->SetCoordinates(Vector3D(-35, 5, -20));
+	PoolBallBrown_stripes->GetObj()->SetCoordinates(Vector3D(20, 5, 15));
+
+
+	PoolBallGreen->GetObj()->SetCoordinates(Vector3D(-20, 5, -15));
+	PoolBallRed->GetObj()->SetCoordinates(Vector3D(-10, 5, 25));
+	PoolBallYellow->GetObj()->SetCoordinates(Vector3D(10, 5, -25));
+	PoolBallOchre->GetObj()->SetCoordinates(Vector3D(-30, 5, 30));
+	PoolBallPurple->GetObj()->SetCoordinates(Vector3D(30, 5, -35));
+	PoolBallBrown->GetObj()->SetCoordinates(Vector3D(5, 5, 35));
+
+
+
+	PoolBallWhite->GetObj()->SetCoordinates(Vector3D(-0, 5, 50));
+
+	Vector3D StickPos = PoolBallWhite->GetObj()->GetPos();
+	StickPos.z += offsetFromBall;
+	StickPos.y += 20;
+
+	PoolStick->SetCoordinates(StickPos);
 
 	// set radius
 	PoolBallBlue_stripes->GetObj()->SetRadius(2.5f);
@@ -88,6 +111,23 @@ void PoolTable::AddObject(Scene *scene)
 	scene->AddObject(bottomrightCushionObj);
 	scene->AddObject(PoolBallWhite->GetObj());
 	PoolBallWhite->GetObj()->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
+
+	scene->AddObject(PoolStick);
+	/*PoolStick->GetpObject()->setActivationState(DISABLE_DEACTIVATION);	*/	// used for player controllable objects
+	//PoolStick->GetpObject()->setGravity(btVector3(0,0,0));		
+	//PoolStick->GetpObject()->setCollisionFlags(PoolStick->GetpObject()->CF_NO_CONTACT_RESPONSE);
+
+	//PoolStick->GetpObject()->setCollisionFlags(PoolStick->GetpObject()->getCollisionFlags() ^ btCollisionObject::CF_NO_CONTACT_RESPONSE);
+
+	//PoolStick->GetpObject()->setCollisionFlags(PoolStick->GetpObject()->getCollisionFlags() |		btCollisionObject::CF_NO_CONTACT_RESPONSE);
+	//PoolStick->GetpObject()->CollisionObjectTypes(btCollisionObject::CO_GHOST_OBJECT);
+//	PoolStick->GetpObject()->setFlags(btCollisionObject::CO_GHOST_OBJECT);
+
+
+	PoolStick->GetpObject()->setCollisionFlags(PoolStick->GetpObject()->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
+	PoolStick->GetpObject()->setActivationState(DISABLE_DEACTIVATION);
+
+
 	scene->AddObject(PoolBallBlue->GetObj());
 	scene->AddObject(PoolBallBrown->GetObj());
 	scene->AddObject(PoolBallRed->GetObj());
@@ -105,18 +145,19 @@ void PoolTable::AddObject(Scene *scene)
 	scene->AddObject(PoolBallPurple_stripes->GetObj());
 
 	scene->AddObject(PoolBallBlack->GetObj());
-	scene->AddObject(plane1);
-	scene->AddObject(plane2);
-	scene->AddObject(plane3);
+	//scene->AddObject(plane1);
+	//scene->AddObject(plane2);
+	//scene->AddObject(plane3);
 
 	for (size_t i = 0; i < scene->objects_in_scene.size(); i++)
 	{
-		(scene->objects_in_scene[i])->GetpObject()->setAnisotropicFriction(btVector3(1, 1, 1));
+		(scene->objects_in_scene[i])->GetpObject()->setAnisotropicFriction(btVector3(0.3, 0.3, 0.3));
 	}
+	PoolStick->GetpObject()->setAnisotropicFriction(btVector3(5,5,5));
 
 
-	//scene->AddObject(PoolStick);
-	//PoolStick->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
+	scene->AddObject(PoolStick);
+	PoolStick->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
 }
 
 

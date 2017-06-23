@@ -3,14 +3,16 @@
 #include "../Include/LinearMath/btAlignedObjectArray.h"
 #include "../Include/BulletCollision/CollisionShapes/btCollisionShape.h"
 
+
+
 #pragma once
 #pragma comment (lib, "BulletDynamics_vs2010_x64_debug.lib")
 #pragma comment (lib, "Bullet3Collision_vs2010_x64_debug.lib")
 #pragma comment (lib, "LinearMath_vs2010_x64_debug.lib")
 
-enum TypeOfObject {SPHERE, CUBOID, POOL, STATIC_PLANE};
+enum ShapeOfObject {SPHERE, CUBOID, POOL, STATIC_PLANE};
 enum property {STATIC, DYNAMIC};
-
+enum TypeOfObject { RIGID_BODY, COLLISION_OBJECT, GHOST_OBJECT, SOFT_BODY};
 
 class BulletWorld {
 	btDefaultCollisionConfiguration* collisionConfiguration;
@@ -25,7 +27,7 @@ public:
 	~BulletWorld();
 	void clean();
 	void update();
-	btRigidBody* AddObject(TypeOfObject, property, void*);
+	btCollisionObject* AddObject(ShapeOfObject, property,  void*, TypeOfObject type = RIGID_BODY);
 	btDiscreteDynamicsWorld* GetDynamicWorld();
 };
 

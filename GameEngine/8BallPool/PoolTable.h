@@ -4,8 +4,9 @@
 #include "PoolBall.h"
 #include "../BulletPhysicsEngine/WorldObject_plane.h"
 
-const unsigned int PoolBallBlack = 8;
-const unsigned int PoolBallBlue = 7;
+const unsigned int PoolStick = 8;
+const unsigned int PoolBallWhite = 7;
+const float offsetFromBall = 70.0f;
 #pragma once
 class PoolTable {
 	WorldObject_pool* baseObj;
