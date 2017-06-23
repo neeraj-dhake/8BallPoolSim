@@ -10,6 +10,8 @@ protected:
 	TypeOfObject type;
 	Vector3D position;
 	Vector3D rotation;
+	float w;
+	btRigidBody* pObject;
 	btCollisionObject* pObject;
 	IGraphicsObject* gObject;
 public:
@@ -17,9 +19,11 @@ public:
 	~IWorldObject();
 	void SetCoordinates(Vector3D);
 	void SetRotation(Vector3D);
+	void SetW(float);
 	virtual void CreateObject(BulletWorld*);
 	Vector3D GetPos();
 	Vector3D GetRotation();
 	btCollisionObject* GetpObject();
+	float GetW();
 	IGraphicsObject* GetgObject();
 };
