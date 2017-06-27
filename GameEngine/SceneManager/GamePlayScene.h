@@ -2,7 +2,7 @@
 #pragma once
 
 class GamePlayScene : public Scene {
-	enum GamePlayObjects {obj1,obj2,obj3};	// write some sensible names next time
+	bool StickPlaced;
 public:
 	GamePlayScene();
 	void SetScene();

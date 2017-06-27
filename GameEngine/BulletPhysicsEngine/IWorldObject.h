@@ -11,7 +11,6 @@ protected:
 	Vector3D position;
 	Vector3D rotation;
 	float w;
-	btRigidBody* pObject;
 	btCollisionObject* pObject;
 	IGraphicsObject* gObject;
 public:
