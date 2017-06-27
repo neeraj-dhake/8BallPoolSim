@@ -47,33 +47,33 @@ void PoolTable::SetCoordinates(Vector3D v) {
 	plane1->SetPlane(v + Vector3D(0, 0, -1), -109);
 	plane2->SetPlane(v + Vector3D(-0.5, 3, 1), -76);
 	plane3->SetPlane(v + Vector3D(1, 0, 0), -100);
-	PoolBallBlack->GetObj()->SetCoordinates(Vector3D(5, 5, 0));
-	PoolBallBlue->GetObj()->SetCoordinates(Vector3D(-5, 5, 0));
+	PoolBallBlack->GetObj()->SetCoordinates(Vector3D(5, 4, 0));
+	PoolBallBlue->GetObj()->SetCoordinates(Vector3D(-5, 4, 0));
 
 
-	PoolBallBlue_stripes->GetObj()->SetCoordinates(v + Vector3D(15, 5, 5));
-	PoolBallGreen_stripes->GetObj()->SetCoordinates(v + Vector3D(-15, 5, -5));
-	PoolBallRed_stripes->GetObj()->SetCoordinates(v + Vector3D(25, 5, 10));
-	PoolBallYellow_stripes->GetObj()->SetCoordinates(v + Vector3D(-25, 5, -10));
-	PoolBallOchre_stripes->GetObj()->SetCoordinates(v + Vector3D(35, 5, 20));
-	PoolBallPurple_stripes->GetObj()->SetCoordinates(v + Vector3D(-35, 5, -20));
-	PoolBallBrown_stripes->GetObj()->SetCoordinates(v + Vector3D(20, 5, 15));
+	PoolBallBlue_stripes->GetObj()->SetCoordinates(v + Vector3D(15, 4, 5));
+	PoolBallGreen_stripes->GetObj()->SetCoordinates(v + Vector3D(-15, 4, -5));
+	PoolBallRed_stripes->GetObj()->SetCoordinates(v + Vector3D(25, 4, 10));
+	PoolBallYellow_stripes->GetObj()->SetCoordinates(v + Vector3D(-25, 4, -10));
+	PoolBallOchre_stripes->GetObj()->SetCoordinates(v + Vector3D(35, 4, 20));
+	PoolBallPurple_stripes->GetObj()->SetCoordinates(v + Vector3D(-35, 4, -20));
+	PoolBallBrown_stripes->GetObj()->SetCoordinates(v + Vector3D(20, 4, 15));
 
 
-	PoolBallGreen->GetObj()->SetCoordinates(v + Vector3D(-20, 5, -15));
-	PoolBallRed->GetObj()->SetCoordinates(v + Vector3D(-10, 5, 25));
-	PoolBallYellow->GetObj()->SetCoordinates(v + Vector3D(10, 5, -25));
-	PoolBallOchre->GetObj()->SetCoordinates(v + Vector3D(-30, 5, 30));
-	PoolBallPurple->GetObj()->SetCoordinates(v + Vector3D(30, 5, -35));
-	PoolBallBrown->GetObj()->SetCoordinates(v + Vector3D(5, 5, 35));
+	PoolBallGreen->GetObj()->SetCoordinates(v + Vector3D(-20, 4, -15));
+	PoolBallRed->GetObj()->SetCoordinates(v + Vector3D(-10, 4, 25));
+	PoolBallYellow->GetObj()->SetCoordinates(v + Vector3D(10, 4, -25));
+	PoolBallOchre->GetObj()->SetCoordinates(v + Vector3D(-30, 4, 30));
+	PoolBallPurple->GetObj()->SetCoordinates(v + Vector3D(30, 4, -35));
+	PoolBallBrown->GetObj()->SetCoordinates(v + Vector3D(5, 4, 35));
 
 
 
-	PoolBallWhite->GetObj()->SetCoordinates(v + Vector3D(-0, 5, 50));
+	PoolBallWhite->GetObj()->SetCoordinates(v + Vector3D(-0, 4, 50));
 
 	Vector3D StickPos = PoolBallWhite->GetObj()->GetPos();
 	StickPos.z += offsetFromBall;
-	StickPos.y += 20;
+	StickPos.y += 5;
 
 	PoolStick->SetCoordinates(StickPos);
 
@@ -161,9 +161,10 @@ void PoolTable::AddObject(Scene *scene)
 	PoolStick->GetpObject()->setActivationState(DISABLE_DEACTIVATION);		// used for player controllable objects
 
 
+	PoolBallWhite->GetObj()->GetpObject()->setRestitution(1);
+	baseObj->GetpObject()->setRestitution(0);
+	PoolBallWhite->GetObj()->GetpObject()->setRollingFriction(0.0);
 
-	PoolBallWhite->GetObj()->GetpObject()->setRestitution(0.8);
-	float x = PoolBallWhite->GetObj()->GetpObject()->getRestitution();
 	((btRigidBody*)(PoolStick->GetpObject()))->setLinearFactor(btVector3(1, 0, 1));
 	((btRigidBody*)(PoolStick->GetpObject()))->setAngularFactor(btVector3(0, 1, 0));
 

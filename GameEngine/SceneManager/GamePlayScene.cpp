@@ -73,17 +73,15 @@ static btQuaternion toQuaternion(double pitch /*y*/, double roll /*x*/, double y
 
 void GamePlayScene::UpdateScene() {
 
-	const float rotateAngle = 0.01;
-	btTransform transform;
-	btScalar x, y, z;
-	
-
 
 
 	btVector3 velOfWhiteBall = ((btRigidBody*)(objects_in_scene[PoolBallWhite]->GetpObject()))->getLinearVelocity();
 	float normVelOfWhiteBall = velOfWhiteBall.length();
-	
-	if (normVelOfWhiteBall < 0.0001 && !StickPlaced)
+
+	static float rotateAngle = 0.00;
+	const float delta = 0.01;
+
+	if (normVelOfWhiteBall < 0.0001 && !StickPlaced)			// when white ball stops
 	{
 		btVector3 StickPos = ((btRigidBody*)(objects_in_scene[PoolBallWhite]->GetpObject()))->getCenterOfMassPosition();
 		StickPos.setZ(StickPos.getZ() + offsetFromBall);
@@ -92,21 +90,39 @@ void GamePlayScene::UpdateScene() {
 		transform.setOrigin(StickPos);
 		btQuaternion qt = toQuaternion(0, 0, 0);
 		transform.setRotation(qt);
-		((btRigidBody*)(objects_in_scene[PoolStick]->GetpObject()))->setCenterOfMassTransform(transform);
+		((btRigidBody*)(objects_in_scene[PoolStick]->GetpObject()))->setWorldTransform(transform);
 
 		StickPlaced = true;
+		rotateAngle = 0.00;
 
 	}
-	char msgbuf[200];
-	sprintf_s(msgbuf, 200, "%f %f %f %f\n", 0, ((btRigidBody*)(objects_in_scene[PoolStick]->GetpObject()))->getCenterOfMassPosition().getX(),
-		((btRigidBody*)(objects_in_scene[PoolStick]->GetpObject()))->getCenterOfMassPosition().getY(),
-		((btRigidBody*)(objects_in_scene[PoolStick]->GetpObject()))->getCenterOfMassPosition().getZ());
-	OutputDebugString(msgbuf);
 
-	sprintf_s(msgbuf, 200, "%f %f %f %f\n", 0, ((btRigidBody*)(objects_in_scene[PoolBallWhite]->GetpObject()))->getCenterOfMassPosition().getX(),
-		((btRigidBody*)(objects_in_scene[PoolBallWhite]->GetpObject()))->getCenterOfMassPosition().getY(),
-		((btRigidBody*)(objects_in_scene[PoolBallWhite]->GetpObject()))->getCenterOfMassPosition().getZ());
-	OutputDebugString(msgbuf);
+	if (((btRigidBody*)(objects_in_scene[PoolBallWhite]->GetpObject()))->getCenterOfMassPosition().getY() < -10)		// when white ball goes out
+	{
+		btVector3 BallPos = ((btRigidBody*)(objects_in_scene[PoolBallWhite]->GetpObject()))->getCenterOfMassPosition();
+		BallPos.setX(0);
+		BallPos.setZ(50);
+		BallPos.setY(5);
+		btTransform transform;
+		transform.setOrigin(BallPos);
+		btQuaternion qt = toQuaternion(0, 0, 0);
+		transform.setRotation(qt);
+		((btRigidBody*)(objects_in_scene[PoolBallWhite]->GetpObject()))->setLinearVelocity(btVector3(0, 0, 0));
+		((btRigidBody*)(objects_in_scene[PoolBallWhite]->GetpObject()))->setAngularVelocity(btVector3(0, 0, 0));
+		((btRigidBody*)(objects_in_scene[PoolBallWhite]->GetpObject()))->setWorldTransform(transform);
+		StickPlaced = false;
+	}
+
+	char msgbuf[200];
+	//sprintf_s(msgbuf, 200, "%f %f %f %f\n", 0, ((btRigidBody*)(objects_in_scene[PoolStick]->GetpObject()))->getCenterOfMassPosition().getX(),
+	//	((btRigidBody*)(objects_in_scene[PoolStick]->GetpObject()))->getCenterOfMassPosition().getY(),
+	//	((btRigidBody*)(objects_in_scene[PoolStick]->GetpObject()))->getCenterOfMassPosition().getZ());
+	//OutputDebugString(msgbuf);
+
+	//sprintf_s(msgbuf, 200, "%f %f %f %f\n", 0, ((btRigidBody*)(objects_in_scene[PoolBallWhite]->GetpObject()))->getCenterOfMassPosition().getX(),
+	//	((btRigidBody*)(objects_in_scene[PoolBallWhite]->GetpObject()))->getCenterOfMassPosition().getY(),
+	//	((btRigidBody*)(objects_in_scene[PoolBallWhite]->GetpObject()))->getCenterOfMassPosition().getZ());
+	//OutputDebugString(msgbuf);
 
 
 	//char msgbuf[200];
@@ -117,55 +133,57 @@ void GamePlayScene::UpdateScene() {
 
 
 
+	btTransform transform;
+	btScalar x, y, z;
+
+	((btRigidBody*)(objects_in_scene[PoolStick]->GetpObject()))->getOrientation().getEulerZYX(z, y, x);
+	btQuaternion qtStick = ((btRigidBody*)(objects_in_scene[PoolStick]->GetpObject()))->getOrientation();
+	btVector3 pos = (((btRigidBody*)(objects_in_scene[PoolStick]->GetpObject()))->getCenterOfMassPosition());
+	btVector3 axix = btVector3(0, 1, 0);
 
 
 	if (InputHandler::instance().GetKeyState_current(KEY_D)) {
 
-		((btRigidBody*)(objects_in_scene[PoolStick]->GetpObject()))->getOrientation().getEulerZYX(z, y, x);
-		btQuaternion qt = toQuaternion(y - rotateAngle, x, z);
-		btVector3 pos = (((btRigidBody*)(objects_in_scene[PoolStick]->GetpObject()))->getCenterOfMassPosition());
-
-		pos.setX(pos.getX() - btScalar(offsetFromBall*std::sin(rotateAngle)));
-
-		if (y>0)
-			pos.setZ(pos.getZ() - btScalar(offsetFromBall*(1 - std::cos(rotateAngle))));
+		rotateAngle = rotateAngle - delta;
+		qtStick.setRotation(axix, rotateAngle);
+		pos.setX(pos.getX() - btScalar(offsetFromBall*((std::sin(rotateAngle + delta)) - std::sin(rotateAngle))));
+		if(rotateAngle < 0)
+			pos.setZ(pos.getZ() - btScalar(offsetFromBall*((std::cos(rotateAngle + delta)) - std::cos(rotateAngle))));
 		else
-			pos.setZ(pos.getZ() + btScalar(offsetFromBall*(1 - std::cos(rotateAngle))));
+			pos.setZ(pos.getZ() + btScalar(offsetFromBall*((std::cos(rotateAngle + delta)) - std::cos(rotateAngle))));
 
 		transform.setOrigin(pos);
-		transform.setRotation(qt);
+		transform.setRotation(qtStick);
 		((btRigidBody*)(objects_in_scene[PoolStick]->GetpObject()))->setWorldTransform(transform);
 	}
 	if (InputHandler::instance().GetKeyState_current(KEY_A)) {
-		//((btRigidBody*)(objects_in_scene[PoolBallBlack]->GetpObject()))->applyTorqueImpulse(btVector3(btScalar(0), btScalar(2), btScalar(0)));
-		btVector3 axix = btVector3(0,0,1);
 
-		btQuaternion qtStick = ((btRigidBody*)(objects_in_scene[PoolStick]->GetpObject()))->getOrientation();
-		qtStick.setRotation(axix, 100);
-
-		//((btRigidBody*)(objects_in_scene[PoolStick]->GetpObject()))->getOrientation().getEulerZYX(z, y, x);
-		btVector3 pos = (((btRigidBody*)(objects_in_scene[PoolStick]->GetpObject()))->getCenterOfMassPosition());
-
-
-		pos.setX(pos.getX() + btScalar(offsetFromBall*std::sin(rotateAngle)));
-		if (y<0)
-			pos.setZ(pos.getZ() - btScalar(offsetFromBall*(1 - std::cos(rotateAngle))));
+		rotateAngle = rotateAngle + delta;
+		qtStick.setRotation(axix, rotateAngle);
+		pos.setX(pos.getX() + btScalar(offsetFromBall*((std::sin(rotateAngle)) - std::sin(rotateAngle - delta))));
+		if(rotateAngle < 0)
+			pos.setZ(pos.getZ() + btScalar(offsetFromBall*((std::cos(rotateAngle)) - std::cos(rotateAngle - delta))));
 		else
-			pos.setZ(pos.getZ() + btScalar(offsetFromBall*(1 - std::cos(rotateAngle))));
-
+			pos.setZ(pos.getZ() - btScalar(offsetFromBall*((std::cos(rotateAngle)) - std::cos(rotateAngle - delta))));
 
 		transform.setOrigin(pos);
-		btQuaternion qt = toQuaternion(y + rotateAngle, x, z);
-		transform.setRotation(qt);
+		transform.setRotation(qtStick);
 		((btRigidBody*)(objects_in_scene[PoolStick]->GetpObject()))->setWorldTransform(transform);
 
 	}
 
-	//char msgbuf[200];
-	//sprintf_s(msgbuf, 200, "%f %f %f %f\n", 0, ((btRigidBody*)(objects_in_scene[PoolStick]->GetpObject()))->getCenterOfMassPosition().getX(),
-	//	((btRigidBody*)(objects_in_scene[PoolStick]->GetpObject()))->getCenterOfMassPosition().getY(),
-	//	((btRigidBody*)(objects_in_scene[PoolStick]->GetpObject()))->getCenterOfMassPosition().getZ());
+	//	char msgbuf[200];
+	//sprintf_s(msgbuf, 200, "%d %f %f %f\n", 0, float(x), float(y), float(z));
 	//OutputDebugString(msgbuf);
+	//sprintf_s(msgbuf, 200, "%d %f %f %f\n", 0, float(pos.getX()), float(pos.getY()), float(pos.getZ()));
+	//OutputDebugString(msgbuf);
+
+	//char msgbuf[200];
+	sprintf_s(msgbuf, 200, "%f %f %f %f, %f\n", 0, ((btRigidBody*)(objects_in_scene[PoolBallWhite]->GetpObject()))->getCenterOfMassPosition().getX(),
+		((btRigidBody*)(objects_in_scene[PoolBallWhite]->GetpObject()))->getCenterOfMassPosition().getY(),
+		((btRigidBody*)(objects_in_scene[PoolBallWhite]->GetpObject()))->getCenterOfMassPosition().getZ(),
+		((btRigidBody*)(objects_in_scene[PoolBallWhite]->GetpObject()))->getLinearVelocity().getY());
+	OutputDebugString(msgbuf);
 
 	//if (InputHandler::instance().GetKeyState_current(KEY_W))
 	//	((btRigidBody*)(objects_in_scene[PoolBallBlack]->GetpObject()))->applyTorqueImpulse(btVector3(btScalar(0), btScalar(0), btScalar(-0.5)));
@@ -195,11 +213,14 @@ void GamePlayScene::UpdateScene() {
 		btVector3 posBall = (((btRigidBody*)(objects_in_scene[PoolBallWhite]->GetpObject()))->getCenterOfMassPosition());
 
 		btVector3 impulseDirec = posBall - posStick;
-		impulseDirec.setY(0);
-		btScalar power = 10.0f;
+		impulseDirec.setY(0.0f);
+		btScalar power = 50.0f;
 		impulseDirec = power*impulseDirec.normalize();
-		((btRigidBody*)(objects_in_scene[PoolBallWhite]->GetpObject()))->applyCentralImpulse(impulseDirec);
+		((btRigidBody*)(objects_in_scene[PoolBallWhite]->GetpObject()))->setLinearVelocity(impulseDirec);
 
+		btVector3 tempvel;
+		tempvel = ((btRigidBody*)(objects_in_scene[PoolBallWhite]->GetpObject()))->getLinearVelocity();
+		int h = 1;
 	}
 
 	//InputHandler::instance().GetMouseX

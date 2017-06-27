@@ -22,9 +22,9 @@ LRESULT CALLBACK process(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam, 
 
 		mouseX = GET_X_LPARAM(lParam) - SCREEN_WIDTH / 2;
 		mouseY = GET_Y_LPARAM(lParam) - SCREEN_HEIGHT / 2;
-		char msgbuf[200];
-		sprintf_s(msgbuf, 200, "%f %f \n", mouseX, mouseY);
-		OutputDebugString(msgbuf);
+		//char msgbuf[200];
+		//sprintf_s(msgbuf, 200, "%f %f \n", mouseX, mouseY);
+		//OutputDebugString(msgbuf);
 
 
 		break;
