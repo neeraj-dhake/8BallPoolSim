@@ -134,9 +134,6 @@ void GamePlayScene::UpdateScene() {
 
 
 	btTransform transform;
-	btScalar x, y, z;
-
-	((btRigidBody*)(objects_in_scene[PoolStick]->GetpObject()))->getOrientation().getEulerZYX(z, y, x);
 	btQuaternion qtStick = ((btRigidBody*)(objects_in_scene[PoolStick]->GetpObject()))->getOrientation();
 	btVector3 pos = (((btRigidBody*)(objects_in_scene[PoolStick]->GetpObject()))->getCenterOfMassPosition());
 	btVector3 axix = btVector3(0, 1, 0);
@@ -147,10 +144,7 @@ void GamePlayScene::UpdateScene() {
 		rotateAngle = rotateAngle - delta;
 		qtStick.setRotation(axix, rotateAngle);
 		pos.setX(pos.getX() - btScalar(offsetFromBall*((std::sin(rotateAngle + delta)) - std::sin(rotateAngle))));
-		if(rotateAngle < 0)
-			pos.setZ(pos.getZ() - btScalar(offsetFromBall*((std::cos(rotateAngle + delta)) - std::cos(rotateAngle))));
-		else
-			pos.setZ(pos.getZ() + btScalar(offsetFromBall*((std::cos(rotateAngle + delta)) - std::cos(rotateAngle))));
+		pos.setZ(pos.getZ() - btScalar(offsetFromBall*((std::cos(rotateAngle + delta)) - std::cos(rotateAngle))));
 
 		transform.setOrigin(pos);
 		transform.setRotation(qtStick);
@@ -161,10 +155,7 @@ void GamePlayScene::UpdateScene() {
 		rotateAngle = rotateAngle + delta;
 		qtStick.setRotation(axix, rotateAngle);
 		pos.setX(pos.getX() + btScalar(offsetFromBall*((std::sin(rotateAngle)) - std::sin(rotateAngle - delta))));
-		if(rotateAngle < 0)
-			pos.setZ(pos.getZ() + btScalar(offsetFromBall*((std::cos(rotateAngle)) - std::cos(rotateAngle - delta))));
-		else
-			pos.setZ(pos.getZ() - btScalar(offsetFromBall*((std::cos(rotateAngle)) - std::cos(rotateAngle - delta))));
+		pos.setZ(pos.getZ() + btScalar(offsetFromBall*((std::cos(rotateAngle)) - std::cos(rotateAngle - delta))));
 
 		transform.setOrigin(pos);
 		transform.setRotation(qtStick);
@@ -172,13 +163,7 @@ void GamePlayScene::UpdateScene() {
 
 	}
 
-	//	char msgbuf[200];
-	//sprintf_s(msgbuf, 200, "%d %f %f %f\n", 0, float(x), float(y), float(z));
-	//OutputDebugString(msgbuf);
-	//sprintf_s(msgbuf, 200, "%d %f %f %f\n", 0, float(pos.getX()), float(pos.getY()), float(pos.getZ()));
-	//OutputDebugString(msgbuf);
 
-	//char msgbuf[200];
 	sprintf_s(msgbuf, 200, "%f %f %f %f, %f\n", 0, ((btRigidBody*)(objects_in_scene[PoolBallWhite]->GetpObject()))->getCenterOfMassPosition().getX(),
 		((btRigidBody*)(objects_in_scene[PoolBallWhite]->GetpObject()))->getCenterOfMassPosition().getY(),
 		((btRigidBody*)(objects_in_scene[PoolBallWhite]->GetpObject()))->getCenterOfMassPosition().getZ(),
