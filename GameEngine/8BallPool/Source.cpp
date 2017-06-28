@@ -1,6 +1,5 @@
 #include <Windows.h>
-#include "../GameplayEngine/WorldObject_cuboid.h"
-#include "../GameplayEngine/World.h"
+#include "../BulletPhysicsEngine/WorldObject_cuboid.h"
 #include "../Include/d3dx9.h"
 #include "../InputLib_Win/KeyBoardInput.h"
 #include "../SceneManager/Scene.h"
@@ -8,15 +7,24 @@
 #include "../SceneManager/GamePlayScene.h"
 #include "../SceneManager/PauseScene.h"
 #include "../SceneManager/MenuScene.h"
+#include "../Include/btBulletDynamicsCommon.h"
+#include "../BulletPhysicsEngine/BulletWorld.h"
 
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
 
-#pragma comment (lib, "GameplayEngine.lib")
+#pragma comment (lib, "BulletPhysicsEngine.lib")
 #pragma comment (lib, "RenderingEngine.lib")
 #pragma comment (lib, "InputLib_Win.lib")
+#pragma comment (lib, "BulletPhysicsEngine")
 #pragma comment (lib, "d3d9.lib")
 #pragma comment (lib, "d3dx9.lib")
+
+#pragma comment (lib, "BulletDynamics_vs2010_x64_debug.lib")
+#pragma comment (lib, "BulletCollision_vs2010_x64_debug.lib")
+#pragma comment (lib, "Bullet3Collision_vs2010_x64_debug.lib")
+#pragma comment (lib, "LinearMath_vs2010_x64_debug.lib")
+
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 	switch (msg) {
@@ -62,8 +70,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	ShowWindow(hwnd, nCmdShow);
 
+
 	KeyBoardInput *input = new KeyBoardInput;
-	InputHandler::instance().SetKey(input->getKeys_current(), input->getKeys_prev());
+	InputHandler::instance().Set(input);
+
+
 
 	Scene* menu_scene = new MenuScene;
 	Scene* pause_scene = new PauseScene;
@@ -71,11 +82,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	SceneManager* scene_manager = new SceneManager(SCREEN_WIDTH, SCREEN_HEIGHT, hwnd);
 	
-	D3DXVECTOR3 pos(0, 0, 150), lookat(0, 0, 0), up(0, 1, 0);
+	D3DXVECTOR3 pos(0, 250, 200), lookat(0, 0, 0), up(0, 1, 0);
+
+	D3DXVECTOR3 light(0, -100, -100);
 
 	menu_scene->SetCamera(pos, lookat, up);
 	pause_scene->SetCamera(pos, lookat, up);
 	gameplay_scene->SetCamera(pos, lookat, up);
+
+	menu_scene->SetLight(light);
+	pause_scene->SetLight(light);
+	gameplay_scene->SetLight(light);
+
 
 	scene_manager->AddScene(menu_scene);
 	scene_manager->AddScene(gameplay_scene);
@@ -85,11 +103,17 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	while (TRUE) {
 		if (!input->handle(msg) || msg.message == WM_QUIT)
 			break;
-		InputHandler::instance().SetKey(input->getKeys_current(), input->getKeys_prev());
+		InputHandler::instance().Set(input);
 		scene_manager->Update();
 		scene_manager->Draw();
 	}
 
+	
+	delete gameplay_scene;
+	delete pause_scene;
+	delete menu_scene;
+
+	delete scene_manager;
 	delete input;
 	return 0;
 }

@@ -76,6 +76,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>%userprofile%\Desktop\8BallPoolSim\GameEngine\x64\Debug;%userprofile%\Desktop\8BallPoolSim\GameEngine\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>%userprofile%\Desktop\8BallPoolSim\GameEngine\Include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -103,12 +104,16 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BT_USE_DOUBLE_PRECISION;_DEBUG=1;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>BulletCollision_vs2010_x64_debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -148,11 +153,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BulletPhysicsObject_pool.cpp" />
+    <ClCompile Include="GraphicsObject_pool.cpp" />
+    <ClCompile Include="PoolBall.cpp" />
+    <ClCompile Include="PoolTable.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="WorldObject_pool.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GameplayEngine\GameplayEngine.vcxproj">
-      <Project>{012d426e-d1a2-411e-8740-954a85625b98}</Project>
+    <ProjectReference Include="..\BulletPhysicsEngine\BulletPhysicsEngine.vcxproj">
+      <Project>{325c7288-83f5-4b44-8f6f-2f65d9368a90}</Project>
     </ProjectReference>
     <ProjectReference Include="..\InputLib_Win\InputLib_Win.vcxproj">
       <Project>{2a0cf5fb-70c6-4cfe-9aad-01ec63417bfa}</Project>
@@ -163,6 +173,13 @@
     <ProjectReference Include="..\SceneManager\SceneManager.vcxproj">
       <Project>{7054fe7d-3fcf-4223-a2ec-e606903c18d0}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BulletPhysicsObject_pool.h" />
+    <ClInclude Include="GraphicsObject_pool.h" />
+    <ClInclude Include="PoolBall.h" />
+    <ClInclude Include="PoolTable.h" />
+    <ClInclude Include="WorldObject_pool.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

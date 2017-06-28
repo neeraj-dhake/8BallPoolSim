@@ -7,7 +7,6 @@ class GraphicsObject_cuboid : public IGraphicsObject {
 public:
 	GraphicsObject_cuboid(WorldObject_cuboid*);
 	void Init();
-	void SetMesh();
 	~GraphicsObject_cuboid();
 };
 

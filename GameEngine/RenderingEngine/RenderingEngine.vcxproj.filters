@@ -42,6 +42,9 @@
     <ClInclude Include="GraphicsObject_sphere.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GraphicsObject_plane.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IGraphicsObject.cpp">
@@ -60,6 +63,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GraphicsObject_sphere.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsObject_plane.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
   </ItemGroup>
